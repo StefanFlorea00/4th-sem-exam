@@ -1,10 +1,25 @@
 import React, { useCallback, useContext, useState } from 'react';
 import FirebaseApp from '../FirebaseApp';
 import { withRouter, Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { AuthContext } from '../../Auth';
+import { formErrorTypes } from './SignUp';
 
-function LogIn({ history }) {
+export type Props = {
+  history: RouteComponentProps['history'];
+  location: RouteComponentProps['location'];
+  match: RouteComponentProps['match'];
+};
+
+function LogIn(props: Props) {
+  const FormErrorMessages: formErrorTypes = {
+    ['auth/invalid-email']: 'Email is invalid',
+    ['auth/user-disabled']: 'Email is disabled',
+    ['auth/user-not-found']: "Email doesn't exist",
+    ['auth/wrong-password']: 'Wrong Password',
+  };
+
+  const { history } = props;
   const [formElementErr, setFormeElementErr] = useState<null | string>(null);
   const handleSignup = useCallback(
     async e => {
@@ -19,7 +34,7 @@ function LogIn({ history }) {
 
         history.push('/');
       } catch (err) {
-        setFormeElementErr(err.message);
+        setFormeElementErr(FormErrorMessages[err.code] || err.message);
         throw new Error(err.message);
       }
     },
