@@ -2,14 +2,26 @@ import React, { useCallback, useState } from 'react';
 import { withRouter } from 'react-router';
 import FirebaseApp from '../FirebaseApp';
 import { Link } from 'react-router-dom';
+import { Props } from './LogIn';
 
-function SignUp({ history }: { history: any }) {
+export type formErrorTypes = {
+  [key: string]: string;
+};
+
+function SignUp(props: Props) {
+  const { history } = props;
   const [formElementErr, setFormeElementErr] = useState<null | string>(null);
+
+  const FormErrorMessages: formErrorTypes = {
+    ['auth/invalid-email']: 'Email is invalid',
+    ['auth/weak-password']: 'Password must be at least 6 characters long',
+    ['auth/email-already-in-use']: 'Email already exists',
+  };
+
   const handleSignup = useCallback(
     async e => {
       e.preventDefault();
       const { email, password, confirmPassword } = e.target.elements;
-      console.log(confirmPassword);
 
       try {
         if (password.value === confirmPassword.value) {
@@ -22,7 +34,7 @@ function SignUp({ history }: { history: any }) {
           setFormeElementErr('Passwords do not Match');
         }
       } catch (err) {
-        setFormeElementErr(err.message);
+        setFormeElementErr(FormErrorMessages[err.code] || err.message);
         throw new Error(err.message);
       }
     },
