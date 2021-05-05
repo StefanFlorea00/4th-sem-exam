@@ -30,35 +30,51 @@ function SignUp({ history }: { history: any }) {
   );
 
   return (
-    <div className='signUp'>
-      <h1>Sign Up</h1>
-      {formElementErr && <div style={{ color: 'red' }}> {formElementErr}</div>}
-      <form onSubmit={handleSignup}>
-        <div>
-          <label> Email</label>
-          <input type='email' name='email' placeholder='Email' />
-        </div>
+    <div className='login_wrapper'>
+      <div className='signup'>
+        <h1 className='signup_header'>Sign Up</h1>
+        {formElementErr && (
+          <div className='signup_error'> {formElementErr}</div>
+        )}
+        <form className='signup_form' onSubmit={handleSignup}>
+          <div className='signup_form_email_div'>
+            <label className='signup_form_email_div_label'> Email</label>
+            <input
+              className='signup_form_email_div_input'
+              type='email'
+              name='email'
+              placeholder='Email'
+            />
+          </div>
 
-        <div>
-          <label> Password</label>
-          <input type='password' name='password' placeholder='Password' />
-        </div>
+          <div className='signup_form_password_div'>
+            <label className='signup_form_password_div_label'> Password</label>
+            <input
+              className='signup_form_password_div_input'
+              type='password'
+              name='password'
+              placeholder='Password'
+            />
+          </div>
 
-        <div>
-          <label>Confirm password</label>
+          <div className='signup_form_confirm_password_div'>
+            <label className='signup_form_confirm_password_div_label'>
+              Confirm password
+            </label>
 
-          <input
-            type='password'
-            name='confirmPassword'
-            placeholder='Confirm password'
-          />
-        </div>
-        <button>Submit</button>
-
-        <div>
-          Already have an account? <Link to='/login'>Log in</Link>
-        </div>
-      </form>
+            <input
+              className='signup_form_confirm_password_div_input'
+              type='password'
+              name='confirmPassword'
+              placeholder='Confirm password'
+            />
+          </div>
+          <div className='signup_form_account_message'>
+            Already have an account? <Link to='/login'>Log in</Link>
+          </div>
+          <button className='signup_form_button'>Submit</button>
+        </form>
+      </div>
     </div>
   );
 }

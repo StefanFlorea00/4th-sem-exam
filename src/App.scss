@@ -1,4 +1,6 @@
 @use './main.scss';
+@use './variables.scss' as *;
+
 *,
 *::before,
 *::after {
@@ -8,11 +10,5 @@
 }
 
 .App {
-  height: 100vh;
-  background: #212112;
-  display: grid;
-  place-items: center;
-  h1 {
-    color: beige;
-  }
+  background: $body-bg-color;
 }

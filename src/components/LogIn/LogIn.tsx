@@ -32,27 +32,37 @@ function LogIn({ history }) {
     <Redirect to='/' />;
   }
   return (
-    <div className='logIn'>
-      <h1>Log In</h1>
-      {formElementErr && <div style={{ color: 'red' }}> {formElementErr}</div>}
+    <div className='login_wrapper'>
+      <div className='login'>
+        <h1 className='login_header'>Log In</h1>
+        {formElementErr && <div className='login_error'>{formElementErr}</div>}
 
-      <form onSubmit={handleSignup}>
-        <div>
-          <label> Email</label>
-          <input type='email' name='email' placeholder='Email' />
-        </div>
+        <form className='login_form' onSubmit={handleSignup}>
+          <div className='login_form_email_div'>
+            <label className='login_form_email_div_label'> Email</label>
+            <input
+              className='login_form_email_div_input'
+              type='email'
+              name='email'
+              placeholder='Type your Email'
+            />
+          </div>
 
-        <div>
-          <label> Password</label>
-          <input type='password' name='password' placeholder='Password' />
-        </div>
-
-        <button>Submit</button>
-
-        <div>
-          Don't have an account? <Link to='/signup'>Sign up</Link>
-        </div>
-      </form>
+          <div className='login_form_password_div'>
+            <label className='login_form_password_label'> Password</label>
+            <input
+              className='login_form_password_div_input'
+              type='password'
+              name='password'
+              placeholder='Type your password'
+            />
+          </div>
+          <div className='login_form_account_message'>
+            Don't have an account? <Link to='/signup'>Sign up</Link>
+          </div>
+          <button className='login_form_button'>Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
