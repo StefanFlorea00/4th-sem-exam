@@ -70,6 +70,7 @@ function LogIn(props: Props) {
               type='password'
               name='password'
               placeholder='Type your password'
+              minLength={6}
             />
           </div>
           <div className='login_form_account_message'>
