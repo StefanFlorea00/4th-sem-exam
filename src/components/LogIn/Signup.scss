@@ -11,6 +11,8 @@
   border-radius: 32px;
   margin: auto auto;
   margin: 0.5em 0;
+  transform-style: preserve-3d;
+  animation: appear 1s ease;
 
   label {
     display: block;
@@ -68,5 +70,11 @@
       background: $accent-color;
       color: #fff;
     }
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: perspective(500px) rotateY(180deg);
   }
 }
