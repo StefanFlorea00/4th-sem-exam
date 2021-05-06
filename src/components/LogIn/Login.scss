@@ -8,7 +8,7 @@
 
 .login {
   height: clamp(400px, 600px, 600px);
-  width: clamp(30%, 94%, 500px);
+  width: clamp(30%, 94%, 447px);
   background: #fff;
   display: flex;
   align-items: center;
@@ -20,25 +20,6 @@
 
   label {
     display: block;
-  }
-
-  &_form_email_div,
-  &_form_password_div {
-    margin: 1em 0;
-  }
-
-  &_form_email_div_input,
-  &_form_password_div_input {
-    width: 100%;
-    border-radius: 23px;
-    padding: 1.3em;
-    border: none;
-    margin: 0.5em 0;
-    background: $body-bg-color;
-
-    &:focus {
-      outline: none;
-    }
   }
 
   &_header {
@@ -57,14 +38,40 @@
     text-align: center;
   }
 
-  &_form_account_message {
-    color: #b2b2b2;
-  }
-  &_form_button {
-    width: 100%;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 23px;
-    margin-top: 6em;
+  &_form {
+    width: clamp(260px, 90%, 370px);
+
+    &_email_div,
+    &_password_div {
+      margin: 1em 0;
+    }
+
+    &_email_div_input,
+    &_password_div_input {
+      width: 100%;
+      border-radius: 23px;
+      padding: 1.3em;
+      border: none;
+      margin: 0.5em 0;
+      background: $body-bg-color;
+      &:valid:not(:placeholder-shown):not(focus) {
+        border: 1px solid $accent-color;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    &_account_message {
+      color: #b2b2b2;
+    }
+    &_button {
+      width: 100%;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 23px;
+      margin-top: 6em;
+      background: $accent-color;
+      color: #fff;
+    }
   }
 }

@@ -55,7 +55,7 @@ function SignUp(props: Props) {
               className='signup_form_email_div_input'
               type='email'
               name='email'
-              placeholder='Email'
+              placeholder='Enter your email'
             />
           </div>
 
@@ -65,7 +65,8 @@ function SignUp(props: Props) {
               className='signup_form_password_div_input'
               type='password'
               name='password'
-              placeholder='Password'
+              placeholder='Enter your password'
+              minLength={6}
             />
           </div>
 
@@ -78,13 +79,14 @@ function SignUp(props: Props) {
               className='signup_form_confirm_password_div_input'
               type='password'
               name='confirmPassword'
-              placeholder='Confirm password'
+              placeholder='Enter your password again'
+              minLength={6}
             />
           </div>
           <div className='signup_form_account_message'>
             Already have an account? <Link to='/login'>Log in</Link>
           </div>
-          <button className='signup_form_button'>Submit</button>
+          <button className='signup_form_button'>Sign up</button>
         </form>
       </div>
     </div>

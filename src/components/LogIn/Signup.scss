@@ -1,14 +1,8 @@
 @use '../../variables.scss' as *;
 
-.login_wrapper {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-}
-
 .signup {
   height: clamp(400px, 650px, 700px);
-  width: clamp(30%, 94%, 812px);
+  width: clamp(30%, 94%, 700px);
   background: #fff;
   display: flex;
   align-items: center;
@@ -22,27 +16,6 @@
     display: block;
   }
 
-  &_form_email_div,
-  &_form_password_div,
-  &_form_confirm_password_div {
-    margin: 1em 0;
-  }
-
-  &_form_email_div_input,
-  &_form_password_div_input,
-  &_form_confirm_password_div_input {
-    width: 100%;
-    border-radius: 23px;
-    padding: 1.3em;
-    border: none;
-    margin: 0.5em 0;
-    background: $body-bg-color;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
   &_header {
     font-size: 2.8em;
     margin-top: 0.5em;
@@ -54,15 +27,46 @@
     background: $body-bg-color;
     padding: 10px 15px;
     border-radius: 10px;
-    width: 90%;
+    width: clamp(200px, 90%, 500px);
     text-align: center;
   }
-  &_form_button {
-    margin-top: 3em;
-    display: grid;
-    width: 100%;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 23px;
+
+  &_form {
+    width: clamp(260px, 90%, 450px);
+
+    &_email_div,
+    &_password_div,
+    &_confirm_password_div {
+      margin: 1em 0;
+    }
+
+    &_email_div_input,
+    &_password_div_input,
+    &_confirm_password_div_input {
+      width: 100%;
+      border-radius: 23px;
+      padding: 1.3em;
+      border: none;
+      margin: 0.5em 0;
+      background: $body-bg-color;
+
+      &:valid:not(:placeholder-shown):not(focus) {
+        border: 1px solid $accent-color;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &_button {
+      margin-top: 3em;
+      display: grid;
+      width: 100%;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 23px;
+      background: $accent-color;
+      color: #fff;
+    }
   }
 }

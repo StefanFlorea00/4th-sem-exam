@@ -75,7 +75,7 @@ function LogIn(props: Props) {
           <div className='login_form_account_message'>
             Don't have an account? <Link to='/signup'>Sign up</Link>
           </div>
-          <button className='login_form_button'>Submit</button>
+          <button className='login_form_button'>Login</button>
         </form>
       </div>
     </div>
