@@ -1,0 +1,6 @@
+@use '../variables.scss' as *;
+
+.home {
+  margin-left: $sidebar-width;
+  height: 100%;
+}

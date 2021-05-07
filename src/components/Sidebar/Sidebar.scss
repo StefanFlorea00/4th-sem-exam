@@ -1,0 +1,26 @@
+@use '../../variables.scss' as *;
+
+.sidebar {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  width: $sidebar-width;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 40px;
+  background-color: $body-bg-color;
+  z-index: 1;
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    background-color: blueviolet;
+  }
+
+  .user-btn {
+    margin-top: auto;
+  }
+}
