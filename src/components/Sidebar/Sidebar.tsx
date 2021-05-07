@@ -11,6 +11,8 @@ function Sidebar(props: any) {
       <Button type="primary" text="Feed" imgPos="left" img="a"/>
       <Button type="primary" text="Investments" imgPos="left" img="a"/>
       <Button type="primary" text="Messages" imgPos="left" img="a"/>
+      {// Userbutton info hardcode temporary
+      }
       <UserButton hasInfo userInfo={{name:"Jane Doe", desc:"Super cool chick"}}/>
     </div>
     );

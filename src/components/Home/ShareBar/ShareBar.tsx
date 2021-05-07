@@ -1,11 +1,13 @@
 import React from 'react';
 import './ShareBar.scss';
-import UserButton from '../Buttons/UserButton';
+import UserButton from '../../Buttons/UserButton';
+import ShareBarInput from './ShareBarInput';
 
 function ShareBar(props: any) {
   return (
   <div className="sharebar">
-      <UserButton hasInfo userInfo={{name:"Jane Doe", desc:"Super cool chick"}}/>
+      <UserButton/>
+      <ShareBarInput/>
     </div>
   );
 }
