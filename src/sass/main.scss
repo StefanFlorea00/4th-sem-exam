@@ -1,0 +1,7 @@
+// import all the other sas files except the app.scss here.
+@use '../components/LogIn/Login.scss';
+@use '../components/LogIn/Signup.scss';
+@use '../components/Home/Home.scss';
+@use '../components/Nav/Nav.scss';
+@use '../sass/mediaQueriesMixin.scss';
+@use '../sass/variables.scss';

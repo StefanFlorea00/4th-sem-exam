@@ -1,4 +1,5 @@
-@use '../../variables.scss' as *;
+@use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
 
 .login_wrapper {
   min-height: 100vh;

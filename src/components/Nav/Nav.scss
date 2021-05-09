@@ -1,0 +1,19 @@
+.nav {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  &_ul {
+    display: flex;
+    justify-content: space-around;
+    min-height: 50px;
+    border: 1px solid gray;
+    align-items: center;
+
+    &_a {
+      text-decoration: none;
+      list-style: none;
+    }
+  }
+}
