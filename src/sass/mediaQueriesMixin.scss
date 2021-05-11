@@ -24,19 +24,19 @@ body{
   }
 
   @if $size == laptop {
-    @media only screen and (min-width: 1024) {
+    @media only screen and (min-width: 1024px) {
       @content;
     }
   }
 
   @if $size == laptop_large {
-    @media only screen and (min-width: 1440) {
+    @media only screen and (min-width: 1440px) {
       @content;
     }
   }
 
   @if $size == desktop {
-    @media only screen and (min-width: 1800) {
+    @media only screen and (min-width: 1800px) {
       @content;
     }
   }
