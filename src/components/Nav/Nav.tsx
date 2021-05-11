@@ -4,13 +4,14 @@ import Home from '../Assets/Home';
 import Feed from '../Assets/Feed';
 import Investment from '../Assets/Investment';
 import Messages from '../Assets/Messages';
+import Logo from '../Assets/Logo';
 
 function Nav() {
   const [selected, setSelected] = useState<string>('home');
   const [showNavLi, setShowNavLi] = useState(false);
   useEffect(() => {
     window.addEventListener('resize', () => {
-      if (window.matchMedia('(min-width: 700px)').matches) {
+      if (window.matchMedia('(min-width: 768px)').matches) {
         setShowNavLi(true);
       } else {
         setShowNavLi(false);
@@ -19,7 +20,7 @@ function Nav() {
   }, []);
 
   useEffect(() => {
-    if (window.matchMedia('(min-width: 700px)').matches) {
+    if (window.matchMedia('(min-width: 768px)').matches) {
       setShowNavLi(true);
     }
   }, []);
@@ -43,6 +44,7 @@ function Nav() {
 
   return (
     <nav className='nav'>
+      {showNavLi && <Logo className='logo' />}
       <ul className='nav_ul'>
         <Link
           to=''
@@ -81,7 +83,7 @@ function Nav() {
 
         <Link
           to=''
-          className={selected === 'messages' ? 'nav_ul_a selected' : 'nav_ul_a'}
+          className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
           <Messages className={selected === 'profile' ? 'selected' : ''} />
