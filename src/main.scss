@@ -1,4 +1,4 @@
 // import all the other sas files except the app.scss here.
 @use './components/LogIn/Login.scss';
 @use './components/LogIn/Signup.scss';
-@use './typography.scss';
+@use './sass/typography.scss';
