@@ -9,7 +9,7 @@ function Feed(props: Props) {
       id='Layer_1'
       data-name='Layer 1'
       xmlns='http://www.w3.org/2000/svg'
-      viewBox='0 0 71.66 51.97'
+      viewBox='0 0 30 30'
       className={`nav_svg ${props.className}`}
     >
       <rect

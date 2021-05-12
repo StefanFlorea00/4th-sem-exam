@@ -3,7 +3,7 @@ import './UserButton.scss';
 
 function UserButton(props: any) {
   return (
-  <div className="user-btn">
+  <div className={`user-btn ${props.className}`}>
       <img className="user-img" src={props.userImg}/>
       {props.hasInfo && <div className="info">
       <h3>{props.userInfo.name}</h3>
