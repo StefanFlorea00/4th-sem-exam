@@ -1,0 +1,43 @@
+/*  
+use it like this: 
+first import it as *  @use {path} as *; 
+then use it directly inside the element: 
+body{
+	background:blue; 
+	  @include mediaQuery(tablet) {
+    background: red;
+  }
+}
+*/
+
+@mixin mediaQuery($size) {
+  @if $size == phone_medium {
+    @media only screen and (min-width: 400px) {
+      @content;
+    }
+  }
+
+  @if $size == tablet {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $size == laptop {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  }
+
+  @if $size == laptop_large {
+    @media only screen and (min-width: 1440px) {
+      @content;
+    }
+  }
+
+  @if $size == desktop {
+    @media only screen and (min-width: 1800px) {
+      @content;
+    }
+  }
+}

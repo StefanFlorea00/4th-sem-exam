@@ -1,0 +1,8 @@
+@use '../../sass/mediaQueriesMixin.scss' as *;
+.home {
+  min-height: 100vh;
+
+  @include mediaQuery(tablet) {
+    margin-left: 310px;
+  }
+}

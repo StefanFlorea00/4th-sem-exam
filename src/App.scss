@@ -1,5 +1,5 @@
-@use './main.scss';
-@use './variables.scss' as *;
+@use './sass/main.scss';
+@use './sass/variables.scss' as *;
 
 *,
 *::before,
@@ -9,8 +9,14 @@
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
 .App {
-
   background: $body-bg-color;
-
 }
