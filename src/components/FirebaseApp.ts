@@ -1,7 +1,8 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
-const firebaseApp = firebase.default.initializeApp({
+const app = firebase.default.initializeApp({
   apiKey: 'AIzaSyAfsv1OHa4opKU7qoyFfYRfwAKVl0BXCuk',
   authDomain: 'th-sem-exam-25420.firebaseapp.com',
   databaseURL:
@@ -12,4 +13,25 @@ const firebaseApp = firebase.default.initializeApp({
   appId: '1:822500859565:web:14dd338c20adb79fda7024',
 });
 
-export default firebaseApp;
+export const auth = firebase.default.auth();
+export const firestore = firebase.default.firestore();
+
+export async function createUserDocument(user: any
+  , additionalData: any) {
+  if (user) {
+    const userRef = firestore.doc(`users/${user.uid}`);
+
+    const snapshot = await userRef.get();
+    if (!snapshot.exists) {
+      const { email } = user;
+      const { fullname } = additionalData;
+
+      try {
+        userRef.set({ fullname, email, createdAt: new Date() });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  } else return;
+}
+export default app;
