@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react';
-import FirebaseApp from '../FirebaseApp';
+import app from '../FirebaseApp';
 import { withRouter, Redirect } from 'react-router';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { AuthContext } from '../../Auth';
@@ -27,7 +27,7 @@ function LogIn(props: Props) {
       const { email, password } = e.target.elements;
 
       try {
-        await FirebaseApp.auth().signInWithEmailAndPassword(
+        await app.auth().signInWithEmailAndPassword(
           email.value,
           password.value
         );

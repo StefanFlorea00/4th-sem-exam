@@ -2,7 +2,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-const firebaseApp = firebase.default.initializeApp({
+const app = firebase.default.initializeApp({
   apiKey: 'AIzaSyAfsv1OHa4opKU7qoyFfYRfwAKVl0BXCuk',
   authDomain: 'th-sem-exam-25420.firebaseapp.com',
   databaseURL:
@@ -13,15 +13,25 @@ const firebaseApp = firebase.default.initializeApp({
   appId: '1:822500859565:web:14dd338c20adb79fda7024',
 });
 
-let db = firebaseApp.firestore();
+export const auth = firebase.default.auth();
+export const firestore = firebase.default.firestore();
 
-console.log(db);
-db.collection('todo').add({title: 'first todo', description: 'new todo' })
-.then(documentReference => {
-  console.log('document reference ID', documentReference.id)
-})
-.catch(error => {
-  console.log(error.message)
-})
+export async function createUserDocument(user
+  , additionalData) {
+  if (user) {
+    const userRef = firestore.doc(`users/${user.uid}`);
 
-export default firebaseApp;
+    const snapshot = await userRef.get();
+    if (!snapshot.exists) {
+      const { email } = user;
+      const { username } = additionalData;
+
+      try {
+        userRef.set({ username, email, createdAt: new Date() });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  } else return;
+}
+export default app;
