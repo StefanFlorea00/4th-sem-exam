@@ -20,14 +20,14 @@ function SignUp(props: Props) {
 
   async function handleSignup(e) {
     e.preventDefault();
-    const { email, password, confirmPassword, username } = e.target.elements;
+    const { email, password, confirmPassword, fullname } = e.target.elements;
 
     try {
       if (password.value === confirmPassword.value) {
         const { user } = await app
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
-        await createUserDocument(user, { username: username.value});
+        await createUserDocument(user, { fullname: fullname.value});
         history.push('/');
       } else {
         setFormeElementErr('Passwords do not Match');
@@ -47,12 +47,12 @@ function SignUp(props: Props) {
         )}
         <form className='signup_form' onSubmit={handleSignup}>
           <div className='signup_form_email_div'>
-            <label className='signup_form_email_div_label'> UserName</label>
+            <label className='signup_form_email_div_label'> Full Name</label>
             <input
               className='signup_form_email_div_input'
-              type='username'
-              name='username'
-              placeholder='Enter your userName'
+              type='fullname'
+              name='fullname'
+              placeholder='Enter your full name'
             />
           </div>
 
