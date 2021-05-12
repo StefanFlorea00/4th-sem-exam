@@ -20,3 +20,13 @@ button:active {
 .App {
   background: $body-bg-color;
 }
+
+//hiding scrollbar due to animation jitters
+.App::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

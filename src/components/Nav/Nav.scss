@@ -45,6 +45,8 @@
         background: #f3f4f6;
         margin: 0.5em 0;
         &:last-child {
+          padding: 7px 20px;
+          background: transparent;
           position: absolute;
           bottom: 5%;
         }

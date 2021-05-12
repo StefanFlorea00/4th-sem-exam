@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 import { AuthContext } from './Auth';
+import Nav from './components/Nav/Nav'
 
 type ProtectedRouteProps = {
   component: React.FunctionComponent<any>;
@@ -14,14 +15,18 @@ function PrivateRoute(props: ProtectedRouteProps) {
   return (
     <Route
       {...rest}
-      render={routeProps =>
+    >
+      {routeProps =>
         !!currentUser ? (
-          <RouteComponent {...routeProps} />
+          <>
+            <RouteComponent {...routeProps} />
+            <Nav/>
+          </>
         ) : (
           <Redirect to={'/login'} />
         )
       }
-    />
+    </Route>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Profile from './components/Profile/Profile'
 import Home from './components/Home/Home';
 import LogIn from './components/LogIn/LogIn';
 import SignUp from './components/LogIn/SignUp';
@@ -12,6 +13,7 @@ function App() {
       <div className='App'>
         <Switch>
           <PrivateRoute exact path='/' component={Home} />
+          <PrivateRoute exact path='/profile' component={Profile} />
           <Route path='/login' component={LogIn} />
           <Route path='/signup' component={SignUp} />
         </Switch>

@@ -4,6 +4,7 @@ import Home from '../Assets/Home';
 import Feed from '../Assets/Feed';
 import Investment from '../Assets/Investment';
 import Messages from '../Assets/Messages';
+import UserButton from '../Buttons/UserButton'
 import Logo from '../Assets/Logo';
 
 function Nav() {
@@ -47,7 +48,7 @@ function Nav() {
       {showNavLi && <Logo className='logo' />}
       <ul className='nav_ul'>
         <Link
-          to=''
+          to='/'
           className={selected === 'home' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('home')}
         >
@@ -82,12 +83,12 @@ function Nav() {
         </Link>
 
         <Link
-          to=''
+          to='/profile'
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
-          <Messages className={selected === 'profile' ? 'selected' : ''} />
-          {showNavLi && <li className='nav_ul_a_li'>Profile</li>}
+          <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name:"Jane Doe", desc:"Super Cool Chick"}}/>
+          {showNavLi && <li className='nav_ul_a_li'></li>}
         </Link>
       </ul>
     </nav>
