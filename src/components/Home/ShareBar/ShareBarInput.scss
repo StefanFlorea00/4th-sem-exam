@@ -1,0 +1,40 @@
+.sharebar-input-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  .share-input {
+    border: 0;
+    border-bottom: 1.5px solid #bababa;
+    padding: 5px;
+    padding-right: 25px;
+    margin-left: 20px;
+    width: 100%;
+    outline: none;
+
+    &::placeholder {
+      color: #bababa;
+    }
+  }
+
+  .attach-btn {
+    label {
+      cursor: pointer;
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-left: -20px;
+      background-color: blueviolet;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  .primary-btn {
+    padding: 5px 10px;
+    margin-left: 20px;
+    color: white;
+    background-color: #fbcb80;
+  }
+}

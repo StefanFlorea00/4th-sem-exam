@@ -1,0 +1,7 @@
+@use '../variables.scss' as *;
+
+.home {
+  margin-left: $sidebar-width-vw;
+  padding: 20px;
+  height: 100vh; /* Temporary */
+}

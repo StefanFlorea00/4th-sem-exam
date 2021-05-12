@@ -1,0 +1,21 @@
+.who-saw-div {
+  display: flex;
+  align-items: center;
+
+  .user-img {
+    width: 25px;
+    height: 25px;
+    background-color: blueviolet;
+    border-radius: 50%;
+    margin-right: -10px;
+  }
+
+  .user-img:last-child {
+    margin-right: 0;
+  }
+
+  p {
+    margin-left: 10px;
+    font-size: 11px;
+  }
+}
