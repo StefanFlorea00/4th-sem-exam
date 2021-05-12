@@ -64,7 +64,7 @@ function Nav() {
           {showNavLi && <li className='nav_ul_a_li'>Feed</li>}
         </Link>
         <Link
-          to=''
+          to='/investment'
           className={
             selected === 'investment' ? 'nav_ul_a selected' : 'nav_ul_a'
           }

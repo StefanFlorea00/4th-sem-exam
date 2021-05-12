@@ -6,6 +6,7 @@ import LogIn from './components/LogIn/LogIn';
 import SignUp from './components/LogIn/SignUp';
 import PrivateRoute from './PrivateRoute';
 import './App.scss';
+import Investment from './components/Investment/Investment';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/profile' component={Profile} />
+          <PrivateRoute exact path='/investment' component={Investment} />
           <Route path='/login' component={LogIn} />
           <Route path='/signup' component={SignUp} />
         </Switch>
