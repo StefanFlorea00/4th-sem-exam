@@ -48,7 +48,7 @@ function Nav() {
       {showNavLi && <Logo className='logo' />}
       <ul className='nav_ul'>
         <Link
-          to=''
+          to='/'
           className={selected === 'home' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('home')}
         >
@@ -83,7 +83,7 @@ function Nav() {
         </Link>
 
         <Link
-          to=''
+          to='/profile'
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >

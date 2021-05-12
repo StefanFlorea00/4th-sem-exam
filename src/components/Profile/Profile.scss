@@ -1,0 +1,16 @@
+@use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
+
+.profile {
+  margin-left: $sidebar-width-vw;
+  padding: 20px;
+  height: 100vh; /* Temporary */
+}
+
+.profile {
+  min-height: 100vh;
+
+  @include mediaQuery(tablet) {
+    margin-left: 310px;
+  }
+}

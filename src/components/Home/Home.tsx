@@ -18,7 +18,6 @@ function Home() {
       <ShareBar/>
       <PostGrid/>
       <button onClick={handleSignOut}> Log out </button>
-      <Nav />
     </div>
     </>
   );
