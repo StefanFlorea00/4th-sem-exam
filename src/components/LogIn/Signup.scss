@@ -1,7 +1,8 @@
 @use '../../sass/variables.scss' as *;
 
 .signup {
-  height: clamp(400px, 650px, 700px);
+  // height: clamp(400px, 650px, 700px);
+  min-height: 700px;
   width: clamp(30%, 94%, 700px);
   background: #fff;
   display: flex;
@@ -17,7 +18,9 @@
   label {
     display: block;
   }
-
+  small {
+    opacity: 0.6;
+  }
   &_header {
     font-size: 2.8em;
     margin-top: 0.5em;
@@ -59,9 +62,43 @@
         outline: none;
       }
     }
+    &_email_div_label,
+    &_password_div_label,
+    &_confirm_password_div_label,
+    &_radio_label {
+      font-weight: 900;
+      font-size: 1.2em;
+    }
 
+    &_radio_div_wrapper > div {
+      border: 23px;
+      border-radius: 23px;
+      padding: 1em;
+      background: #f9f6f6;
+      margin: 0.5em 0;
+
+      label {
+        cursor: pointer;
+      }
+
+      input[type='radio'] {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 22px;
+        width: 22px;
+        border: 1px solid black;
+        border-radius: 50%;
+        transition: 0.3s ease;
+        cursor: pointer;
+
+        &:checked {
+          background: $accent-color;
+          border: 1px solid $body-bg-color;
+        }
+      }
+    }
     &_button {
-      margin-top: 3em;
       display: grid;
       width: 100%;
       border: none;
@@ -69,6 +106,17 @@
       border-radius: 23px;
       background: $accent-color;
       color: #fff;
+      margin: 3em 0;
+    }
+
+    &_radio_div_wrapper > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      label {
+        margin-left: 0.4em;
+      }
     }
   }
 }

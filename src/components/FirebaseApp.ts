@@ -16,18 +16,17 @@ const app = firebase.default.initializeApp({
 export const auth = firebase.default.auth();
 export const firestore = firebase.default.firestore();
 
-export async function createUserDocument(user: any
-  , additionalData: any) {
+export async function createUserDocument(user: any, additionalData: any) {
   if (user) {
     const userRef = firestore.doc(`users/${user.uid}`);
 
     const snapshot = await userRef.get();
     if (!snapshot.exists) {
       const { email } = user;
-      const { fullname } = additionalData;
+      const { fullname, investExp } = additionalData;
 
       try {
-        userRef.set({ fullname, email, createdAt: new Date() });
+        userRef.set({ fullname, email, createdAt: new Date(), investExp });
       } catch (error) {
         console.log(error.message);
       }
