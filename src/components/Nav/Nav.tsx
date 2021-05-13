@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../Assets/Home';
 import Feed from '../Assets/Feed';
@@ -6,8 +6,13 @@ import Investment from '../Assets/Investment';
 import Messages from '../Assets/Messages';
 import UserButton from '../Buttons/UserButton'
 import Logo from '../Assets/Logo';
+import { AuthContext } from '../../Auth';
+import { getUser } from '../FirebaseApp';
 
 function Nav() {
+  const { currentUser } = useContext(AuthContext);
+  
+
   const [selected, setSelected] = useState<string>('home');
   const [showNavLi, setShowNavLi] = useState(false);
   useEffect(() => {
@@ -18,6 +23,7 @@ function Nav() {
         setShowNavLi(false);
       }
     });
+    getUser(currentUser)
   }, []);
 
   useEffect(() => {

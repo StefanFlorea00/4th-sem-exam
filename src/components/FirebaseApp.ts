@@ -33,4 +33,16 @@ export async function createUserDocument(user: any, additionalData: any) {
     }
   } else return;
 }
+
+export async function getUser(user:any) {
+  if(user) {
+    const userData = firestore.collection('users').doc(user.uid)
+    const data = await userData.get()
+    if(!data.exists){
+      console.log('Document doesn`t exist')
+    } else {
+      console.log(data.data())
+    }
+  }
+}
 export default app;
