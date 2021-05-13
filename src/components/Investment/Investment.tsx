@@ -19,6 +19,9 @@ function Investment() {
     {name: "I", field:"Ran", img:{testimg}},
     {name: "Out", field:"Of", img:{testimg}},
     {name: "Names", field:"", img:{testimg}},
+    {name: "Names", field:"", img:{testimg}},
+    {name: "Names", field:"", img:{testimg}},
+    {name: "Names", field:"", img:{testimg}},
   ]
 
   return (
