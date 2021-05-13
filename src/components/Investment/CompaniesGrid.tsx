@@ -9,20 +9,21 @@ function CompaniesGrid(props: any) {
 
     useEffect(() => {
         setCompanyList(props.companies);
+        console.log(companyList);
     }, [])
 
   return (
     <div className='companies-grid'>
         <div className='search-bar'>
-            <input type="text"/>
-            <Button type="secondary" text="Search"/>
+            <input type='text'/>
+            <Button type='secondary' text='Search'/>
         </div>
 
         <div className='company-list'>
             {
             companyList.map((company: any) => {
                 return (
-                <CompanyItem name={company.name} field={company.field} key={company.index}/>
+                <CompanyItem key={company.index} name={company.name} field={company.field} img={company.img != null ? company.img.testimg : company.img} /* temporary, just for test *//>
                 )
             })
             }

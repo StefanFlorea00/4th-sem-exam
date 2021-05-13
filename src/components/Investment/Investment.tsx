@@ -2,6 +2,7 @@ import React from 'react';
 import app from '../FirebaseApp';
 import CompaniesGrid from './CompaniesGrid';
 import './Investment.scss';
+import testimg from '../Assets/testimg.jpg';
 
 function Investment() {
   function handleSignOut() {
@@ -11,13 +12,13 @@ function Investment() {
 
   //to get from db later
   const Companies=[
-    {name: "Green", field:"Technology"},
-    {name: "Blue", field:"Technology"},
-    {name: "Pink", field:"Cleaning"},
-    {name: "Red", field:"Food"},
-    {name: "I", field:"Ran"},
-    {name: "Out", field:"Of"},
-    {name: "Names", field:""},
+    {name: "Green", field:"Technology", img:{testimg}},
+    {name: "Blue", field:"Technology", img:{testimg}},
+    {name: "Pink", field:"Cleaning", img:{testimg}},
+    {name: "Red", field:"Food", img:{testimg}},
+    {name: "I", field:"Ran", img:{testimg}},
+    {name: "Out", field:"Of", img:{testimg}},
+    {name: "Names", field:"", img:{testimg}},
   ]
 
   return (

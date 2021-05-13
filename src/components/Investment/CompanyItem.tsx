@@ -5,7 +5,7 @@ function CompanyItem(props: any) {
 
   return (
     <div className='company-item'>
-        <img src='' alt=''/>
+        <img src={props.img} alt=''/>
         <div className='desc'>
         <p className='name'>{props.name}</p>
         <p className='field'>{props.field}</p>

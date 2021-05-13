@@ -5,6 +5,10 @@
   border-radius: $border-radius-s;
   padding: 20px;
 
+  .post-content {
+    margin: 10px 0;
+  }
+
   .post-img {
     height: 200px;
     background-color: blueviolet;
