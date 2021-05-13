@@ -36,19 +36,19 @@ function Logo(props: Props) {
           d='M138.08,130.88a21.28,21.28,0,0,1,7.51-.9,21.05,21.05,0,0,1,4.28.73'
           fill='none'
           stroke='#97c3c4'
-          stroke-miterlimit='10'
+          strokeMiterlimit='10'
         />
         <path
           d='M106.75,137.54a3.74,3.74,0,0,1-2.49.15c-1.91-.68-1.79-3.25-1.78-3.41.15-2.35,2.61-4.12,4.63-4.89a10.81,10.81,0,0,1,7.11,0'
           fill='none'
           stroke='#97c3c4'
-          stroke-miterlimit='10'
+          strokeMiterlimit='10'
         />
         <path
           d='M181.21,135.7a3.81,3.81,0,0,0,2.49.15c1.91-.68,1.79-3.26,1.78-3.41-.15-2.35-2.61-4.12-4.62-4.89a10.84,10.84,0,0,0-7.12,0'
           fill='none'
           stroke='#97c3c4'
-          stroke-miterlimit='10'
+          strokeMiterlimit='10'
         />
       </g>
       <g id='Layer_3' data-name='Layer 3'>

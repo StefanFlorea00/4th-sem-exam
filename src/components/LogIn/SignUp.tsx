@@ -25,7 +25,6 @@ function SignUp(props: Props) {
     const checkedRadioValue = [...investmentExperience].filter(
       radio => radio.checked
     )[0].value;
-    console.log(checkedRadioValue);
 
     try {
       if (password.value === confirmPassword.value) {
