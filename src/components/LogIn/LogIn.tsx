@@ -27,10 +27,9 @@ function LogIn(props: Props) {
       const { email, password } = e.target.elements;
 
       try {
-        await app.auth().signInWithEmailAndPassword(
-          email.value,
-          password.value
-        );
+        await app
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
 
         history.push('/');
       } catch (err) {
@@ -55,21 +54,26 @@ function LogIn(props: Props) {
         <form className='login_form' onSubmit={handleSignup}>
           <div className='login_form_email_div'>
             <label className='login_form_email_div_label'> Email</label>
+            <small>e.g JhonDoe@gmail.com</small>
+
             <input
               className='login_form_email_div_input'
               type='email'
               name='email'
-              placeholder='Type your Email'
+              // placeholder='Type your Email'
+              placeholder=' '
             />
           </div>
 
           <div className='login_form_password_div'>
             <label className='login_form_password_label'> Password</label>
+            <small>Must be longer than 6 characters</small>
             <input
               className='login_form_password_div_input'
               type='password'
               name='password'
-              placeholder='Type your password'
+              // placeholder='Type your password'
+              placeholder=' '
               minLength={6}
             />
           </div>

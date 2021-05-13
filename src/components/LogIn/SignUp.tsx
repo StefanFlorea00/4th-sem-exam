@@ -20,14 +20,22 @@ function SignUp(props: Props) {
 
   async function handleSignup(e) {
     e.preventDefault();
-    const { email, password, confirmPassword, fullname } = e.target.elements;
+    const { email, password, confirmPassword, fullname, investmentExperience } =
+      e.target.elements;
+    const checkedRadioValue = [...investmentExperience].filter(
+      radio => radio.checked
+    )[0].value;
+    console.log(checkedRadioValue);
 
     try {
       if (password.value === confirmPassword.value) {
         const { user } = await app
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
-        await createUserDocument(user, { fullname: fullname.value});
+        await createUserDocument(user, {
+          fullname: fullname.value,
+          investExp: checkedRadioValue,
+        });
         history.push('/');
       } else {
         setFormeElementErr('Passwords do not Match');
@@ -47,47 +55,119 @@ function SignUp(props: Props) {
         )}
         <form className='signup_form' onSubmit={handleSignup}>
           <div className='signup_form_email_div'>
-            <label className='signup_form_email_div_label'> Full Name</label>
+            <label htmlFor='fullname' className='signup_form_email_div_label'>
+              {' '}
+              Full Name
+            </label>
+            <small>e.g Jane Doe</small>
+
             <input
               className='signup_form_email_div_input'
               type='fullname'
               name='fullname'
-              placeholder='Enter your full name'
+              id='fullname'
+              // placeholder='Enter your full name'
+              required
+              placeholder=' '
             />
           </div>
 
           <div className='signup_form_email_div'>
-            <label className='signup_form_email_div_label'> Email</label>
+            <label htmlFor='email' className='signup_form_email_div_label'>
+              {' '}
+              Email
+            </label>
+            <small>e.g JhonDoe@gmail.com</small>
+
             <input
               className='signup_form_email_div_input'
               type='email'
               name='email'
-              placeholder='Enter your email'
+              required
+              id='email'
+              // placeholder='Enter your email'
+              placeholder=' '
             />
           </div>
 
+          <div className='signup_form_radio_div_wrapper'>
+            <label className='signup_form_radio_label'>
+              {' '}
+              Investment experience
+            </label>
+            <small>We will use it to identify your investment experience</small>
+
+            <div>
+              <input
+                required
+                value='Totally new'
+                type='radio'
+                id='radio1'
+                name='investmentExperience'
+              />
+              <label htmlFor='radio1'>Totally new</label>
+            </div>
+            <div>
+              <input
+                required
+                value='I have invested before'
+                type='radio'
+                id='radio2'
+                name='investmentExperience'
+              />
+              <label htmlFor='radio2'>I have invested before</label>
+            </div>
+            <div>
+              <input
+                required
+                value='Expert'
+                type='radio'
+                id='radio3'
+                name='investmentExperience'
+              />
+              <label htmlFor='radio3'>Expert</label>
+            </div>
+          </div>
+
           <div className='signup_form_password_div'>
-            <label className='signup_form_password_div_label'> Password</label>
+            <label
+              htmlFor='password'
+              className='signup_form_password_div_label'
+            >
+              {' '}
+              Password
+            </label>
+            <small>Must be longer than 6 characters</small>
             <input
               className='signup_form_password_div_input'
               type='password'
               name='password'
-              placeholder='Enter your password'
+              id='password'
+              // placeholder='Enter your password'
+              placeholder=' '
               minLength={6}
+              required
             />
           </div>
 
           <div className='signup_form_confirm_password_div'>
-            <label className='signup_form_confirm_password_div_label'>
+            <label
+              htmlFor='confirmPassword'
+              className='signup_form_confirm_password_div_label'
+            >
               Confirm password
             </label>
+            <small>Must match the password above</small>
 
             <input
               className='signup_form_confirm_password_div_input'
               type='password'
               name='confirmPassword'
-              placeholder='Enter your password again'
+              id='confirmPassword'
+              // placeholder='Enter your password again'
+              placeholder=' '
               minLength={6}
+              required
             />
           </div>
           <div className='signup_form_account_message'>
