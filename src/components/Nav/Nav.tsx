@@ -7,14 +7,25 @@ import Messages from '../Assets/Messages';
 import UserButton from '../Buttons/UserButton'
 import Logo from '../Assets/Logo';
 import { AuthContext } from '../../Auth';
-import { getUser } from '../FirebaseApp';
+import app from '../FirebaseApp';
+import { getDoc } from '../FirebaseApp';
 
 function Nav() {
   const { currentUser } = useContext(AuthContext);
   
-
   const [selected, setSelected] = useState<string>('home');
   const [showNavLi, setShowNavLi] = useState(false);
+  const [userNameAndExp, setUserNameAndExp] = useState<any>();
+
+  async function getCurrentUserData() {
+    getDoc(app.auth().currentUser).then(data => {
+      const currentUser = app.auth().currentUser?.uid;
+      const findData = data?.docs.find(el => el.id === currentUser);
+      const userNameAndExp = findData?.data();
+      setUserNameAndExp(userNameAndExp);
+    });
+  }
+
   useEffect(() => {
     window.addEventListener('resize', () => {
       if (window.matchMedia('(min-width: 768px)').matches) {
@@ -23,7 +34,7 @@ function Nav() {
         setShowNavLi(false);
       }
     });
-    getUser(currentUser)
+    setUserNameAndExp(getCurrentUserData());
   }, []);
 
   useEffect(() => {
@@ -93,7 +104,7 @@ function Nav() {
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
-          <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name:"Jane Doe", desc:"Super Cool Chick"}}/>
+          <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, desc: userNameAndExp?.investExp}}/>
           {showNavLi && <li className='nav_ul_a_li'></li>}
         </Link>
       </ul>
