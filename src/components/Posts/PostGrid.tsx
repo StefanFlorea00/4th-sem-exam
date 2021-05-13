@@ -5,7 +5,7 @@ import Post from "./Post.tsx";
 function PostGrid(props: any) {
   return (
     <div className="post-grid">
-        <Post/>
+        <Post img/>
         <Post/>
         <Post/>
         <Post/>

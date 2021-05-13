@@ -19,11 +19,11 @@
   .attach-btn {
     label {
       cursor: pointer;
-      display: block;
-      width: 20px;
-      height: 20px;
+      display: flex;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
       margin-left: -20px;
-      background-color: blueviolet;
     }
 
     input[type="file"] {
