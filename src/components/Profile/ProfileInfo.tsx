@@ -22,6 +22,10 @@ function ProfileInfo() {
     app.auth().signOut();
   }
 
+  function handleClick() {
+    
+  }
+
   function handleChange(e) {
     setFile(e.target.files[0]);
   }
@@ -43,11 +47,11 @@ function ProfileInfo() {
   }
 
   return (
-    <div className=''>
-      <div>
+    <div className='profile-info'>
+      <div className='profile-info_image'>
         <img src={profileInfo?.profileImg ? profileInfo.profileImg : url} alt="User profile image" />
         <form onSubmit={handleUpload}>
-        <input type="file" onChange={handleChange} />
+        <input type="file" onChange={handleChange} /><br/>
         <button disabled={!file}>upload to firebase</button>
       </form>
       </div>
