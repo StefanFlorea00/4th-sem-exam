@@ -19,10 +19,7 @@ function Nav() {
 
   async function getCurrentUserData() {
     getDoc(app.auth().currentUser).then(data => {
-      const currentUser = app.auth().currentUser?.uid;
-      const findData = data?.docs.find(el => el.id === currentUser);
-      const userNameAndExp = findData?.data();
-      setUserNameAndExp(userNameAndExp);
+      setUserNameAndExp(data);
     });
   }
 
@@ -104,8 +101,13 @@ function Nav() {
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
-          <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, desc: userNameAndExp?.investExp}}/>
-          {showNavLi && <li className='nav_ul_a_li'></li>}
+          {showNavLi ? 
+            <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, desc: userNameAndExp?.investExp}}/>
+            :
+            <li className='nav_ul_a_li'>
+              <img className="user-img"/>
+            </li>
+          }
         </Link>
       </ul>
     </nav>
