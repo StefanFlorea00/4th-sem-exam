@@ -69,4 +69,24 @@ export async function uploadUserImage(user: any, profileImg: string) {
   }
 }
 
+export async function updateUser(user: any, additionalData: any) {
+  if (user) {
+    const userRef = firestore.doc(`users/${user.uid}`);
+    const snapshot = await userRef.get();
+
+    if (snapshot) {
+      const { email } = user;
+      const { fullname, investExp, description } = additionalData;
+
+      getDoc(user).then(info => {
+      try {
+        userRef.set({ fullname, email, createdAt: info?.createdAt, investExp, description, profileImg: info?.profileImg });
+      } catch (error) {
+        console.log(error.message);
+      }
+    });
+    }
+  } else return;
+}
+
 export default app;
