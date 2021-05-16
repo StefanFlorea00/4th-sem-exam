@@ -79,12 +79,12 @@ export async function updateUser(user: any, additionalData: any) {
       const { fullname, investExp, description } = additionalData;
 
       getDoc(user).then(info => {
-      try {
-        userRef.set({ fullname, email, createdAt: info?.createdAt, investExp, description, profileImg: info?.profileImg });
-      } catch (error) {
-        console.log(error.message);
-      }
-    });
+        try {
+          userRef.set({ fullname, email, createdAt: info?.createdAt, investExp, description, profileImg: info?.profileImg });
+        } catch (error) {
+          console.log(error.message);
+        }
+      });
     }
   } else return;
 }

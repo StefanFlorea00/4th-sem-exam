@@ -4,22 +4,26 @@ import app from '../FirebaseApp';
 import { uploadUserImage, updateUser } from '../FirebaseApp';
 import { AuthContext } from '../../Auth';
 
-function ProfileInfo(props: any) {
+export type Props = {
+  profileInfo: any;
+  setEditMode: ((arg0: boolean) => void);
+};
+
+function ProfileInfo(props: Props) {
   const { currentUser } = useContext(AuthContext);
   const [file, setFile] = useState<any>(undefined);
   const [url, setURL] = useState("");
-  const { history } = props;
 
   function handleSignOut() {
     //sign out from the app
     app.auth().signOut();
   }
 
-  function handleChange(e) {
+  function handleChange(e: any) {
     setFile(e.target.files[0]);
   }
 
-  async function handleUpload(e) {
+  async function handleUpload(e: any) {
     e.preventDefault();
     if(file === undefined) {
       uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
@@ -62,7 +66,7 @@ function ProfileInfo(props: any) {
           <input type="file" id='profile-info_user_image_input' onChange={handleChange} /><br/>
           <input type="fullname" id='profile-info_user_name_input' name="fullname" defaultValue={props.profileInfo?.fullname}/><br/>
           <input type="investExp" id='profile-info_user_exp_input' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/>
-          <input type="description" id='profile-info_user_exp_input' name="description" defaultValue={props.profileInfo?.investExp ? props.profileInfo?.investExp : ''}/><br/>
+          <input type="description" id='profile-info_user_exp_input' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : ''}/><br/>
           <button>Save</button>
         </form>
       </div>
