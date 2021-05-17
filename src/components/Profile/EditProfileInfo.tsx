@@ -31,7 +31,6 @@ function ProfileInfo(props: Props) {
       uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
     } else {
       const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
-
       uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
         .ref("images")
@@ -41,6 +40,8 @@ function ProfileInfo(props: Props) {
           setFile(null);
           setURL(url);
           uploadUserImage(app.auth().currentUser, url);
+        }).then(()=>{
+          console.log('image done')
         });
       });
     }
@@ -48,13 +49,14 @@ function ProfileInfo(props: Props) {
 
   async function handleUserUpload(e:any) {
     const { fullname, investExp, description } = e.target.elements;
+    console.log(description.value)
     try {
       await updateUser(app.auth().currentUser, {
         fullname: fullname.value ? fullname.value : props.profileInfo.fullname,
         investExp: investExp.value ? investExp.value : props.profileInfo.investExp,
         description: description.value ? description.value : props.profileInfo.description,
       }).then(() => {
-        console.log('done')
+        console.log('user done')
       });
     } catch (err) {
       console.log(err)
@@ -63,11 +65,10 @@ function ProfileInfo(props: Props) {
 
   async function handleAllDataUpload(e: any) {
     setSaving(true)
-    handleImageUpload(e).then(()=>{
-      handleUserUpload(e)
-    }).then(() => {
-      setSaving(false)
+    handleImageUpload(e).then(() => {
+     handleUserUpload(e)
     })
+    setSaving(false)
   }
 
   return (
