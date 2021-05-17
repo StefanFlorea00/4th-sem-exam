@@ -13,5 +13,10 @@
     min-height: 150px;
     max-width: 100%;
     border: 2px solid $accent-color;
+
+    &:focus {
+      outline: none;
+      border: 2px solid $accent-color-lighter;
+    }
   }
 }

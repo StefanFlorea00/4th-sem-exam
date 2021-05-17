@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import app from '../FirebaseApp';
 import CompanyHeadline from './CompanyHeadline';
 import './CompanyProfile.scss';
@@ -7,17 +7,23 @@ import StockGraph from './StockGraph';
 
 function CompanyProfile(props: any) {
 
-    const Company = {
-        name: 'EcoCompany',
-        field: 'Environment',
-        companyDesc: 'Short company description',
-        todayHigh: 40,
-        todayLow: 30,
-        wkHigh: 20,
-        wkLow: 150,
-        currentStock: 250,
-        currency: '€'
-    }
+    const [Company, setCompany] = useState({});
+
+    useEffect(() => {
+
+        setCompany({
+            name: 'DEBUG ' + props.match.params.id,
+            field: 'Environment',
+            companyDesc: 'Short company description',
+            todayHigh: 40,
+            todayLow: 30,
+            wkHigh: 20,
+            wkLow: 150,
+            currentStock: 250,
+            currency: '€'
+        });
+        
+    }, [])
     
   function handleSignOut() {
     //sign out from the app
