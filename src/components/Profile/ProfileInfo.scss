@@ -33,11 +33,13 @@
       >h1 {
         font-size: 1.5em;
         font-weight: 500;
+        border-top: 1px solid transparent;
       }
 
       >h2 {
         font-size: 1em;
         font-weight: 400;
+        border-top: 1px solid transparent;
       }
     }
   }
@@ -50,7 +52,7 @@
     min-height: 10em;
 
     @include mediaQuery(laptop) {
-      margin: 1em 0 0 10em; // margin to align with photo
+      margin: 0.65em 0 0 10em; // margin to align with photo
     }
   }
 

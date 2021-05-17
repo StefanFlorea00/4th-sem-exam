@@ -76,8 +76,8 @@ function ProfileInfo(props: Props) {
               <input type="investExp" className='profile-info_user_flex_head_exp' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/>
             </div>
           </div>
-          <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : 'Your descirption...'}/><br/>
-          <button>Save</button>
+          <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : 'Your description...'}/><br/>
+          <button className='profile-info_user_button'>Save</button>
         </form>
       </div>
     </div>
