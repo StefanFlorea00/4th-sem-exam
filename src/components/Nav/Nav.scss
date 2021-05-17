@@ -5,9 +5,10 @@
   bottom: 0;
   right: 0;
   left: 0;
+  background-color: white;
+
   @include mediaQuery(tablet) {
     top: 0;
-    background: #fff;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -18,7 +19,7 @@
     display: flex;
     justify-content: space-around;
     min-height: 50px;
-    border: 1px solid gray;
+    border: 1px solid $secondary-buttons;
     align-items: center;
 
     @include mediaQuery(tablet) {
@@ -58,6 +59,7 @@
         >img {
           width: 30px;
           height: 30px;
+          object-fit: cover;
           border-radius: 50%;
         }
       }

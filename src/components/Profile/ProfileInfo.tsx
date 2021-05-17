@@ -21,14 +21,14 @@ function ProfileInfo(props: Props) {
   return (
     <div className='profile-details'>
       <div className='profile-details_flex'>
-        <img src={props.profileInfo?.profileImg} alt="User profile image" />
+        <img src={props.profileInfo?.profileImg ? props.profileInfo?.profileImg : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'} alt="User profile image" />
         <div className='profile-details_flex_head'>
           <h1>{props.profileInfo?.fullname}</h1>
           <h2>{props.profileInfo?.investExp}</h2>
         </div>
       </div>
       <div className='profile-details_desc'>
-        <p>{props.profileInfo?.description}</p>
+        <p>{props.profileInfo?.description ? props.profileInfo?.description : 'Your description...'}</p>
       </div>
     </div>
   );

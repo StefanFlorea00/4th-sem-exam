@@ -20,7 +20,7 @@ function Profile() {
   return (
     <>
     <div className='profile'>
-      {editMode ? <button className='profile_edit-button' onClick={()=>setEditMode(false)}>Save</button> : 
+      {editMode ? <button className='profile_edit-button' onClick={()=>setEditMode(false)}>View Profile</button> : 
         <button className='profile_edit-button' onClick={()=>setEditMode(true)}>Edit</button>
       }
       {editMode ? 

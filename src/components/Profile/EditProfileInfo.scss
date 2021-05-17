@@ -24,10 +24,13 @@
 
       >img {
         width: 5em;
+        height: 5em;
+        object-fit: cover;
         border-radius: 50%;
   
         @include mediaQuery(tablet) {
           width: 9em;
+          height: 9em;
         }
       }
 
@@ -101,7 +104,7 @@
   &_desc {
     margin: 0;
     padding: 2em;
-    width: calc(100% - 10em);
+    width: 100%;
     background-color: $secondary-buttons;
     border-radius: $border-radius-s;
     min-height: 10em;
@@ -110,6 +113,7 @@
 
     @include mediaQuery(laptop) {
       margin-left: 10em; // margin to align with photo
+      width: calc(100% - 10em);
     }
   }
   }

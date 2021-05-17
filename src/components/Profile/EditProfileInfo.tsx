@@ -65,7 +65,7 @@ function ProfileInfo(props: Props) {
         <form onSubmit={handleUpload}>
           <div className='profile-info_user_flex'>
             <div className='profile-info_user_flex_image'>
-              <img src={props.profileInfo?.profileImg ? props.profileInfo.profileImg : url} alt="User profile image" />
+              <img src={props.profileInfo?.profileImg ? props.profileInfo.profileImg : (url ? url : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')} alt="User profile image" />
               <div className='profile-info_user_flex_image_input'>
                 <button>Change image</button>
                 <input type="file" onChange={handleChange} />
@@ -76,7 +76,7 @@ function ProfileInfo(props: Props) {
               <input type="investExp" className='profile-info_user_flex_head_exp' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/>
             </div>
           </div>
-          <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : ''}/><br/>
+          <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : 'Your descirption...'}/><br/>
           <button>Save</button>
         </form>
       </div>

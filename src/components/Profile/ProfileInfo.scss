@@ -11,17 +11,24 @@
 
     >img {
       width: 5em;
+      height: 5em;
+      object-fit: cover;
       border-radius: 50%;
 
       @include mediaQuery(tablet) {
         width: 9em;
+        height: 9em;
       }
     }
 
     &_head {
-      width: 100%;
+      width: calc(100%-5em);
       margin-left: 1em;
       display: inline-block;
+
+      @include mediaQuery(tablet) {
+        width: calc(100%-9em);
+      }
 
       >h1 {
         font-size: 1.5em;

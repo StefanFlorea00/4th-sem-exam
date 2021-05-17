@@ -1,5 +1,6 @@
 @use './sass/main.scss';
 @use './sass/variables.scss' as *;
+@use './sass/mediaQueriesMixin.scss' as *;
 
 *,
 *::before,
@@ -23,6 +24,11 @@ button:active {
 
 .App {
   height: 100%;
+  padding-bottom: 55px; //for fixed nav mobile
+
+  @include mediaQuery(tablet) {
+    padding: 0;
+  }
 }
 
 //hiding scrollbar due to animation jitters
