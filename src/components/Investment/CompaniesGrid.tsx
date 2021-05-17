@@ -16,7 +16,7 @@ function CompaniesGrid(props: any) {
 
     function searchCompany(value: string) {
         setSearchTerm(value);
-        value == '' ? setDisplayedCompanyList(companyList) : setDisplayedCompanyList(companyList.filter(company => company.name.toLowerCase().includes(value)));
+        value == '' ? setDisplayedCompanyList(companyList) : setDisplayedCompanyList(companyList.filter(company => company.name.toLowerCase().includes(value.toLowerCase())));
         console.log(displayedCompanyist, value);
     }
 
