@@ -25,11 +25,13 @@ function ProfileInfo(props: Props) {
 
   async function handleUpload(e: any) {
     e.preventDefault();
+    
     if(file === undefined) {
       uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
     } else {
-    const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
-    uploadTask.on("state_changed", console.log, console.error, () => {
+      const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
+
+      uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
         .ref("images")
         .child(file.name)
@@ -42,8 +44,7 @@ function ProfileInfo(props: Props) {
       });
     }
 
-    const { fullname, investExp, description } =
-      e.target.elements;
+    const { fullname, investExp, description } = e.target.elements;
 
     try {
       await updateUser(app.auth().currentUser, {
@@ -51,7 +52,7 @@ function ProfileInfo(props: Props) {
         investExp: investExp.value ? investExp.value : props.profileInfo.investExp,
         description: description.value ? description.value : props.profileInfo.description
       }).then(() => {
-        props.setEditMode(false)
+        props.setEditMode(false) //this is the problem, prevents new data being shown
       });
     } catch (err) {
       console.log(err)
@@ -61,12 +62,21 @@ function ProfileInfo(props: Props) {
   return (
     <div className='profile-info'>
       <div className='profile-info_user'>
-        <img src={props.profileInfo?.profileImg ? props.profileInfo.profileImg : url} alt="User profile image" />
         <form onSubmit={handleUpload}>
-          <input type="file" id='profile-info_user_image_input' onChange={handleChange} /><br/>
-          <input type="fullname" id='profile-info_user_name_input' name="fullname" defaultValue={props.profileInfo?.fullname}/><br/>
-          <input type="investExp" id='profile-info_user_exp_input' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/>
-          <input type="description" id='profile-info_user_exp_input' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : ''}/><br/>
+          <div className='profile-info_user_flex'>
+            <div className='profile-info_user_flex_image'>
+              <img src={props.profileInfo?.profileImg ? props.profileInfo.profileImg : url} alt="User profile image" />
+              <div className='profile-info_user_flex_image_input'>
+                <button>Change image</button>
+                <input type="file" onChange={handleChange} />
+              </div>
+            </div>
+            <div className='profile-info_user_flex_head'>
+              <input type="fullname" className='profile-info_user_flex_head_fullname' name="fullname" defaultValue={props.profileInfo?.fullname}/><br/>
+              <input type="investExp" className='profile-info_user_flex_head_exp' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/>
+            </div>
+          </div>
+          <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : ''}/><br/>
           <button>Save</button>
         </form>
       </div>

@@ -17,8 +17,12 @@ button:active {
   transform: scale(0.9);
 }
 
-.App {
+.App, body, html {
   background: $body-bg-color;
+}
+
+.App {
+  height: 100%;
 }
 
 //hiding scrollbar due to animation jitters

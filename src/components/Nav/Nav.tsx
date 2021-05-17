@@ -105,7 +105,7 @@ function Nav() {
             <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, desc: userNameAndExp?.investExp}} userImg={userNameAndExp?.profileImg}/>
             :
             <li className='nav_ul_a_li'>
-              <img className="user-img"/>
+              <img className="user-img" src={userNameAndExp?.profileImg ? userNameAndExp?.profileImg : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'}/>
             </li>
           }
         </Link>

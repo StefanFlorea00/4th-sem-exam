@@ -2,15 +2,32 @@
 @use '../../sass/mediaQueriesMixin.scss' as *;
 
 .profile {
-  margin-left: $sidebar-width-vw;
-  padding: 20px;
-  height: 100vh; /* Temporary */
-}
-
-.profile {
-  min-height: 100vh;
+  margin: 2em 2em 2em 2em;
+  padding: 10px;
+  height: 100%; /* Temporary */
+  background-color: white;
+  border-radius: $border-radius-s;
+  display: flex;
+  flex-direction: column;
 
   @include mediaQuery(tablet) {
-    margin-left: 310px;
+    margin-left: 332px;
+    padding: 1em;
+  }
+
+  @include mediaQuery(laptop) {
+    padding: 2em;
+  }
+
+  &_edit-button {
+    background-color: $accent-color;
+    border-radius: $border-radius-s;
+    padding: 0.5em 2em;
+    border: none;
+    align-self: flex-end;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
