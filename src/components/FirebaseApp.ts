@@ -58,7 +58,7 @@ export async function uploadUserImage(user: any, profileImg: string) {
     if (snapshot) {
       getDoc(user).then(info => {
         try {
-          userRef.set({ fullname: info?.fullname, email: info?.email, createdAt: info?.createdAt, investExp: info?.investExp, profileImg });
+          userRef.set({ fullname: info?.fullname, email: info?.email, createdAt: info?.createdAt, investExp: info?.investExp, description: info?.description, profileImg });
         } catch (error) {
           console.log(error.message);
         }

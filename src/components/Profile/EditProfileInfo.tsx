@@ -23,7 +23,7 @@ function ProfileInfo(props: Props) {
     setFile(e.target.files[0]);
   }
 
-  async function handleUpload(e: any) {
+  async function handleImageUpload(e: any) {
     e.preventDefault();
     
     if(file === undefined) {
@@ -43,26 +43,33 @@ function ProfileInfo(props: Props) {
         });
       });
     }
+  }
 
+  async function handleUserUpload(e:any) {
     const { fullname, investExp, description } = e.target.elements;
-
     try {
       await updateUser(app.auth().currentUser, {
         fullname: fullname.value ? fullname.value : props.profileInfo.fullname,
         investExp: investExp.value ? investExp.value : props.profileInfo.investExp,
-        description: description.value ? description.value : props.profileInfo.description
+        description: description.value ? description.value : props.profileInfo.description,
       }).then(() => {
-        props.setEditMode(false) //this is the problem, prevents new data being shown
+        console.log('done')
       });
     } catch (err) {
       console.log(err)
     }
   }
 
+  async function handleAllDataUpload(e: any) {
+    handleImageUpload(e).then(()=>{
+      handleUserUpload(e)
+    })
+  }
+
   return (
     <div className='profile-info'>
       <div className='profile-info_user'>
-        <form onSubmit={handleUpload}>
+        <form onSubmit={handleAllDataUpload}>
           <div className='profile-info_user_flex'>
             <div className='profile-info_user_flex_image'>
               <img src={props.profileInfo?.profileImg ? props.profileInfo.profileImg : (url ? url : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')} alt="User profile image" />
