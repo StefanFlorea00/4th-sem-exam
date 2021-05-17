@@ -13,6 +13,7 @@ function ProfileInfo(props: Props) {
   const { currentUser } = useContext(AuthContext);
   const [file, setFile] = useState<any>(undefined);
   const [url, setURL] = useState("");
+  const [saving, setSaving] = useState<boolean|undefined>(undefined);
 
   function handleSignOut() {
     //sign out from the app
@@ -61,8 +62,11 @@ function ProfileInfo(props: Props) {
   }
 
   async function handleAllDataUpload(e: any) {
+    setSaving(true)
     handleImageUpload(e).then(()=>{
       handleUserUpload(e)
+    }).then(() => {
+      setSaving(false)
     })
   }
 
@@ -72,7 +76,7 @@ function ProfileInfo(props: Props) {
         <form onSubmit={handleAllDataUpload}>
           <div className='profile-info_user_flex'>
             <div className='profile-info_user_flex_image'>
-              <img src={props.profileInfo?.profileImg ? props.profileInfo.profileImg : (url ? url : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')} alt="User profile image" />
+              <img src={url ? url : (props.profileInfo.profileImg ? props.profileInfo.profileImg : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80')} alt="User profile image" />
               <div className='profile-info_user_flex_image_input'>
                 <button>Change image</button>
                 <input type="file" onChange={handleChange} />
@@ -84,7 +88,9 @@ function ProfileInfo(props: Props) {
             </div>
           </div>
           <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : 'Your description...'}/><br/>
-          <button className='profile-info_user_button'>Save</button>
+          <button className={saving === undefined ? 'profile-info_user_button' : (saving === true ? 'profile-info_user_button profile-info_user_saving' : 'profile-info_user_button profile-info_user_saved')}>
+          {saving === undefined ? 'Save' : (saving === true ? 'Saving...' : 'Saved!')}
+          </button>
         </form>
       </div>
     </div>

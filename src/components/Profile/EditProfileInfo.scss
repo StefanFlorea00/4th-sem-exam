@@ -9,6 +9,7 @@
     width: 100%;
 
     >form {
+      text-align: center;
       width: 100%;
     }
 
@@ -136,6 +137,14 @@
     &:focus {
       outline: none;
     }
+  }
+
+  &_saving {
+    background-color: rgb(182, 182, 218);
+  }
+
+  &_saved {
+    background-color: rgb(170, 245, 176);
   }
   }
 }
