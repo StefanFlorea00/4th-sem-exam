@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../Assets/Home';
 import Feed from '../Assets/Feed';
@@ -6,10 +6,23 @@ import Investment from '../Assets/Investment';
 import Messages from '../Assets/Messages';
 import UserButton from '../Buttons/UserButton'
 import Logo from '../Assets/Logo';
+import { AuthContext } from '../../Auth';
+import app from '../FirebaseApp';
+import { getDoc } from '../FirebaseApp';
 
 function Nav() {
+  const { currentUser } = useContext(AuthContext);
+  
   const [selected, setSelected] = useState<string>('home');
   const [showNavLi, setShowNavLi] = useState(false);
+  const [userNameAndExp, setUserNameAndExp] = useState<any>();
+
+  async function getCurrentUserData() {
+    getDoc(app.auth().currentUser).then(data => {
+      setUserNameAndExp(data);
+    });
+  }
+
   useEffect(() => {
     window.addEventListener('resize', () => {
       if (window.matchMedia('(min-width: 768px)').matches) {
@@ -18,6 +31,7 @@ function Nav() {
         setShowNavLi(false);
       }
     });
+    setUserNameAndExp(getCurrentUserData());
   }, []);
 
   useEffect(() => {
@@ -87,8 +101,13 @@ function Nav() {
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
-          <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name:"Jane Doe", desc:"Super Cool Chick"}}/>
-          {showNavLi && <li className='nav_ul_a_li'></li>}
+          {showNavLi ? 
+            <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, desc: userNameAndExp?.investExp}} userImg={userNameAndExp?.profileImg}/>
+            :
+            <li className='nav_ul_a_li'>
+              <img className="user-img" src={userNameAndExp?.profileImg ? userNameAndExp?.profileImg : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'}/>
+            </li>
+          }
         </Link>
       </ul>
     </nav>
