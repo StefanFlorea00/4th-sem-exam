@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { AuthContext } from '../../Auth';
 import { getDoc } from '../FirebaseApp';
 import firebase from 'firebase/app';
@@ -6,13 +6,14 @@ import firebase from 'firebase/app';
 type Props = {
   messageCollection: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
   selectedRoom: string;
+  handleClick: () => void;
 };
 
 function ChatRoomForm(props: Props) {
   const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<undefined | any>(undefined);
   const [textAreaValue, setTextAreaValue] = useState<string>('');
-  const { messageCollection, selectedRoom } = props;
+  const { messageCollection, selectedRoom, handleClick } = props;
 
   useEffect(() => {
     if (currentUser) {
@@ -42,6 +43,7 @@ function ChatRoomForm(props: Props) {
           chatroom: selectedRoom,
         });
         setTextAreaValue('');
+        handleClick();
       } catch (err) {
         console.log(err.message);
       }
