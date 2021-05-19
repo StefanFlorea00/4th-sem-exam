@@ -132,6 +132,10 @@
       margin-bottom: 0;
       width: calc(100% - 10em);
     }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &_button {
