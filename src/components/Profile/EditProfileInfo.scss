@@ -1,0 +1,160 @@
+@use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
+
+.profile-info {
+  width: 100%;
+  padding: 0.7em;
+
+  &_user {
+    width: 100%;
+
+    >form {
+      text-align: center;
+      width: 100%;
+    }
+
+    &_flex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include mediaQuery(tablet) {
+        flex-direction: row;
+      }
+
+    &_image {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      >img {
+        width: 5em;
+        height: 5em;
+        object-fit: cover;
+        border-radius: 50%;
+  
+        @include mediaQuery(tablet) {
+          width: 9em;
+          height: 9em;
+        }
+      }
+
+      &_input {
+        width: 5em;
+        position: relative;
+        margin: 0.5em 0 1em;
+
+        @include mediaQuery(tablet) {
+          width: 8em;
+        }
+
+        >button {
+          width: 100%;
+          min-height: 30px;
+          position: absolute;
+          border: none;
+          border-radius: $border-radius-s;
+          padding: 0.5em 1em;
+          background-color: $secondary-buttons;
+        }
+
+        input[type='file'] {
+          cursor: pointer;
+          width: 100%;
+          height: 45px; //same height as button
+          color: rgba(0, 0, 0, 0);
+          z-index: 2;
+          opacity: 0;
+
+          @include mediaQuery(tablet) {
+            height: 30px;
+          }
+        }
+      }
+      
+      
+    }
+
+    &_head {
+      @include mediaQuery(tablet) {
+        margin-top: -54px;
+        margin-left: 1em;
+      }
+
+      >input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+        white-space: normal;
+      }
+
+      &_fullname {
+        font-size: 1.5em;
+        font-weight: 500;
+      }
+
+      &_exp {
+        font-size: 1em;
+        font-weight: 400;
+        width: 100%;
+        border: none;
+
+        >option[selected] {
+          background-color: $accent-color;
+        }
+      }
+
+      &_fullname, &_exp {
+        outline: none;
+      }
+
+      &_fullname:focus, &_exp:focus {
+        outline: none;
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+
+  &_desc {
+    margin: 1em 0;
+    padding: 2em;
+    width: 100%;
+    background-color: $secondary-buttons;
+    border-radius: $border-radius-s;
+    min-height: 10em;
+    border: none;
+    font-size: 1em;
+
+    @include mediaQuery(laptop) {
+      margin-top: -45px;
+      margin-left: 10em; // margin to align with photo
+      margin-bottom: 0;
+      width: calc(100% - 10em);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_button {
+    background-color: $accent-color;
+    border-radius: $border-radius-s;
+    padding: 0.5em 2em;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_saving {
+    background-color: rgb(182, 182, 218);
+  }
+
+  &_saved {
+    background-color: rgb(170, 245, 176);
+  }
+  }
+}

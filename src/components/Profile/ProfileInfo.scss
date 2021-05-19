@@ -1,0 +1,59 @@
+@use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
+
+.profile-details {
+  padding: 0.7em;
+  height: 100%;
+
+  &_flex {
+    display: flex;
+    align-items: center;
+
+    >img {
+      width: 5em;
+      height: 5em;
+      object-fit: cover;
+      border-radius: 50%;
+
+      @include mediaQuery(tablet) {
+        width: 9em;
+        height: 9em;
+      }
+    }
+
+    &_head {
+      width: calc(100%-5em);
+      margin-left: 1em;
+      display: inline-block;
+
+      @include mediaQuery(tablet) {
+        width: calc(100%-9em);
+      }
+
+      >h1 {
+        font-size: 1.5em;
+        font-weight: 500;
+        border-top: 1px solid transparent;
+      }
+
+      >h2 {
+        font-size: 1em;
+        font-weight: 400;
+        border-top: 1px solid transparent;
+      }
+    }
+  }
+
+  &_desc {
+    margin: 1em 0;
+    padding: 2em;
+    background-color: $secondary-buttons;
+    border-radius: $border-radius-s;
+    min-height: 10em;
+
+    @include mediaQuery(laptop) {
+      margin: 0.65em 0 0 10em; // margin to align with photo
+    }
+  }
+
+}

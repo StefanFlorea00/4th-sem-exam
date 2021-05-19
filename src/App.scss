@@ -1,5 +1,6 @@
 @use './sass/main.scss';
 @use './sass/variables.scss' as *;
+@use './sass/mediaQueriesMixin.scss' as *;
 
 *,
 *::before,
@@ -7,6 +8,36 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+* {
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $secondary-buttons;
+    border-bottom-right-radius: $border-radius-s;
+    border-bottom-left-radius: $border-radius-s;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent-color;
+    border-radius: $border-radius-s;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(116, 116, 116);
+  }
+
+  &::-webkit-scrollbar-track:hover {
+    background: #e6e6e6;
+  }
+
+  &::-webkit-resizer {
+    background-color: $accent-color;
+    border-radius: 50%;
+  }
 }
 
 button {
@@ -17,8 +48,17 @@ button:active {
   transform: scale(0.9);
 }
 
-.App {
+.App, body, html {
   background: $body-bg-color;
+}
+
+.App {
+  height: 100%;
+  padding-bottom: 55px; //for fixed nav mobile
+
+  @include mediaQuery(tablet) {
+    padding: 0;
+  }
 }
 
 //hiding scrollbar due to animation jitters
