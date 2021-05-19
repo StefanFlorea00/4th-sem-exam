@@ -1,0 +1,7 @@
+@use '../../sass/mediaQueriesMixin.scss' as *;
+
+.messages {
+  @include mediaQuery(tablet) {
+    margin-left: 310px;
+  }
+}

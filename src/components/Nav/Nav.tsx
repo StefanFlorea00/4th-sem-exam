@@ -4,7 +4,7 @@ import Home from '../Assets/Home';
 import Feed from '../Assets/Feed';
 import Investment from '../Assets/Investment';
 import Messages from '../Assets/Messages';
-import UserButton from '../Buttons/UserButton'
+import UserButton from '../Buttons/UserButton';
 import Logo from '../Assets/Logo';
 import { AuthContext } from '../../Auth';
 import app from '../FirebaseApp';
@@ -12,7 +12,7 @@ import { getDoc } from '../FirebaseApp';
 
 function Nav() {
   const { currentUser } = useContext(AuthContext);
-  
+
   const [selected, setSelected] = useState<string>('home');
   const [showNavLi, setShowNavLi] = useState(false);
   const [userNameAndExp, setUserNameAndExp] = useState<any>();
@@ -88,7 +88,7 @@ function Nav() {
           {showNavLi && <li className='nav_ul_a_li'>Investment</li>}
         </Link>
         <Link
-          to=''
+          to='/messages'
           className={selected === 'messages' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('messages')}
         >
@@ -101,13 +101,28 @@ function Nav() {
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
-          {showNavLi ? 
-            <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, desc: userNameAndExp?.investExp}} userImg={userNameAndExp?.profileImg}/>
-            :
+          {showNavLi ? (
+            <UserButton
+              className={selected === 'profile' ? 'selected' : ''}
+              hasInfo
+              userInfo={{
+                name: userNameAndExp?.fullname,
+                desc: userNameAndExp?.investExp,
+              }}
+              userImg={userNameAndExp?.profileImg}
+            />
+          ) : (
             <li className='nav_ul_a_li'>
-              <img className="user-img" src={userNameAndExp?.profileImg ? userNameAndExp?.profileImg : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'}/>
+              <img
+                className='user-img'
+                src={
+                  userNameAndExp?.profileImg
+                    ? userNameAndExp?.profileImg
+                    : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+                }
+              />
             </li>
-          }
+          )}
         </Link>
       </ul>
     </nav>
