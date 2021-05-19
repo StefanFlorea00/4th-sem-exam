@@ -19,34 +19,10 @@
       margin: 1em 0.5em;
       padding: 1em;
       border-radius: $border-radius-s;
-      background-color: white;
 
       >.info {
         width: max-content;
       }
-    }
-
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: $secondary-buttons;
-      border-bottom-right-radius: $border-radius-s;
-      border-bottom-left-radius: $border-radius-s;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $accent-color;
-      border-radius: $border-radius-s;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: rgb(116, 116, 116);
-    }
-
-    &::-webkit-scrollbar-track:hover {
-      background: #e6e6e6;
     }
   }
 }
