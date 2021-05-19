@@ -15,11 +15,6 @@ function ProfileInfo(props: Props) {
   const [url, setURL] = useState("");
   const [saving, setSaving] = useState<boolean|undefined>(undefined);
 
-  function handleSignOut() {
-    //sign out from the app
-    app.auth().signOut();
-  }
-
   function handleChange(e: any) {
     setFile(e.target.files[0]);
   }
