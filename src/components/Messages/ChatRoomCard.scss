@@ -8,6 +8,7 @@
   &_item {
     .name {
       margin: 0.2em 0;
+      text-align: end;
     }
     .time {
       color: rgba(128, 128, 128, 0.567);
@@ -20,6 +21,7 @@
       display: flex;
       width: 100%;
       justify-content: space-between;
+      flex-direction: row-reverse;
       align-items: center;
       &_text {
         background: $accent-color;
@@ -28,9 +30,19 @@
         min-height: 50px;
         padding: 1em;
       }
+
       &_img {
         width: 80px;
       }
+    }
+  }
+
+  .currentUser {
+    .main_chat {
+      flex-direction: row;
+    }
+    .name {
+      text-align: start;
     }
   }
 }
