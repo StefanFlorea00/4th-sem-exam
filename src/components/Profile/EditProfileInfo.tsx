@@ -25,10 +25,10 @@ function ProfileInfo(props: Props) {
     if(file === undefined) {
       uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
     } else {
-      const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
+      const uploadTask = app.storage().ref(`/avatars/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
-        .ref("images")
+        .ref("avatars")
         .child(file.name)
         .getDownloadURL()
         .then((url) => {

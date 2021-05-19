@@ -89,4 +89,21 @@ export async function updateUser(user: any, additionalData: any) {
   } else return;
 }
 
+export async function createPost(user: any, additionalData: any) {
+  const postRef = firestore.collection('posts');
+
+    try {
+    const { comments, media, content } = additionalData;
+
+      postRef.add({
+        user: firestore.doc('users/' + user.uid),
+        comments, 
+        media, 
+        content  
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
 export default app;
