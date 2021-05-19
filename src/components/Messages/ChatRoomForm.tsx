@@ -2,28 +2,25 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { AuthContext } from '../../Auth';
 import { getDoc } from '../FirebaseApp';
 import firebase from 'firebase/app';
+import SendIcon from '../Assets/SendIcon';
 
 type Props = {
   messageCollection: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
   selectedRoom: string;
-  handleClick: () => void;
+  scrollIntoView: () => void;
 };
 
 function ChatRoomForm(props: Props) {
   const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<undefined | any>(undefined);
   const [textAreaValue, setTextAreaValue] = useState<string>('');
-  const { messageCollection, selectedRoom, handleClick } = props;
+  const { messageCollection, selectedRoom, scrollIntoView } = props;
 
   useEffect(() => {
     if (currentUser) {
       getDoc(currentUser).then(data => setUserInfo(data));
     }
   }, []);
-
-  // props.setMessagesArr(messages);
-
-  // props.setMessagesArr(useCollectionData(dbQuery, { idField: 'id' }));
 
   async function handleInput(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -43,7 +40,7 @@ function ChatRoomForm(props: Props) {
           chatroom: selectedRoom,
         });
         setTextAreaValue('');
-        handleClick();
+        scrollIntoView();
       } catch (err) {
         console.log(err.message);
       }
@@ -59,7 +56,10 @@ function ChatRoomForm(props: Props) {
           onInput={e => setTextAreaValue(e.target.value)}
         />
 
-        <button>Send</button>
+        <button>
+          <SendIcon />
+          Send
+        </button>
       </form>
     </div>
   );
