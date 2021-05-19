@@ -7,6 +7,10 @@ function PostGrid(props: any) {
     <div className="post-grid">
         <Post img/>
         <Post/>
+        <Post img/>
+        <Post/>
+        <Post img/>
+        <Post/>
         <Post/>
         <Post/>
     </div>
