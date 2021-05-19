@@ -1,3 +1,6 @@
+@use '../../../sass/variables.scss' as *;
+@use '../../../sass/mediaQueriesMixin.scss' as *;
+
 .sharebar-input-div {
   display: flex;
   width: 100%;
@@ -24,6 +27,7 @@
       width: 25px;
       height: 25px;
       margin-left: -20px;
+      margin-bottom: 0.5em;
     }
 
     input[type="file"] {
@@ -34,7 +38,6 @@
   .primary-btn {
     padding: 5px 10px;
     margin-left: 20px;
-    color: white;
-    background-color: #fbcb80;
+    background-color: $accent-color;
   }
 }

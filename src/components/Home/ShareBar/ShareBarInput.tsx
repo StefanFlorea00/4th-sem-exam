@@ -2,6 +2,7 @@ import React from 'react';
 import './ShareBarInput.scss';
 import Button from '../../Buttons/Button';
 import AttachIcon from '../../Assets/AttachIcon';
+import Send from '../../Assets/Send'
 
 function ShareBarInput(props: any) {
 
@@ -12,7 +13,7 @@ function ShareBarInput(props: any) {
             <label htmlFor="attach"><AttachIcon/></label>
             <input type="file" id="attach" name="attach" accept="image/*" />
         </div>
-        <Button type="primary" text="Send" imgPos="left" img="sendimg"/>
+        <Button type="primary" text="Send" imgPos="left" img={<Send className='btn-img'/>}/>
     </div>
   );
 }
