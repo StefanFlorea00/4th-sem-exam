@@ -8,7 +8,7 @@ import testimg from '../Assets/testimg.jpg';
 function Post(props: any) {
   return (
     <div className="post">
-        <UserButton hasInfo userInfo={{name:"Jane Doe", desc:"Super Cool Chick"}}/>
+        <UserButton hasInfo userInfo={{name:"Jane Doe", exp:"Super Cool Chick"}}/>
         {props.img && <img className="post-img" src={testimg} alt="Post image"/>}
         <p className="post-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam aut tempora est minus nostrum ea consequuntur. Officiis perferendis quis sint, iusto ex alias saepe eveniet harum, unde quidem quam laudantium.</p>
         <div className="bottom-div">
