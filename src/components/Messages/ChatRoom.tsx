@@ -20,23 +20,25 @@ function ChatRoom(props: Props) {
     }
   }, []);
 
-  console.log(userInfo);
-
   async function handleInput(e: React.SyntheticEvent) {
     e.preventDefault();
-    const collection = app.firestore().collection('messages');
+    const messageCollection = app.firestore().collection('messages');
 
     if (currentUser && userInfo) {
-      await collection.add({
-        uid: currentUser.uid,
-        email: userInfo.email,
-        profileImg:
-          userInfo.profileImg ||
-          'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-        text: textAreaValue,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        chatroom: props.selectedRoom,
-      });
+      try {
+        await messageCollection.add({
+          uid: currentUser.uid,
+          email: userInfo.email,
+          profileImg:
+            userInfo.profileImg ||
+            'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          text: textAreaValue,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          chatroom: props.selectedRoom,
+        });
+      } catch (err) {
+        console.log(err.message);
+      }
     }
   }
   return (
