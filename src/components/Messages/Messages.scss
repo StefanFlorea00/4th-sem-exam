@@ -7,6 +7,10 @@
     max-width: 50%;
   }
 
+  .scrollViewDiv {
+    margin-bottom: 4em;
+  }
+
   @include mediaQuery(tablet) {
     margin-left: 310px;
   }

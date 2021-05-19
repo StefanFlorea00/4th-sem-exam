@@ -12,7 +12,6 @@ type Props = {
 function ChatRoomCard(props: Props) {
   const { fullname, profileImg, text, time, uid } = props;
   const { currentUser } = app.auth();
-  console.log(currentUser?.uid === uid);
 
   return (
     <div className='chat_card'>

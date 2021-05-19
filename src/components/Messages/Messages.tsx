@@ -1,14 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatRoomForm from './ChatRoomForm';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import app from '../FirebaseApp';
 import firebase from 'firebase/app';
 import ChatRoomCard from './ChatRoomCard';
 
-function Messages(props) {
+function Messages() {
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
-  const scrollViewDiv = useRef();
+
+  useEffect(() => {
+    setTimeout(scrollIntoView, 1000);
+  }, []);
 
   const dbQuery = messageCollection
     .where('chatroom', '==', selectedRoom)
@@ -20,7 +23,8 @@ function Messages(props) {
   console.log(messages);
 
   function scrollIntoView() {
-    scrollViewDiv?.current?.scrollIntoView({ behavior: 'smooth' });
+    // scrollViewDiv?.current?.scrollIntoView({ behavior: 'smooth' });
+    window.scrollTo(0, document.body.scrollHeight);
   }
   return (
     <div className='messages'>
@@ -38,14 +42,9 @@ function Messages(props) {
 
           const time = `${date} ${month} ${year} ${hour}`;
 
-
           return (
-            // <div>
-            //   <h1>{user.fullname}</h1>
-            //   <h2>{user.text}</h2>
-            //   <img src={user.profileImg} />
-            // </div>
             <ChatRoomCard
+              key={user.fullname + Math.random()}
               fullname={user.fullname}
               text={user.text}
               profileImg={user.profileImg}
@@ -61,7 +60,6 @@ function Messages(props) {
         selectedRoom={selectedRoom}
         messageCollection={messageCollection}
       />
-      <div ref={scrollViewDiv}></div>
     </div>
   );
 }

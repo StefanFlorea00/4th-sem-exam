@@ -13,7 +13,7 @@ type Props = {
 function ChatRoomForm(props: Props) {
   const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<undefined | any>(undefined);
-  const [textAreaValue, setTextAreaValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
   const { messageCollection, selectedRoom, scrollIntoView } = props;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function ChatRoomForm(props: Props) {
   async function handleInput(e: React.SyntheticEvent) {
     e.preventDefault();
 
-    if (currentUser && userInfo) {
+    if (currentUser && userInfo && inputValue) {
       try {
         await messageCollection.add({
           uid: currentUser.uid,
@@ -35,11 +35,11 @@ function ChatRoomForm(props: Props) {
           profileImg:
             userInfo.profileImg ||
             'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-          text: textAreaValue,
+          text: inputValue,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           chatroom: selectedRoom,
         });
-        setTextAreaValue('');
+        setInputValue('');
         scrollIntoView();
       } catch (err) {
         console.log(err.message);
@@ -52,8 +52,8 @@ function ChatRoomForm(props: Props) {
         <input
           type='text'
           placeholder='Message'
-          value={textAreaValue}
-          onInput={e => setTextAreaValue(e.target.value)}
+          value={inputValue}
+          onInput={e => setInputValue(e.target.value)}
         />
 
         <button>
