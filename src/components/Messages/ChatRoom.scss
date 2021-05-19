@@ -1,6 +1,0 @@
-@use '../../sass/mediaQueriesMixin.scss' as *;
-
-.chat_room {
-  @include mediaQuery(tablet) {
-  }
-}

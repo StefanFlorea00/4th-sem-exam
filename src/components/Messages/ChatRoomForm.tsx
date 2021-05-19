@@ -8,7 +8,7 @@ type Props = {
   selectedRoom: string;
 };
 
-function ChatRoom(props: Props) {
+function ChatRoomForm(props: Props) {
   const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<undefined | any>(undefined);
   const [textAreaValue, setTextAreaValue] = useState<string>('');
@@ -48,12 +48,14 @@ function ChatRoom(props: Props) {
     }
   }
   return (
-    <div className='chat_room'>
-      <form className='chat_form' onSubmit={handleInput}>
-        <textarea
+    <div className='chat_room_form_wrapper'>
+      <form className='_form' onSubmit={handleInput}>
+        <input
+          type='text'
+          placeholder='Message'
           value={textAreaValue}
           onInput={e => setTextAreaValue(e.target.value)}
-        ></textarea>
+        />
 
         <button>Send</button>
       </form>
@@ -61,4 +63,4 @@ function ChatRoom(props: Props) {
   );
 }
 
-export default ChatRoom;
+export default ChatRoomForm;

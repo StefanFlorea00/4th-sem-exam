@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ChatRoom from './ChatRoom';
+import ChatRoomForm from './ChatRoomForm';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import app from '../FirebaseApp';
 
@@ -7,17 +7,18 @@ function Messages(props) {
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
 
-  const dbQuery = messageCollection.where('chatroom', '==', selectedRoom);
+  const dbQuery = messageCollection
+    .where('chatroom', '==', selectedRoom)
+    .orderBy('createdAt', 'asc');
+
   const [messages] = useCollectionData(dbQuery, { idField: 'id' });
 
   console.log(messages);
 
   return (
     <div className='messages'>
-      <ChatRoom
-        selectedRoom={selectedRoom}
-        messageCollection={messageCollection}
-      />
+      {/* chatRoom cards */}
+      {/* messages arr */}
       {messages &&
         messages.map(user => {
           return (
@@ -28,6 +29,11 @@ function Messages(props) {
             </div>
           );
         })}
+        {/* form */}
+      <ChatRoomForm
+        selectedRoom={selectedRoom}
+        messageCollection={messageCollection}
+      />
     </div>
   );
 }

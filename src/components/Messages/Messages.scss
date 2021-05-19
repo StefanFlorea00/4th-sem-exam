@@ -1,6 +1,11 @@
 @use '../../sass/mediaQueriesMixin.scss' as *;
 
 .messages {
+  padding: 2em 0.4em;
+  img {
+    max-width: 50%;
+  }
+
   @include mediaQuery(tablet) {
     margin-left: 310px;
   }
