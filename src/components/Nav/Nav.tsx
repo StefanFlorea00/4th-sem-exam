@@ -88,12 +88,12 @@ function Nav() {
           {showNavLi && <li className='nav_ul_a_li'>Investment</li>}
         </Link>
         <Link
-          to='/messages'
-          className={selected === 'messages' ? 'nav_ul_a selected' : 'nav_ul_a'}
-          onClick={() => handleClick('messages')}
+          to='/chatRoom'
+          className={selected === 'chatRoom' ? 'nav_ul_a selected' : 'nav_ul_a'}
+          onClick={() => handleClick('chatRoom')}
         >
-          <Messages className={selected === 'messages' ? 'selected' : ''} />
-          {showNavLi && <li className='nav_ul_a_li'>Messages</li>}
+          <Messages className={selected === 'chatRoom' ? 'selected' : ''} />
+          {showNavLi && <li className='nav_ul_a_li'>Chatroom</li>}
         </Link>
 
         <Link

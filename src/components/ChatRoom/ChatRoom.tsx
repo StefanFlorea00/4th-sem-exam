@@ -24,7 +24,7 @@ function Messages() {
   console.log(messages);
 
   function scrollIntoView() {
-    // window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);
   }
   return (
     <div className='messages'>
