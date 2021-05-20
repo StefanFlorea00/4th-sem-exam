@@ -46,8 +46,8 @@ function Nav() {
         return setSelected('home');
       case 'feed':
         return setSelected('feed');
-      case 'messages':
-        return setSelected('messages');
+      case 'chatRoom':
+        return setSelected('chatRoom');
       case 'investment':
         return setSelected('investment');
       case 'profile':
@@ -101,10 +101,17 @@ function Nav() {
           className={selected === 'profile' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('profile')}
         >
-
-          {showNavLi ? 
-            <UserButton className={selected === 'profile' ? 'selected' : ''}  hasInfo userInfo={{name: userNameAndExp?.fullname, exp: userNameAndExp?.investExp}} userImg={userNameAndExp?.profileImg}/>
-            :
+          {showNavLi ? (
+            <UserButton
+              className={selected === 'profile' ? 'selected' : ''}
+              hasInfo
+              userInfo={{
+                name: userNameAndExp?.fullname,
+                exp: userNameAndExp?.investExp,
+              }}
+              userImg={userNameAndExp?.profileImg}
+            />
+          ) : (
             <li className='nav_ul_a_li'>
               <img
                 className='user-img'
