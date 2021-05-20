@@ -1,3 +1,6 @@
+@use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
+
 .primary-btn {
   padding: 8px 15px;
   margin: 10px 0;
@@ -12,14 +15,13 @@
   }
 
   &:active {
-    background-color: #fbcb80;
+    background-color: $accent-color;
   }
 
   .btn-img {
     width: 20px;
     height: 20px;
-    margin-right: 15px;
-    background-color: blueviolet;
+    margin-right: 0.5em;
   }
 }
 
@@ -31,6 +33,5 @@
   justify-content: flex-start;
   border-radius: 15px;
   border: 0;
-  background-color: #fbcb80;
-  color: white;
+  background-color: $accent-color;
 }
