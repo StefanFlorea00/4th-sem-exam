@@ -49,8 +49,11 @@ button:active {
   transform: scale(0.9);
 }
 
-.App, body, html {
+.App,
+body,
+html {
   background: $body-bg-color;
+  scroll-behavior: smooth;
 }
 
 .App {
@@ -68,6 +71,6 @@ button:active {
 }
 
 .App {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

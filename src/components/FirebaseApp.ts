@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import 'firebase/storage'
+import 'firebase/storage';
 
 const app = firebase.default.initializeApp({
   apiKey: 'AIzaSyAfsv1OHa4opKU7qoyFfYRfwAKVl0BXCuk',
@@ -16,6 +16,15 @@ const app = firebase.default.initializeApp({
 
 export const auth = firebase.default.auth();
 export const firestore = firebase.default.firestore();
+
+
+
+export async function getCollection(name: string) {
+  const collection = firestore.collection(name);
+  const snapshot = await collection.get();
+
+  if (snapshot) return snapshot;
+}
 
 export async function createUserDocument(user: any, additionalData: any) {
   if (user) {
@@ -58,7 +67,14 @@ export async function uploadUserImage(user: any, profileImg: string) {
     if (snapshot) {
       getDoc(user).then(info => {
         try {
-          userRef.set({ fullname: info?.fullname, email: info?.email, createdAt: info?.createdAt, investExp: info?.investExp, description: info?.description ? info.description : '', profileImg });
+          userRef.set({
+            fullname: info?.fullname,
+            email: info?.email,
+            createdAt: info?.createdAt,
+            investExp: info?.investExp,
+            description: info?.description ? info.description : '',
+            profileImg,
+          });
         } catch (error) {
           console.log(error.message);
         }
@@ -80,7 +96,14 @@ export async function updateUser(user: any, additionalData: any) {
 
       getDoc(user).then(info => {
         try {
-          userRef.set({ fullname, email, createdAt: info?.createdAt, investExp, description, profileImg: info?.profileImg });
+          userRef.set({
+            fullname,
+            email,
+            createdAt: info?.createdAt,
+            investExp,
+            description,
+            profileImg: info?.profileImg,
+          });
         } catch (error) {
           console.log(error.message);
         }

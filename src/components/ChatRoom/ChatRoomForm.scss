@@ -1,0 +1,64 @@
+@use '../../sass/mediaQueriesMixin.scss' as *;
+@use '../../sass/variables.scss' as *;
+
+.chat_room_form_wrapper {
+  width: 100%;
+  min-height: 120px;
+  margin-bottom: -2em;
+  margin-top: 2em;
+  padding: 2em 0;
+  display: flex;
+  position: fixed;
+  bottom: 11.5%;
+  right: 50%;
+  transform: translate(50%, 0%);
+  background: $body-bg-color;
+  @include mediaQuery(phone_medium) {
+    bottom: 9.5%;
+  }
+  @include mediaQuery(tablet) {
+    all: revert;
+    position: sticky;
+    bottom: 10px;
+    background: #fff;
+  }
+
+  form {
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: $border-radius-s;
+    border: 1px solid #000;
+    margin: 0 auto;
+
+    input {
+      width: 80%;
+      border: none;
+      background: transparent;
+      padding: 0 1em;
+      font-size: 1em;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      padding: 10px 10px;
+      width: 90px;
+      border-top-right-radius: $border-radius-s;
+      border-bottom-right-radius: $border-radius-s;
+      border: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background: $accent-color;
+
+      svg {
+        width: 30px;
+      }
+    }
+  }
+  @include mediaQuery(tablet) {
+  }
+}

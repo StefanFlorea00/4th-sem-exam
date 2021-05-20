@@ -6,3 +6,7 @@
 @use '../sass/mediaQueriesMixin.scss';
 @use '../sass/variables.scss';
 @use '../sass/typography.scss';
+@use '../components/ChatRoom/ChatRoom.scss';
+@use '../components/ChatRoom/ChatRoomForm.scss';
+@use '../components/ChatRoom/ChatRoomCard.scss';
+@use '../components/ChatRoom/Rooms.scss';
