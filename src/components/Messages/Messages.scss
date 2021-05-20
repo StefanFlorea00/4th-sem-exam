@@ -9,13 +9,8 @@
     align-items: flex-start;
     padding: 0 1em;
   }
-
   img {
     max-width: 50%;
-  }
-
-  .scrollViewDiv {
-    margin-bottom: 4em;
   }
 
   @include mediaQuery(tablet) {

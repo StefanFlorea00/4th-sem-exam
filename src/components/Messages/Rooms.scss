@@ -25,6 +25,10 @@
     min-height: 95vh;
   }
 
+  @include mediaQuery(desktop) {
+    flex-basis: 20%;
+  }
+
   button {
     margin: 0 1em;
     background: none;
