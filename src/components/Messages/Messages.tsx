@@ -4,6 +4,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import app from '../FirebaseApp';
 import firebase from 'firebase/app';
 import ChatRoomCard from './ChatRoomCard';
+import Rooms from './Rooms';
 
 function Messages() {
   const [selectedRoom, setSelectedRoom] = useState('general');
@@ -23,12 +24,12 @@ function Messages() {
   console.log(messages);
 
   function scrollIntoView() {
-    // scrollViewDiv?.current?.scrollIntoView({ behavior: 'smooth' });
-    window.scrollTo(0, document.body.scrollHeight);
+    // window.scrollTo(0, document.body.scrollHeight);
   }
   return (
     <div className='messages'>
       {/* chatRoom cards */}
+      <Rooms setSelectedRoom={setSelectedRoom} />
       {/* messages arr */}
       {messages &&
         messages.map(user => {

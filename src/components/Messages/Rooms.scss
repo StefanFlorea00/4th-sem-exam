@@ -1,0 +1,27 @@
+@use '../../sass/mediaQueriesMixin.scss' as *;
+@use '../../sass/variables.scss' as *;
+
+.rooms {
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  background: #fff;
+  padding: 1em 0;
+  border-radius: $border-radius-s;
+  scroll-snap-type: x mandatory;
+  justify-content: space-between;
+
+  button {
+    margin: 0 1em;
+    background: $accent-color;
+    padding: 1em;
+    border-radius: $border-radius-s;
+    scroll-snap-align: start;
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
