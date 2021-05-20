@@ -10,7 +10,6 @@ import { AuthContext } from '../../../Auth';
 function ShareBarInput(props: any) {
   const { currentUser } = useContext(AuthContext);
   const [file, setFile] = useState<any>(undefined);
-  const [url, setURL] = useState("");
 
   function handleChange(e: any) {
     setFile(e.target.files[0]);
@@ -21,21 +20,22 @@ function ShareBarInput(props: any) {
     
     if(file !== undefined) {
       const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
-      uploadTask.on("state_changed", console.log, console.error, () => {
+      await uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
         .ref("images")
         .child(file.name)
         .getDownloadURL()
         .then((url) => {
           setFile(undefined);
-          setURL(url);
-          handlePostUpload(e)
+          handlePostUpload(e, url)
         })
       });
+    } else {
+      handlePostUpload(e, '')
     }
   }
 
-  async function handlePostUpload(e:any) {
+  async function handlePostUpload(e:any, url: string) {
     const { content } = e.target.elements;
     try {
       await createPost(app.auth().currentUser, {
