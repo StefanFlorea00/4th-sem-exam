@@ -16,6 +16,12 @@
   @include mediaQuery(phone_medium) {
     bottom: 9.5%;
   }
+  @include mediaQuery(tablet) {
+    all: revert;
+    position: sticky;
+    bottom: 10px;
+    background: #fff;
+  }
 
   form {
     width: 97%;

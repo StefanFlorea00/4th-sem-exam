@@ -9,9 +9,8 @@
   top: 0px;
   width: 100%;
   background: #fff;
-  padding: 1em 0;
+  padding: 1em;
   border-radius: $border-radius-s;
-  scroll-snap-type: x mandatory;
   justify-content: space-between;
 
   button {
@@ -19,7 +18,6 @@
     background: $accent-color;
     padding: 1em;
     border-radius: $border-radius-s;
-    scroll-snap-align: start;
     border: none;
     font-size: 1em;
     font-weight: bold;

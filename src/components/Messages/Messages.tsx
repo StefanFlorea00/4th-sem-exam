@@ -31,36 +31,38 @@ function Messages() {
       {/* chatRoom cards */}
       <Rooms setSelectedRoom={setSelectedRoom} />
       {/* messages arr */}
-      {messages &&
-        messages.map(user => {
-          const Timestamp = firebase.firestore.Timestamp;
-          const getDate = new Timestamp(
-            user.createdAt?.seconds,
-            user.createdAt?.nanoseconds
-          ).toDate();
+      <div className='chat_card_wrapper'>
+        {messages &&
+          messages.map(user => {
+            const Timestamp = firebase.firestore.Timestamp;
+            const getDate = new Timestamp(
+              user.createdAt?.seconds,
+              user.createdAt?.nanoseconds
+            ).toDate();
 
-          const [, month, date, year, hour] = getDate.toString().split(' ');
+            const [, month, date, year, hour] = getDate.toString().split(' ');
 
-          const time = `${date} ${month} ${year} ${hour}`;
+            const time = `${date} ${month} ${year} ${hour}`;
 
-          return (
-            <ChatRoomCard
-              key={user.fullname + Math.random()}
-              fullname={user.fullname}
-              text={user.text}
-              profileImg={user.profileImg}
-              time={time}
-              uid={user.uid}
-            />
-          );
-        })}
+            return (
+              <ChatRoomCard
+                key={user.fullname + Math.random()}
+                fullname={user.fullname}
+                text={user.text}
+                profileImg={user.profileImg}
+                time={time}
+                uid={user.uid}
+              />
+            );
+          })}
+
+        <ChatRoomForm
+          scrollIntoView={scrollIntoView}
+          selectedRoom={selectedRoom}
+          messageCollection={messageCollection}
+        />
+      </div>
       {/* form */}
-
-      <ChatRoomForm
-        scrollIntoView={scrollIntoView}
-        selectedRoom={selectedRoom}
-        messageCollection={messageCollection}
-      />
     </div>
   );
 }
