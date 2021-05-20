@@ -19,6 +19,7 @@ function Messages() {
     .orderBy('createdAt', 'asc');
 
   const [messages] = useCollectionData(dbQuery, { idField: 'id' });
+  console.log(messages);
 
   function scrollIntoView() {
     // window.scrollTo(0, document.body.scrollHeight);
@@ -50,6 +51,7 @@ function Messages() {
                 profileImg={user.profileImg}
                 time={time}
                 uid={user.uid}
+                id={user.id}
               />
             );
           })}
