@@ -96,7 +96,7 @@ export async function createPost(user: any, additionalData: any) {
     const { comments, media, content } = additionalData;
 
       postRef.add({
-        user: firestore.doc('users/' + user.uid),
+        uid: user.uid,
         comments, 
         media, 
         content  

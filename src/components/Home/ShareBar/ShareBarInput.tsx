@@ -53,7 +53,7 @@ function ShareBarInput(props: any) {
   return (
     <form className="sharebar-input-div"onSubmit={handleUpload}>
         <input type="content" name='content' className="share-input" placeholder="How's it going peeps?"/>
-        <div className="attach-btn">
+        <div className={file !== undefined ? 'attach-btn attach-btn-green' : 'attach-btn'}>
             <label htmlFor="attach"><AttachIcon/></label>
             <input type="file" id="attach" name="attach" accept="image/*"  onChange={handleChange}/>
         </div>

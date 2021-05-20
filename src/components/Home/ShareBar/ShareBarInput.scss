@@ -27,11 +27,25 @@
       width: 25px;
       height: 25px;
       margin-left: -20px;
+      transition: all 2s ease;
       margin-bottom: 0.5em;
     }
 
     input[type="file"] {
       display: none;
+    }
+  }
+
+  .attach-btn-green {
+    label {
+      background-color: rgb(170, 245, 176);
+      transition: all 0.3s ease;
+      border-radius: 50%;
+
+      >svg > * {
+        transition: all 0.3s ease;
+        stroke-width: 2px;
+      }
     }
   }
 
