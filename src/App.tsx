@@ -7,7 +7,7 @@ import SignUp from './components/LogIn/SignUp';
 import PrivateRoute from './PrivateRoute';
 import './App.scss';
 import Investment from './components/Investment/Investment';
-import Messages from './components/ChatRoom/ChatRoom';
+import ChatRoom from './components/ChatRoom/ChatRoom';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/profile' component={Profile} />
           <PrivateRoute exact path='/investment' component={Investment} />
-          <PrivateRoute path='/chatRoom' component={Messages} />
+          <PrivateRoute path='/chatRoom' component={ChatRoom} />
           <Route path='/login' component={LogIn} />
           <Route path='/signup' component={SignUp} />
         </Switch>
