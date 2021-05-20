@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { AuthContext } from '../../Auth';
 import { getDoc } from '../FirebaseApp';
 import firebase from 'firebase/app';
-import SendIcon from '../Assets/SendIcon';
+import Send from '../Assets/Send';
 
 type Props = {
   messageCollection: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
@@ -57,7 +57,7 @@ function ChatRoomForm(props: Props) {
         />
 
         <button>
-          <SendIcon />
+          <Send />
           Send
         </button>
       </form>

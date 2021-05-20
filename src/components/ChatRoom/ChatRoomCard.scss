@@ -6,11 +6,14 @@
   padding: 1em;
   margin-top: 1em;
   border-radius: $border-radius-s;
-
+  @include mediaQuery(tablet) {
+    height: 95vh;
+    overflow-y: scroll;
+  }
   @include mediaQuery(laptop) {
-    flex-basis: 80%;
-    min-height: 95vh;
-    margin-bottom: 1em;
+    grid-column: 1/9;
+    position: static;
+    height: 85vh;
   }
 }
 .chat_card {
@@ -23,11 +26,12 @@
   &_item {
     .name {
       margin: 0.2em 0;
-      margin-left: 100px;
+      margin-left: 67px;
     }
     .time {
       color: rgba(128, 128, 128, 0.567);
-      text-align: center;
+      font-size: 0.7em;
+      margin-left: 67px;
       @include mediaQuery(tablet) {
       }
     }
@@ -42,13 +46,13 @@
       &_text {
         border-radius: $border-radius-m;
         background: #f2f2f2f8;
-        min-height: 50px;
-        padding: 1em;
+
+        padding: 7px 30px;
       }
 
       &_img {
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         margin-right: 10px;
       }
@@ -56,6 +60,10 @@
   }
 
   .currentUser {
+    .time {
+      text-align: end;
+      margin-right: 80px;
+    }
     .main_chat {
       flex-direction: row;
       &_text {
@@ -67,10 +75,8 @@
     }
     .name {
       text-align: end;
-      margin-right: 105px;
+      margin-right: 80px;
     }
   }
 }
-// @include mediaQuery(tablet) {
-//   margin-left: 310px;
-// }
+

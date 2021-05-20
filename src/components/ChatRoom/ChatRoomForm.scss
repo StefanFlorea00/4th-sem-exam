@@ -3,10 +3,8 @@
 
 .chat_room_form_wrapper {
   width: 100%;
-  min-height: 120px;
   margin-bottom: -2em;
-  margin-top: 2em;
-  padding: 2em 0;
+  padding: 1.5em 0;
   display: flex;
   position: fixed;
   bottom: 11.5%;
@@ -15,12 +13,25 @@
   background: $body-bg-color;
   @include mediaQuery(phone_medium) {
     bottom: 9.5%;
+    padding: 1.7em 0;
   }
   @include mediaQuery(tablet) {
     all: revert;
     position: sticky;
     bottom: 10px;
     background: #fff;
+    margin-top: 1em;
+    border-radius: $border-radius-s;
+    padding: 1em;
+  }
+  @include mediaQuery(laptop) {
+    grid-column: 1/9;
+    bottom: 1.3em;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3em;
   }
 
   form {

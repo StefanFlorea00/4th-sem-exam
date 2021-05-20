@@ -14,15 +14,11 @@
   justify-content: space-between;
 
   @include mediaQuery(laptop) {
-    flex-basis: 36%;
-    margin-left: 1em;
+    grid-column: 9/-1;
     flex-direction: column;
     grid-row: 1;
     justify-content: flex-start;
     margin-top: 1em;
-    margin-bottom: 1em;
-    top: 10px;
-    min-height: 95vh;
   }
 
   @include mediaQuery(desktop) {
@@ -43,7 +39,6 @@
 
     @include mediaQuery(laptop) {
       margin: 1em;
-      position: sticky;
       top: 20px;
     }
   }
