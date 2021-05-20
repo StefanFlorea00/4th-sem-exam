@@ -1,0 +1,22 @@
+@use '../../sass/variables.scss' as *;
+
+.share-stock {
+  margin-top: 50px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .share-stock-text {
+    border-radius: $border-radius-m;
+    padding: 15px;
+    width: 100%;
+    min-height: 150px;
+    max-width: 100%;
+    border: 2px solid $accent-color;
+
+    &:focus {
+      outline: none;
+      border: 2px solid $accent-color-lighter;
+    }
+  }
+}

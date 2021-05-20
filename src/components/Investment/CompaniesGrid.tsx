@@ -16,7 +16,7 @@ function CompaniesGrid(props: any) {
 
     function searchCompany(value: string) {
         setSearchTerm(value);
-        value == '' ? setDisplayedCompanyList(companyList) : setDisplayedCompanyList(companyList.filter(company => company.name.toLowerCase().includes(value)));
+        value == '' ? setDisplayedCompanyList(companyList) : setDisplayedCompanyList(companyList.filter(company => company.name.toLowerCase().includes(value.toLowerCase())));
         console.log(displayedCompanyist, value);
     }
 
@@ -31,7 +31,7 @@ function CompaniesGrid(props: any) {
             {
             displayedCompanyist.map((company: any) => {
                 return (
-                <CompanyItem key={company.index} name={company.name} field={company.field} img={company.img != null ? company.img.testimg : company.img} /* temporary, just for test *//>
+                <CompanyItem key={company.index} id={company.id} name={company.name} field={company.field} img={company.img != null ? company.img.testimg : company.img} /* temporary, just for test *//>
                 )
             })
             }

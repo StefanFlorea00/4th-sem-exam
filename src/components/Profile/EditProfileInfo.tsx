@@ -15,11 +15,6 @@ function ProfileInfo(props: Props) {
   const [url, setURL] = useState("");
   const [saving, setSaving] = useState<boolean|undefined>(undefined);
 
-  function handleSignOut() {
-    //sign out from the app
-    app.auth().signOut();
-  }
-
   function handleChange(e: any) {
     setFile(e.target.files[0]);
   }
@@ -30,10 +25,10 @@ function ProfileInfo(props: Props) {
     if(file === undefined) {
       uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
     } else {
-      const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
+      const uploadTask = app.storage().ref(`/avatars/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
-        .ref("images")
+        .ref("avatars")
         .child(file.name)
         .getDownloadURL()
         .then((url) => {
@@ -85,7 +80,12 @@ function ProfileInfo(props: Props) {
             </div>
             <div className='profile-info_user_flex_head'>
               <input type="fullname" className='profile-info_user_flex_head_fullname' name="fullname" defaultValue={props.profileInfo?.fullname}/><br/>
-              <input type="investExp" className='profile-info_user_flex_head_exp' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/>
+              {/* <input type="investExp" className='profile-info_user_flex_head_exp' name="investExp" defaultValue={props.profileInfo?.investExp}/><br/> */}
+              <select name="investExp" className='profile-info_user_flex_head_exp' defaultValue={props.profileInfo?.investExp}>
+                <option value="Totally new">Totally new</option>
+                <option value="I have invested before">I have invested before</option>
+                <option value="Expert">Expert</option>
+              </select>
             </div>
           </div>
           <textarea className='profile-info_user_desc' name="description" defaultValue={props.profileInfo?.description ? props.profileInfo?.description : 'Your description...'}/><br/>

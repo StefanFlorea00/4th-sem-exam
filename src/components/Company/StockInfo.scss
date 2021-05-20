@@ -1,0 +1,43 @@
+@use '../../sass/variables.scss' as *;
+
+.stock-info {
+  background-color: #f9f6f6;
+  border-radius: $border-radius-m;
+  width: 300px;
+  padding: 10px 3px;
+
+  .current-stock {
+    display: flex;
+
+    .stock-arrow {
+      width: 25px;
+      margin-left: 10px;
+
+      #arrow {
+        filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(325deg) brightness(119%) contrast(119%);
+      }
+    }
+
+    .current-stock-text {
+      margin: 5px 5px 5px 5px;
+    }
+
+    .percentage {
+      font-size: 12px;
+      color: red;
+    }
+  }
+
+  .info-line {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: $border-radius-s;
+    padding: 5px 10px;
+    margin: 5px;
+
+    p:last-child {
+      margin-right: 10px;
+    }
+  }
+}

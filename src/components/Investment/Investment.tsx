@@ -12,16 +12,16 @@ function Investment() {
 
   //to get from db later
   const Companies=[
-    {name: "Green", field:"Technology", img:{testimg}},
-    {name: "Blue", field:"Technology", img:{testimg}},
-    {name: "Pink", field:"Cleaning", img:{testimg}},
-    {name: "Red", field:"Food", img:{testimg}},
-    {name: "I", field:"Ran", img:{testimg}},
-    {name: "Out", field:"Of", img:{testimg}},
-    {name: "Names", field:"", img:{testimg}},
-    {name: "Names", field:"", img:{testimg}},
-    {name: "Names", field:"", img:{testimg}},
-    {name: "Names", field:"", img:{testimg}},
+    {id:"0", name: "Green", field:"Technology", img:{testimg}},
+    {id:"1", name: "Blue", field:"Technology", img:{testimg}},
+    {id:"2", name: "Pink", field:"Cleaning", img:{testimg}},
+    {id:"3", name: "Red", field:"Food", img:{testimg}},
+    {id:"4", name: "I", field:"Ran", img:{testimg}},
+    {id:"5", name: "Out", field:"Of", img:{testimg}},
+    {id:"6", name: "Names", field:"", img:{testimg}},
+    {id:"7", name: "Names", field:"", img:{testimg}},
+    {id:"8", name: "Names", field:"", img:{testimg}},
+    {id:"9", name: "Names", field:"", img:{testimg}},
   ]
 
   return (

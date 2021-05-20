@@ -19,15 +19,40 @@
     padding: 2em;
   }
 
-  &_edit-button {
-    background-color: $accent-color;
-    border-radius: $border-radius-s;
-    padding: 0.5em 2em;
-    border: none;
+  &_buttons {
     align-self: flex-end;
 
-    &:focus {
-      outline: none;
+    &_edit {
+      background-color: $accent-color;
+      border-radius: $border-radius-s;
+      padding: 0.5em 1.5em;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &_logout {
+      background-color: #BF4C5E;
+      border-radius: $border-radius-s;
+      padding: 0.5em 1.5em;
+      border: none;
+      margin-right: 0.5em;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &_edit, &_logout {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    &_icon {
+      height: 1.5em;
+      margin-right: 0.5em;
     }
   }
 }
