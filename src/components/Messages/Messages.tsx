@@ -29,7 +29,7 @@ function Messages() {
   return (
     <div className='messages'>
       {/* chatRoom cards */}
-      <Rooms setSelectedRoom={setSelectedRoom} />
+      <Rooms selectedRoom={selectedRoom} setSelectedRoom={setSelectedRoom} />
       {/* messages arr */}
       <div className='chat_card_wrapper'>
         {messages &&
