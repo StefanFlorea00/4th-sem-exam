@@ -22,7 +22,7 @@
     margin-top: 1em;
     margin-bottom: 1em;
     top: 10px;
-    min-height: 95vh;
+    height: 96vh;
   }
 
   @include mediaQuery(desktop) {
@@ -43,7 +43,6 @@
 
     @include mediaQuery(laptop) {
       margin: 1em;
-      position: sticky;
       top: 20px;
     }
   }
