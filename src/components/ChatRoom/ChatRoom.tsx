@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ChatRoomForm from './ChatRoomForm';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import app from '../FirebaseApp';
@@ -9,7 +9,7 @@ import Rooms from './Rooms';
 function Messages() {
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
-
+  const div = useRef();
   useEffect(() => {
     setTimeout(scrollIntoView, 1000);
   }, []);
@@ -19,12 +19,10 @@ function Messages() {
     .orderBy('createdAt', 'asc');
 
   const [messages] = useCollectionData(dbQuery, { idField: 'id' });
-  console.log(messages);
-
-  console.log(messages);
 
   function scrollIntoView() {
-    window.scrollTo(0, document.body.scrollHeight);
+    // window.scrollTo(0, document.body.scrollHeight);
+    div?.current?.scrollIntoView({ behavior: 'smooth' });
   }
   return (
     <div className='messages'>
@@ -55,14 +53,14 @@ function Messages() {
               />
             );
           })}
-
-        <ChatRoomForm
-          scrollIntoView={scrollIntoView}
-          selectedRoom={selectedRoom}
-          messageCollection={messageCollection}
-        />
+        <div ref={div}></div>
       </div>
       {/* form */}
+      <ChatRoomForm
+        scrollIntoView={scrollIntoView}
+        selectedRoom={selectedRoom}
+        messageCollection={messageCollection}
+      />
     </div>
   );
 }
