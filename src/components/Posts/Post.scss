@@ -13,18 +13,18 @@
   }
 
   .post-img {
-    height: 200px;
-    background-color: blueviolet;
+    height: 300px;
     margin: 10px;
     align-self: center;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .bottom-div {
     display: flex;
     justify-content: space-between;
     align-content: items;
+    padding-top: 1em;
     margin-top: auto;
 
     .primary-btn {

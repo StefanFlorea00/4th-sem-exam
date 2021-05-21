@@ -4,7 +4,7 @@ import Button from '../../Buttons/Button';
 import AttachIcon from '../../Assets/AttachIcon';
 import Send from '../../Assets/Send';
 import app from '../../FirebaseApp';
-import { createPost } from '../../FirebaseApp';
+import { createPost, getCollection } from '../../FirebaseApp';
 import { AuthContext } from '../../../Auth';
 
 function ShareBarInput(props: any) {
@@ -43,7 +43,10 @@ function ShareBarInput(props: any) {
         media: url,
         content: content.value,
       }).then(() => {
-        console.log('post done')
+        getCollection('posts').then((data) => {
+          data && props.setPosts(data.docs)
+        });
+        content.value = ''
       });
     } catch (err) {
       console.log(err)
