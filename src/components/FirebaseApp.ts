@@ -122,7 +122,8 @@ export async function createPost(user: any, additionalData: any) {
         uid: user.uid,
         comments, 
         media, 
-        content  
+        content,
+        createdAt: new Date()
       });
     } catch (error) {
       console.log(error.message);

@@ -1,18 +1,16 @@
 import React from 'react';
 import './PostGrid.scss';
-import Post from "./Post.tsx";
+import Post from "./Post";
 
 function PostGrid(props: any) {
+  
   return (
     <div className="post-grid">
-        <Post img/>
-        <Post/>
-        <Post img/>
-        <Post/>
-        <Post img/>
-        <Post/>
-        <Post/>
-        <Post/>
+        {props.posts ? props.posts.map((post: any) => {
+          console.log(post.data())
+          return <Post key={Math.random()+'post'} uid={post.data().uid} content={post.data().content} postImage={post.data().media}/>
+        }) :
+        <h3>No content found</h3>}
     </div>
   );
 }

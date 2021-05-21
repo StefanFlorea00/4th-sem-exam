@@ -1,17 +1,23 @@
-import React from 'react';
-import app from '../FirebaseApp';
+import React, {useEffect, useState} from 'react';
+import {getCollection} from '../FirebaseApp';
 import './Home.scss';
 import ShareBar from '../Home/ShareBar/ShareBar';
 import PostGrid from '../Posts/PostGrid';
-import Nav from '../Nav/Nav';
 
 function Home() {
+  const [posts, setPosts] = useState<any>()
+
+  useEffect(() => {
+    getCollection('posts').then((data) => {
+      data && setPosts(data.docs)
+    })
+  }, [])
+
   return (
     <>
     <div className='home'>
-      {/* <h1> Home</h1> */}
-      <ShareBar/>
-      <PostGrid/>
+      <ShareBar setPosts={setPosts}/>
+      <PostGrid posts={posts}/>
     </div>
     </>
   );

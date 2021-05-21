@@ -19,7 +19,7 @@ function ShareBar(props: any) {
   return (
   <div className="sharebar">
       <UserButton userImg={userInfo?.profileImg}/>
-      <ShareBarInput/>
+      <ShareBarInput setPosts={props.setPosts}/>
     </div>
   );
 }
