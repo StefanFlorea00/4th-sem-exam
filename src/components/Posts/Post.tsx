@@ -17,7 +17,6 @@ function Post(props: Props) {
   useEffect(() => {
     firestore.collection('users').doc(props.uid).get().then((data) => {
       data && setPostUser(data.data())
-      console.log(data.data())
     });
   }, [])
 

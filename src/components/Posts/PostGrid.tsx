@@ -7,7 +7,6 @@ function PostGrid(props: any) {
   return (
     <div className="post-grid">
         {props.posts ? props.posts.map((post: any) => {
-          console.log(post.data())
           return <Post key={Math.random()+'post'} uid={post.data().uid} content={post.data().content} postImage={post.data().media}/>
         }) :
         <h3>No content found</h3>}
