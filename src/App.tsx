@@ -8,7 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import './App.scss';
 import Investment from './components/Investment/Investment';
 import ChatRoom from './components/ChatRoom/ChatRoom';
-import CompanyProfile from './components/Company/CompanyProfile';
+import CompanyProfile from './components/Investment/Company/CompanyProfile';
 
 
 function App() {

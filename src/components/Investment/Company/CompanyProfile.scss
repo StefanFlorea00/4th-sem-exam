@@ -1,5 +1,5 @@
-@use '../../sass/variables.scss' as *;
-@use '../../sass/mediaQueriesMixin.scss' as *;
+@use '../../../sass/variables.scss' as *;
+@use '../../../sass/mediaQueriesMixin.scss' as *;
 
 .company-profile {
   // margin-left: $sidebar-width-vw;
@@ -26,6 +26,23 @@
     width: 50%;
     margin: auto;
     font-size: large;
+  }
+
+  .company-loading {
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+    width: 250px;
+
+    #circle {
+      fill: $accent-color;
+    }
+  }
+
+  .error-text {
+    text-align: center;
+    margin-top: 150px;
+    font-size: larger;
   }
 }
 

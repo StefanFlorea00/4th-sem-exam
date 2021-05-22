@@ -24,6 +24,7 @@
   .company-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+    height: 500px;
     gap: 20px;
     place-content: center;
     overflow: auto;

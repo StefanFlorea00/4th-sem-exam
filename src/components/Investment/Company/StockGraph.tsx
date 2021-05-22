@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import StockArrow from '../Assets/StockArrow';
+import StockArrow from '../../Assets/StockArrow';
 import ExtraInfo from './ExtraInfo';
 import './StockGraph.scss';
 import StockInfo from './StockInfo';
@@ -13,7 +13,8 @@ function StockGraph(props: any) {
     const [chartData,setChartData] = useState([[]]);
 
     useEffect(() => {
-        fetchStock();
+        // fetchStock();
+        translateChartData(props.companyInfo);
     }, [])
 
 
@@ -36,7 +37,7 @@ function StockGraph(props: any) {
 
     function translateChartData(data: any){
         console.log(data);
-        if(data){
+        if(data && data.values){
             let translatedData = [[]];
             data.values.forEach(dataLine => {
                     translatedData.push([
@@ -58,7 +59,7 @@ function StockGraph(props: any) {
         },
         title: {
             left: 'center',
-            text: props.companyInfo.name,
+            text: '',
             show: false,
         },
         toolbox: {
@@ -69,7 +70,7 @@ function StockGraph(props: any) {
             boundaryGap: false
         },
         yAxis: {
-            type: 'value',
+            type: 'value'
         },
         dataZoom: [{
             type: 'inside',
@@ -81,7 +82,7 @@ function StockGraph(props: any) {
         }],
         series: [
             {
-                name: props.companyInfo.name,
+                name: props.companyInfo,
                 type: 'line',
                 smooth: true,
                 symbol: 'none',

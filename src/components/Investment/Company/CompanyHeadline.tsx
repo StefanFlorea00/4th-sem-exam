@@ -4,6 +4,7 @@ import './CompanyHeadline.scss';
 function CompanyHeadline(props: any) {
 
   return (
+    //! to fix
       <div className='company-headline'>
           <img src={props.companyInfo.img} alt=''/>
           <div className='desc'>
