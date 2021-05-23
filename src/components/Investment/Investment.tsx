@@ -4,6 +4,7 @@ import CompaniesGrid from './CompaniesGrid';
 import './Investment.scss';
 import testimg from '../Assets/testimg.jpg';
 import LoadingSVG from '../Assets/Loading';
+import Button from '../Buttons/Button';
 
 function Investment() {
 
@@ -17,27 +18,31 @@ function Investment() {
   }
 
   useEffect(() => {
+    setCompanyFetchNr(500);
     fetchCompanies();
-    setCompanyFetchNr(200);
   }, [])
 
-  function fetchCompanies(){
+  async function fetchCompanies(){
     const API_KEY = '44e4c120e4ab42239b2c7b36c9a4207f';
-    let API_Call = `https://api.twelvedata.com/stocks`;
+    let  API_Call = `https://api.twelvedata.com/stocks`;
 
     setFetching(true);
-    fetch(API_Call)
-    .then(
-        function(response){
-            console.log(response);
-            return response.json();
-        })
-    .then(
-        function(data) {
-          addCompanies(data);
-          setFetching(false);
-        }
-    )
+    const response = await fetch(API_Call);
+    const json = await response.json();
+    addCompanies(json);
+    setFetching(false);
+    // fetch(API_Call)
+    // .then(
+    //     function(response){
+    //         console.log(response);
+    //         return response.json();
+    //     })
+    // .then(
+    //     function(data) {
+    //       addCompanies(data);
+    //       setFetching(false);
+    //     }
+    // )
 }
 
   function addCompanies(companyData){
@@ -58,9 +63,6 @@ function Investment() {
       }
     }
     setCompanyList(companies);
-    setTimeout(() => {
-      console.log(companyList);
-    }, 300);
   }
 
   //to get from db later
@@ -88,7 +90,12 @@ function Investment() {
         <LoadingSVG className="company-loading"/>
         :
         <>
-        {companyList.length == 0 ? <p className="error-text">Uh oh, looks like there's been a problem</p> : <CompaniesGrid companies={companyList}/>}
+        {companyList.length == 0 ? 
+        <div className="error-div">
+          <p className="error-text">Uh oh, looks like there's been a problem</p>
+          <Button onClick={() => fetchCompanies()} type="secondary" text="Retry"/>
+        </div>
+        : <CompaniesGrid companies={companyList}/>}
         </>
       }
     </div>

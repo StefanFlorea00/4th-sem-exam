@@ -3,7 +3,7 @@ import './Button.scss';
 
 function Button(props: any) {
   return (
-  <button className={props.type + '-btn'}>
+  <button onClick={props.onClick} className={props.type + '-btn'}>
     {props.img && props.imgPos=="left" ? props.img : null}
     {props.text}
     {props.img && props.imgPos=="right" ? props.img : null}

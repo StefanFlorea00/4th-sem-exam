@@ -41,8 +41,16 @@
   }
 }
 
-.error-text {
-  text-align: center;
-  margin-top: 150px;
-  font-size: larger;
+.error-div {
+  .secondary-btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-text {
+    text-align: center;
+    margin-top: 150px;
+    font-size: larger;
+  }
 }
