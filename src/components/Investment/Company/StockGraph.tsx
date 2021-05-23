@@ -4,6 +4,7 @@ import ExtraInfo from './ExtraInfo';
 import './StockGraph.scss';
 import StockInfo from './StockInfo';
 import ReactECharts from 'echarts-for-react';
+import * as echarts from 'echarts';
 
 function StockGraph(props: any) {
 
@@ -40,6 +41,7 @@ function StockGraph(props: any) {
         if(data && data.values){
             let translatedData = [[]];
             data.values.forEach(dataLine => {
+                    //change date from dd-mm-yyyy to dd/mm/yyyy
                     translatedData.push([
                     [ dataLine.datetime.split("-")[0], dataLine.datetime.split("-")[1], dataLine.datetime.split("-")[2] ].join('/'),
                     dataLine.close
@@ -70,7 +72,8 @@ function StockGraph(props: any) {
             boundaryGap: false
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            scale: 1
         },
         dataZoom: [{
             type: 'inside',
@@ -78,17 +81,25 @@ function StockGraph(props: any) {
             end: 100
         }, {
             start: 0,
-            end: 20
+            end: 500
         }],
         series: [
             {
                 name: props.companyInfo,
                 type: 'line',
-                smooth: true,
+                smooth: false,
                 symbol: 'none',
                 areaStyle: {},
                 data: chartData,
-                color: chartData[chartData.length -1] > chartData[chartData.length - 2] ? "#0cad00" : "#ad0000"
+                // color: chartData[chartData.length -1] > chartData[chartData.length - 2] ? "#0cad00" : "#ad0000"
+                color:
+                new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cad00" : "#ad0000"
+                }, {
+                    offset: 1,
+                    color: chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cadAA" : "#cf2222"
+                }]) 
             }
         ]
     };

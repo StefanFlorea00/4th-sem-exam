@@ -18,7 +18,7 @@ function Investment() {
   }
 
   useEffect(() => {
-    setCountry("Denmark");
+    setCountry("United States");
     setCompanyFetchNr(500);
     fetchCompanies();
   }, [])
@@ -85,7 +85,7 @@ function Investment() {
     <div className='investment'>
       <div className='description'>
         <h1>Currently available Companies</h1>
-        <p>Here you can see a list of companies that are currently available to invest into. Please select a comapny to proceed.</p>
+        <p>Here you can see a list of companies that are currently available to invest into. Please select a company to proceed.</p>
       </div>
       {fetching ?
         <LoadingSVG className="company-loading"/>
