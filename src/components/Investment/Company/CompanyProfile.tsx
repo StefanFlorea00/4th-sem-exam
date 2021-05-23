@@ -9,6 +9,7 @@ import StockGraph from './StockGraph';
 function CompanyProfile(props: any) {
 
     const [company, setCompany] = useState({});
+    const companyName = props.match.params.name;
     const [fetching, setFetching] = useState(false);
 
     useEffect(() => {

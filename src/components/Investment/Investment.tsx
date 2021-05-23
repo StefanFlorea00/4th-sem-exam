@@ -9,7 +9,7 @@ import Button from '../Buttons/Button';
 function Investment() {
 
   const [companyList, setCompanyList] = useState([{}]);
-  const [companyObjects, setCompanyObjects] = useState([]);
+  const [country, setCountry] = useState("");
   const [companyFetchNr, setCompanyFetchNr] = useState();
   const [fetching, setFetching] = useState(false);
   function handleSignOut() {
@@ -18,6 +18,7 @@ function Investment() {
   }
 
   useEffect(() => {
+    setCountry("Denmark");
     setCompanyFetchNr(500);
     fetchCompanies();
   }, [])
@@ -50,7 +51,7 @@ function Investment() {
     let fetchedCompaniesNr = 0;
     console.log(companyData);
     for(let i = 0 ; i< companyData.data.length ; i++ )  {
-      if(companyData.data[i].country == "United States" && fetchedCompaniesNr < companyFetchNr){
+      if(companyData.data[i].country == country && fetchedCompaniesNr < companyFetchNr){
         companies.push(
           {
           id: companyData.data[i].symbol,
