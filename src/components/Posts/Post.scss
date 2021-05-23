@@ -31,6 +31,12 @@
     // align-content: items;
     padding-top: 1em;
     margin-top: auto;
+
+    .load-more {
+      text-align: center;
+      font-size: 1em;
+      color: gray;
+    }
     form {
       width: 100%;
       display: flex;

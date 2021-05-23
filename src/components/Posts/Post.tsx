@@ -20,10 +20,11 @@ export type Props = {
 
 function Post(props: Props) {
   const [postUser, setPostUser] = useState<any>();
-  const [postComments, setPostComments] = useState<any>(props.comments);
+  const [postComments, setPostComments] = useState<any>(
+    props.comments.slice(0, 3)
+  );
   const [userInfo, setUserInfo] = useState<any>();
   const currentUser = app.auth().currentUser;
-  const [loadmoreArr, setloadmoreArr] = useState(props.comments);
   useEffect(() => {
     firestore
       .collection('users')
@@ -65,6 +66,10 @@ function Post(props: Props) {
     }
   }
 
+  function handleClick() {
+    setPostComments(props.comments.slice(0, postComments.length + 5));
+  }
+
   return (
     <div
       className={props.postImage ? 'post with-img' : 'post'}
@@ -103,6 +108,7 @@ function Post(props: Props) {
               />
             );
           })}
+        <div className='load-more' onClick={handleClick}> Load more</div>
         <form onSubmit={handleSubmit}>
           <div className='input-wrapper'>
             <input type='text' name='text' placeholder='Write a comment' />
