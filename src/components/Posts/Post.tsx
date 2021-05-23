@@ -6,7 +6,7 @@ import PostWhoSaw from './PostWhoSaw';
 import { firestore } from '../FirebaseApp';
 import { getDoc } from '../FirebaseApp';
 import { getCollection } from '../FirebaseApp';
-
+import * as firebase from 'firebase/app';
 import app from '../FirebaseApp';
 
 export type Props = {
@@ -18,9 +18,6 @@ export type Props = {
 
 function Post(props: Props) {
   const [postUser, setPostUser] = useState<any>();
-  // console.log(getDoc(app.auth().currentUser).then(el => console.log(el)));
-
-  // getCollection('posts').then(data => console.log(data?.docs.map(el => el.id)));
 
   useEffect(() => {
     firestore
@@ -35,11 +32,31 @@ function Post(props: Props) {
   async function handleSubmit(e: any) {
     e.preventDefault();
     //@ts-ignore
-    const docId = (e.target as HTMLElement).closest('.post')?.dataset.id;
+    const docId = e.target.closest('.post')?.dataset.id;
+    const { text } = e.target.elements;
+    const currentUser = app.auth().currentUser;
 
-    await getCollection('posts')
-      .then(data => data?.docs.filter(el => el.id === docId))
-      .then(el => el?.forEach(doc => console.log(doc.data())));
+    if (currentUser && postUser) {
+      try {
+        await firestore
+          .collection('posts')
+          .doc(docId)
+          .update({
+            comments: firebase.default.firestore.FieldValue.arrayUnion({
+              text: text.value,
+              commentorUid: currentUser.uid,
+              ...postUser,
+              createdAt: new Date(),
+            }),
+          });
+
+        getCollection('posts').then(data =>
+          data?.docs.map(el => console.log(el.data()))
+        );
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    }
   }
 
   return (
@@ -58,7 +75,7 @@ function Post(props: Props) {
       <p className='post-content'>{props.content}</p>
       <div className='bottom-div'>
         <form onSubmit={handleSubmit}>
-          <input type='text' placeholder='Comment' />
+          <input type='text' name='text' placeholder='Comment' />
           {/* <PostWhoSaw/> */}
           <Button type='primary' text='Comment' />
         </form>
