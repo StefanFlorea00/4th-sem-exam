@@ -5,7 +5,7 @@ type Props = {
   setSelectedRoom: React.Dispatch<React.SetStateAction<string>>;
 };
 function Rooms(props: Props) {
-  function handleClick(e) {
+  function handleClick(e: any) {
     props.setSelectedRoom(e.target.textContent.toLowerCase());
   }
   return (

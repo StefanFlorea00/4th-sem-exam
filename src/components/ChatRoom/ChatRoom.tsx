@@ -9,7 +9,7 @@ import Rooms from './Rooms';
 function Messages() {
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
-  const div = useRef();
+  const div = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setTimeout(scrollIntoView, 1000);
   }, []);
@@ -19,8 +19,6 @@ function Messages() {
     .orderBy('createdAt', 'asc');
 
   const [messages] = useCollectionData(dbQuery, { idField: 'id' });
-  console.log(messages);
-
   function scrollIntoView() {
     // window.scrollTo(0, document.body.scrollHeight);
     div?.current?.scrollIntoView({ behavior: 'smooth' });
