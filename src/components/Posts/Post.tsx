@@ -8,16 +8,19 @@ import { getDoc } from '../FirebaseApp';
 import { getCollection } from '../FirebaseApp';
 import * as firebase from 'firebase/app';
 import app from '../FirebaseApp';
+import ChatRoomCard from '../ChatRoom/ChatRoomCard';
 
 export type Props = {
   uid: string;
   postImage: string;
   content: string;
   postId?: string;
+  comments?: any;
 };
 
 function Post(props: Props) {
   const [postUser, setPostUser] = useState<any>();
+  console.log(props.comments);
 
   useEffect(() => {
     firestore
@@ -37,7 +40,6 @@ function Post(props: Props) {
     const currentUser = app.auth().currentUser;
 
     if (currentUser && postUser) {
-      text.value = '';
       try {
         await firestore
           .collection('posts')
@@ -49,12 +51,12 @@ function Post(props: Props) {
               ...postUser,
               createdAt: new Date(),
             }),
-          })
-          .then(res => console.log(res));
+          });
+        text.value = '';
 
-        // getCollection('posts').then(data =>
-        //   data?.docs.map(el => console.log(el.data()))
-        // );
+        // firestore
+        // .collection('posts')
+        // .onSnapshot(snapshot => setComments(snapshot.docs));
       } catch (error) {
         throw new Error(error.message);
       }

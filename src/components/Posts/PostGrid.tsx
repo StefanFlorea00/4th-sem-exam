@@ -7,8 +7,7 @@ function PostGrid(props: any) {
     <div className='post-grid'>
       {props.posts ? (
         props.posts.map((post: any) => {
-
-
+          const comments = post.data().comments;
           return (
             <Post
               key={Math.random() + 'post'}
@@ -16,6 +15,7 @@ function PostGrid(props: any) {
               content={post.data().content}
               postImage={post.data().media}
               postId={post.id}
+              comments={comments}
             />
           );
         })
