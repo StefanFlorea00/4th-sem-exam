@@ -20,8 +20,10 @@ export type Props = {
 
 function Post(props: Props) {
   const [postUser, setPostUser] = useState<any>();
-  console.log(props.comments);
-
+  const [postComments, setPostComments] = useState<any>(props.comments);
+  const [userInfo, setUserInfo] = useState<any>();
+  const currentUser = app.auth().currentUser;
+  const [loadmoreArr, setloadmoreArr] = useState(props.comments);
   useEffect(() => {
     firestore
       .collection('users')
@@ -30,6 +32,7 @@ function Post(props: Props) {
       .then(data => {
         data && setPostUser(data.data());
       });
+    getDoc(currentUser).then(data => setUserInfo(data));
   }, []);
 
   async function handleSubmit(e: any) {
@@ -37,9 +40,8 @@ function Post(props: Props) {
     //@ts-ignore
     const docId = e.target.closest('.post')?.dataset.id;
     const { text } = e.target.elements;
-    const currentUser = app.auth().currentUser;
 
-    if (currentUser && postUser) {
+    if (currentUser && userInfo) {
       try {
         await firestore
           .collection('posts')
@@ -48,15 +50,15 @@ function Post(props: Props) {
             comments: firebase.default.firestore.FieldValue.arrayUnion({
               text: text.value,
               commentorUid: currentUser.uid,
-              ...postUser,
+              ...userInfo,
               createdAt: new Date(),
             }),
           });
         text.value = '';
-
-        // firestore
-        // .collection('posts')
-        // .onSnapshot(snapshot => setComments(snapshot.docs));
+        firestore
+          .collection('posts')
+          .doc(docId)
+          .onSnapshot(snapshot => setPostComments(snapshot.data()?.comments));
       } catch (error) {
         throw new Error(error.message);
       }
@@ -77,9 +79,31 @@ function Post(props: Props) {
         <img className='post-img' src={props.postImage} alt='Post image' />
       )}
       <p className='post-content'>{props.content}</p>
+
+      <br />
+      <hr />
       <div className='bottom-div'>
+        {props.comments &&
+          postComments.map(el => {
+            const Timestamp = firebase.default.firestore.Timestamp;
+            const getDate = new Timestamp(
+              el.createdAt?.seconds,
+              el.createdAt?.nanoseconds
+            ).toDate();
+            const [, month, date, year, hour] = getDate.toString().split(' ');
+            const time = `${date} ${month} ${year} ${hour}`;
+
+            return (
+              <ChatRoomCard
+                fullname={el.fullname}
+                profileImg={el.profileImg}
+                text={el.text}
+                uid={currentUser?.uid}
+                time={time}
+              />
+            );
+          })}
         <form onSubmit={handleSubmit}>
-          <hr />
           <div className='input-wrapper'>
             <input type='text' name='text' placeholder='Write a comment' />
             {/* <PostWhoSaw/> */}

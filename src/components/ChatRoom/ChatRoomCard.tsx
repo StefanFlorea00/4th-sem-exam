@@ -7,8 +7,8 @@ type Props = {
   profileImg: string;
   text: string;
   time: string;
-  uid: string;
-  id: string;
+  uid: string | undefined;
+  id?: string;
 };
 
 function ChatRoomCard(props: Props) {
