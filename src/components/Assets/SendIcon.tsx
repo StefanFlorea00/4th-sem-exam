@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SendIcon(props) {
+function SendIcon() {
   return (
     <svg
       id='Layer_1'

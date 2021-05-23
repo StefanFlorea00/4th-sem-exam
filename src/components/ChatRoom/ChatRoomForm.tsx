@@ -53,7 +53,7 @@ function ChatRoomForm(props: Props) {
           type='text'
           placeholder='Message'
           value={inputValue}
-          onInput={e => setInputValue(e.target.value)}
+          onInput={(e: any) => setInputValue(e.target.value)}
         />
 
         <button>
