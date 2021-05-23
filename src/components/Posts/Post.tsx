@@ -25,6 +25,8 @@ function Post(props: Props) {
   );
   const [userInfo, setUserInfo] = useState<any>();
   const currentUser = app.auth().currentUser;
+  const [showLoad, setShowLoad] = useState(false);
+
   useEffect(() => {
     firestore
       .collection('users')
@@ -34,6 +36,16 @@ function Post(props: Props) {
         data && setPostUser(data.data());
       });
     getDoc(currentUser).then(data => setUserInfo(data));
+
+    if (props.comments.length > 3) {
+      setShowLoad(true);
+    }
+    if (props.comments.length < 5) {
+      setShowLoad(false);
+    }
+    if (props.comments.length === postComments.length) {
+      setShowLoad(false);
+    }
   }, []);
 
   async function handleSubmit(e: any) {
@@ -59,7 +71,10 @@ function Post(props: Props) {
         firestore
           .collection('posts')
           .doc(docId)
-          .onSnapshot(snapshot => setPostComments(snapshot.data()?.comments));
+          .onSnapshot(snapshot => {
+            setPostComments(snapshot.data()?.comments);
+            setShowLoad(false);
+          });
       } catch (error) {
         throw new Error(error.message);
       }
@@ -108,7 +123,12 @@ function Post(props: Props) {
               />
             );
           })}
-        <div className='load-more' onClick={handleClick}> Load more</div>
+        {showLoad && (
+          <div className='load-more' onClick={handleClick}>
+            Load more
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className='input-wrapper'>
             <input type='text' name='text' placeholder='Write a comment' />

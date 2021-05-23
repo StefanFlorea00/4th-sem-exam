@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './PostGrid.scss';
 import Post from './Post';
 
 function PostGrid(props: any) {
+  useEffect(() => {
+    console.log(props.posts && props.posts.map(el => el.data()));
+  }, [props.posts]);
   return (
     <div className='post-grid'>
       {props.posts ? (
