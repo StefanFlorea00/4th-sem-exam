@@ -18,7 +18,7 @@ function SignUp(props: Props) {
     ['auth/email-already-in-use']: 'Email already exists',
   };
 
-  async function handleSignup(e) {
+  async function handleSignup(e: any) {
     e.preventDefault();
     const { email, password, confirmPassword, fullname, investmentExperience } =
       e.target.elements;

@@ -19,8 +19,6 @@ function Messages() {
     .orderBy('createdAt', 'asc');
 
   const [messages] = useCollectionData(dbQuery, { idField: 'id' });
-  console.log(messages);
-
   function scrollIntoView() {
     // window.scrollTo(0, document.body.scrollHeight);
     div?.current?.scrollIntoView({ behavior: 'smooth' });

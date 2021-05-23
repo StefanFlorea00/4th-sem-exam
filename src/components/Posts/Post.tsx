@@ -32,9 +32,10 @@ function Post(props: Props) {
       });
   }, []);
 
-  async function handleSubmit(e:React.SyntheticEvent) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    const docId = e.target.closest('.post').dataset.id;
+    //@ts-ignore
+    const docId = (e.target as HTMLElement).closest('.post')?.dataset.id;
 
     await getCollection('posts')
       .then(data => data?.docs.filter(el => el.id === docId))

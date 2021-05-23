@@ -15,7 +15,7 @@ function ChatRoomCard(props: Props) {
   const { fullname, profileImg, text, time, uid, id } = props;
   const { currentUser } = app.auth();
 
-  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+  function handleClick(e: any) {
     const docId = e.target.dataset.id;
 
     if (currentUser?.uid === uid) {
