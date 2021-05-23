@@ -1,12 +1,19 @@
 @use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
 
 .post {
+  width: 90%;
   display: flex;
   flex-flow: column;
   background-color: white;
   border-radius: $border-radius-s;
   padding: 20px;
+  margin-bottom: 1.5em;
   grid-row-end: span 2;
+
+  @include mediaQuery(tablet) {
+    width: 60%;
+  }
 
   .post-content {
     margin: 10px 0;
