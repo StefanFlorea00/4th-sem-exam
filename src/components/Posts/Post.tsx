@@ -37,6 +37,7 @@ function Post(props: Props) {
     const currentUser = app.auth().currentUser;
 
     if (currentUser && postUser) {
+      text.value = '';
       try {
         await firestore
           .collection('posts')
@@ -48,11 +49,12 @@ function Post(props: Props) {
               ...postUser,
               createdAt: new Date(),
             }),
-          });
+          })
+          .then(res => console.log(res));
 
-        getCollection('posts').then(data =>
-          data?.docs.map(el => console.log(el.data()))
-        );
+        // getCollection('posts').then(data =>
+        //   data?.docs.map(el => console.log(el.data()))
+        // );
       } catch (error) {
         throw new Error(error.message);
       }
@@ -75,9 +77,12 @@ function Post(props: Props) {
       <p className='post-content'>{props.content}</p>
       <div className='bottom-div'>
         <form onSubmit={handleSubmit}>
-          <input type='text' name='text' placeholder='Comment' />
-          {/* <PostWhoSaw/> */}
-          <Button type='primary' text='Comment' />
+          <hr />
+          <div className='input-wrapper'>
+            <input type='text' name='text' placeholder='Write a comment' />
+            {/* <PostWhoSaw/> */}
+            <Button type='primary' text='Comment' />
+          </div>
         </form>
       </div>
     </div>
