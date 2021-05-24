@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './UserProfile.scss';
 import {getDoc} from '../../FirebaseApp';
 import { useHistory } from "react-router-dom";
+import PostList from '../PostList'
 
 function Profile(props: any) {
   let history = useHistory();
@@ -27,6 +28,7 @@ function Profile(props: any) {
         <div className='profile-details_desc'>
           <p>{profileInformation?.description ? profileInformation?.description : 'Your description...'}</p>
         </div>
+        <PostList userId={props.location.state.uid}/>
       </div>
     </div>
   );
