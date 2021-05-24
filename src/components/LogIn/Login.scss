@@ -34,14 +34,23 @@
     margin-bottom: 0.5em;
   }
 
-  &_error {
-    display: flow-root;
+  &_error, &_msg {
+    min-height: 40px;
     color: red;
-    background: $body-bg-color;
     padding: 10px 15px;
     border-radius: 10px;
-    width: 90%;
+    width: clamp(200px, 90%, 500px);
     text-align: center;
+    transition: all 0.5s ease;
+    font-weight: 500;
+    background-color: #ff00001f;
+    border: 1px solid red;
+  }
+
+  &_msg {
+    color: #2e2e2e;
+    background-color: #f4d4d98a;
+    border: 1px solid #2e2e2e;
   }
 
   &_form {
@@ -57,7 +66,7 @@
       width: 100%;
       border-radius: 23px;
       padding: 1.3em;
-      border: none;
+      border: 1px solid transparent;
       margin: 0.5em 0;
       background: $body-bg-color;
       &:valid:not(:placeholder-shown):not(focus) {
@@ -68,7 +77,13 @@
       }
     }
     &_account_message {
+      text-align: center;
       color: #b2b2b2;
+
+      >a {
+        color: rgb(101, 101, 231);
+        text-decoration: none;
+      }
     }
     &_button {
       width: 100%;

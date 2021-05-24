@@ -27,11 +27,11 @@ function Home() {
   const [posts, setPosts] = useState<null | Posts[]>(null);
 
   useEffect(() => {
-    getCollection('posts').then(data => {
-      //@ts-ignore
-      data && setPosts(data.docs);
-    });
-  }, []);
+    getCollection('posts', true).then((data) => {
+      data && setPosts(data.docs)
+    })
+  }, [])
+
 
   return (
     <>
