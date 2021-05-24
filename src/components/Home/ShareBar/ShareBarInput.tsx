@@ -37,7 +37,9 @@ function ShareBarInput(props: any) {
 
   async function handlePostUpload(e:any, url: string) {
     const { content } = e.target.elements;
-    try {
+
+    if(content.value) {
+      try {
       await createPost(app.auth().currentUser, {
         comments: [],
         media: url,
@@ -48,8 +50,9 @@ function ShareBarInput(props: any) {
         });
         content.value = ''
       });
-    } catch (err) {
-      console.log(err)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 
