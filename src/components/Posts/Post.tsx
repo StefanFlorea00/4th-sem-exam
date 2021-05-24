@@ -5,6 +5,8 @@ import './Post.scss';
 import PostWhoSaw from './PostWhoSaw';
 import { firestore } from '../FirebaseApp';
 import { getDoc } from '../FirebaseApp';
+import { getCollection } from '../FirebaseApp';
+import { Link } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import app from '../FirebaseApp';
 import ChatRoomCard from '../ChatRoom/ChatRoomCard';
