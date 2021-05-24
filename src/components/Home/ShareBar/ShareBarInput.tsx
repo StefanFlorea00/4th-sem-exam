@@ -63,7 +63,7 @@ function ShareBarInput(props: any) {
             <label htmlFor="attach"><AttachIcon/></label>
             <input type="file" id="attach" name="attach" accept="image/*"  onChange={handleChange}/>
         </div>
-        <Button type="primary" text="Send" imgPos="left" img={<Send className='btn-img'/>}/>
+        <Button type="secondary" text="Send" imgPos="left" img={<Send className='btn-img'/>}/>
     </form>
   );
 }

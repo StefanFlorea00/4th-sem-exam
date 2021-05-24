@@ -58,15 +58,25 @@
       width: 90px;
       border-top-right-radius: $border-radius-s;
       border-bottom-right-radius: $border-radius-s;
-      border: none;
+      border: 1px solid transparent;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       background: $accent-color;
+      transition: all 0.3s ease;
 
       svg {
         width: 30px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    
+      &:hover {
+        background-color: white;
+        border: 1px solid $accent-color;
       }
     }
   }
