@@ -103,6 +103,12 @@ function Post(props: Props) {
       <br />
       <hr />
       <div className='bottom-div'>
+        <div className='bottom-div_comments_wrapper'>
+          <span className='bottom-div_comments_wrapper_title'>
+            All comments
+          </span>
+          <span> {/* <PostWhoSaw comments={props.comments} /> */}</span>
+        </div>
         {props.comments &&
           postComments.map(el => {
             const Timestamp = firebase.default.firestore.Timestamp;

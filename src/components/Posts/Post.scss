@@ -26,11 +26,18 @@
     border-radius: $border-radius-s;
   }
   .bottom-div {
-    // display: flex;
-    // justify-content: space-between;
-    // align-content: items;
     padding-top: 1em;
     margin-top: auto;
+
+    &_comments_wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &_title {
+        font-weight: 900;
+      }
+    }
 
     .load-more {
       text-align: center;
