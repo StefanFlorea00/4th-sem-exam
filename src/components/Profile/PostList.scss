@@ -1,0 +1,23 @@
+@use '../../sass/variables.scss' as *;
+@use '../../sass/mediaQueriesMixin.scss' as *;
+
+.profile-posts {
+  margin-top: 2em;
+
+  &_header {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  &_list {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: $secondary-buttons;
+    border-radius: $border-radius-s;
+  }
+}
