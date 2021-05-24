@@ -18,7 +18,9 @@ function Messages() {
     .where('chatroom', '==', selectedRoom)
     .orderBy('createdAt', 'asc');
 
-  const [messages] = useCollectionData(dbQuery, { idField: 'id' });
+  const [messages, loading, error] = useCollectionData(dbQuery, {
+    idField: 'id',
+  });
   function scrollIntoView() {
     // window.scrollTo(0, document.body.scrollHeight);
     div?.current?.scrollIntoView({ behavior: 'smooth' });
@@ -29,6 +31,8 @@ function Messages() {
       <Rooms selectedRoom={selectedRoom} setSelectedRoom={setSelectedRoom} />
       {/* messages arr */}
       <div className='chat_card_wrapper'>
+        {loading && <div>Loading... </div>}
+        {error && <div>Unknown error, please refresh and try again </div>}
         {messages &&
           messages.map(user => {
             const Timestamp = firebase.firestore.Timestamp;
@@ -50,6 +54,7 @@ function Messages() {
                 time={time}
                 uid={user.uid}
                 id={user.id}
+                deletable
               />
             );
           })}
