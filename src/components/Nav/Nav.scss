@@ -55,10 +55,11 @@
 
       &_li {
         font-size: 16px;
+        border-bottom: 4px solid transparent;
 
         > img {
-          width: 30px;
-          height: 30px;
+          width: 25px;
+          height: 25px;
           object-fit: cover;
           border-radius: 50%;
         }
@@ -67,23 +68,27 @@
   }
   &_svg {
     width: 30px;
-    height: 30px;
+      border-bottom: 4px solid transparent;
+      height: 30px;
     @include mediaQuery(tablet) {
       margin-right: 1em;
     }
   }
 
-  .feed {
-    // width: 20px;
-  }
 
   .selected {
-    fill: $accent-color;
     @include mediaQuery(tablet) {
-      fill: #1a1a1a;
       background: $accent-color;
     }
   }
+
+  svg.selected, li.selected {
+    border-bottom: 4px solid $accent-color;
+    @include mediaQuery(tablet) {
+      border-bottom: 4px solid transparent;
+    }
+  }
+
 
   .logo {
     width: 250px;

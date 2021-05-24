@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../Assets/Home';
-import Feed from '../Assets/Feed';
 import Investment from '../Assets/Investment';
 import Messages from '../Assets/Messages';
 import UserButton from '../Buttons/UserButton';
@@ -44,8 +43,6 @@ function Nav() {
     switch (selected) {
       case 'home':
         return setSelected('home');
-      case 'feed':
-        return setSelected('feed');
       case 'chatRoom':
         return setSelected('chatRoom');
       case 'investment':
@@ -68,14 +65,6 @@ function Nav() {
         >
           <Home className={selected === 'home' ? 'selected' : ''} />
           {showNavLi && <li className='nav_ul_a_li'>Home</li>}
-        </Link>
-        <Link
-          to=''
-          className={selected === 'feed' ? 'nav_ul_a selected' : 'nav_ul_a'}
-          onClick={() => handleClick('feed')}
-        >
-          <Feed className={selected === 'feed' ? ' feed selected' : 'feed'} />
-          {showNavLi && <li className='nav_ul_a_li'>Feed</li>}
         </Link>
         <Link
           to='/investment'
@@ -112,7 +101,7 @@ function Nav() {
               userImg={userNameAndExp?.profileImg}
             />
           ) : (
-            <li className='nav_ul_a_li'>
+            <li className={selected === 'profile' ? 'nav_ul_a_li selected' : 'nav_ul_a_li'}>
               <img
                 className='user-img'
                 src={

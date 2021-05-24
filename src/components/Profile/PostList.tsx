@@ -18,7 +18,7 @@ function PostList(props: any) {
       <div className='profile-posts_list'>
         {posts && posts.length !== 0 ? posts.map((post)=>{
          return <Post key={Math.random() + 'post'} uid={post.uid} content={post.content} postImage={post.media} postId={post.id}/>
-        }) : <h1>Currently empty</h1>}
+        }) : <h3>Currently empty</h3>}
       </div>
     </div>
   );
