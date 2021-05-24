@@ -1,5 +1,6 @@
 import React from 'react';
 import app from '../FirebaseApp';
+import { Link } from 'react-router-dom';
 import { firestore } from '../FirebaseApp';
 
 type Props = {
@@ -34,7 +35,9 @@ function ChatRoomCard(props: Props) {
             : 'chat_card_item'
         }
       >
-        <h4 className='name'>{fullname}</h4>
+        <Link  to={{pathname: "/profile/" + uid, state: {uid: uid}}}>
+          <h4 className='name'>{fullname}</h4>
+        </Link>
         <div className='main_chat'>
           <span
             className='main_chat_text'

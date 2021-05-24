@@ -99,11 +99,13 @@ function Post(props: Props) {
       className={props.postImage ? 'post with-img' : 'post'}
       data-id={props.postId}
     >
-      <UserButton
-        hasInfo
-        userInfo={{ name: postUser?.fullname, exp: postUser?.investExp }}
-        userImg={postUser?.profileImg}
-      />
+      <Link to={{pathname: "/profile/" + props.uid, state: {uid: props.uid}}} style={{textDecoration:'none'}}>
+        <UserButton
+          hasInfo
+          userInfo={{ name: postUser?.fullname, exp: postUser?.investExp }}
+          userImg={postUser?.profileImg}
+        />
+      </Link>
       {props.postImage && (
         <img className='post-img' src={props.postImage} alt='Post image' />
       )}

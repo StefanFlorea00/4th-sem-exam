@@ -1,0 +1,22 @@
+@use '../ProfileInfo.scss';
+@use '../../../sass/variables.scss' as *;
+@use '../Profile.scss';
+
+.profile-button {
+  height: 2.5em;
+  width: 100px;
+  background-color: $accent-color;
+  border-radius: $border-radius-s;
+  padding: 0.5em 1.5em;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: white;
+    border: 1px solid $accent-color;
+  }
+}

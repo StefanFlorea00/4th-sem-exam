@@ -87,11 +87,17 @@
     }
     &_button {
       width: 100%;
-      border: none;
+      border: 1px solid transparent;
       padding: 15px 30px;
       border-radius: 23px;
       margin-top: 6em;
       background: $accent-color;
+      transition: all 0.3s ease ;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid $accent-color;
+      }
     }
   }
 }

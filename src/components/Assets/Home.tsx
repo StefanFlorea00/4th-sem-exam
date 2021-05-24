@@ -1,5 +1,7 @@
 import React from 'react';
-import { Props } from './Feed';
+export type Props = {
+  className?: string;
+};
 function Home(props: Props) {
   return (
     <svg

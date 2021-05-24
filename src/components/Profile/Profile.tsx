@@ -9,6 +9,7 @@ import { AuthContext } from '../../Auth';
 import { getDoc } from '../FirebaseApp';
 import app from '../FirebaseApp';
 import FriendsList from './FriendsList'
+import PostList from './PostList'
 
 function Profile() {
   const { currentUser } = useContext(AuthContext);
@@ -41,6 +42,7 @@ function Profile() {
         <ProfileInfo profileInfo={profileInformation} setProfileInformation={setProfileInformation}/>
       }
       <FriendsList profileInfo={profileInformation}/>
+      <PostList userId={currentUser.uid}/>
     </div>
     </>
   );
