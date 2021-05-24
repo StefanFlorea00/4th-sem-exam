@@ -9,6 +9,7 @@ import './App.scss';
 import Investment from './components/Investment/Investment';
 import ChatRoom from './components/ChatRoom/ChatRoom';
 import CompanyProfile from './components/Company/CompanyProfile';
+import UserProfile from './components/Profile/UsersProfiles/UserProfile'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <PrivateRoute exact path='/investment' component={Investment} />
           <PrivateRoute path='/chatRoom' component={ChatRoom} />
           <PrivateRoute exact path='/company/:id' component={CompanyProfile} />
+          <PrivateRoute exact path='/profile/:id' component={UserProfile} />
           <Route path='/login' component={LogIn} />
           <Route path='/signup' component={SignUp} />
         </Switch>
