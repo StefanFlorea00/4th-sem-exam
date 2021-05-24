@@ -12,29 +12,13 @@ function StockGraph(props: any) {
 
     const [dataInterval, setDataInterval] = useState<Interval>("1day");
     const [chartData,setChartData] = useState([[]]);
+    const [chartOptions, setChartOptions] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // fetchStock();
+        setLoading(true);
         translateChartData(props.companyInfo);
     }, [])
-
-
-    function fetchStock(){
-        setDataInterval("1month");
-        const API_KEY = '44e4c120e4ab42239b2c7b36c9a4207f';
-        let API_Call = `https://api.twelvedata.com/time_series?symbol=AAPL&interval=${dataInterval}&apikey=${API_KEY}`;
-
-        fetch(API_Call)
-        .then(
-            function(response){
-                return response.json();
-            })
-        .then(
-            function(data) {
-                translateChartData(data);
-            }
-        )
-    }
 
     function translateChartData(data: any){
         console.log(data);
@@ -43,16 +27,18 @@ function StockGraph(props: any) {
             data.values.forEach(dataLine => {
                     //change date from dd-mm-yyyy to dd/mm/yyyy
                     translatedData.push([
-                    [ dataLine.datetime.split("-")[0], dataLine.datetime.split("-")[1], dataLine.datetime.split("-")[2] ].join('/'),
+                    [dataLine.datetime.split("-")[0], dataLine.datetime.split("-")[1], dataLine.datetime.split("-")[2] ].join('/'),
                     dataLine.close
                     ]);
             });
             setChartData(translatedData);
-            console.log(translatedData);
+            setLoading(false);
+            createChartOptions(); 
         }
     }
 
-    const chartOptions = {
+    //don't know why it doesn't work with setChartOptions, maybe tries to add component before it gets set
+    const chartOptionsTest = {
         tooltip: {
             trigger: 'axis',
             position: function (pt) {
@@ -91,23 +77,77 @@ function StockGraph(props: any) {
                 symbol: 'none',
                 areaStyle: {},
                 data: chartData,
-                // color: chartData[chartData.length -1] > chartData[chartData.length - 2] ? "#0cad00" : "#ad0000"
-                color:
-                new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cad00" : "#ad0000"
+                    color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cad00" : "#ad0000"
                 }, {
                     offset: 1,
-                    color: chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cadAA" : "#cf2222"
+                    color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cadAA" : "#cf2222"
                 }]) 
             }
         ]
-    };
+    }
+
+    function createChartOptions(){
+        !loading && setChartOptions({
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            title: {
+                left: 'center',
+                text: '',
+                show: false,
+            },
+            toolbox: {
+                show: false,
+            },
+            xAxis: {
+                type: 'time',
+                boundaryGap: false
+            },
+            yAxis: {
+                type: 'value',
+                scale: 1
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 0,
+                end: 100
+            }, {
+                start: 0,
+                end: 500
+            }],
+            series: [
+                {
+                    name: props.companyInfo,
+                    type: 'line',
+                    smooth: false,
+                    symbol: 'none',
+                    areaStyle: {},
+                    data: chartData,
+                    color: chartData[chartData.length -1] > chartData[chartData.length - 2] ? "#0cad00" : "#ad0000"
+                    // color:
+                    // new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    //     offset: 0,
+                    //     color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cad00" : "#ad0000"
+                    // }, {
+                    //     offset: 1,
+                    //     color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cadAA" : "#cf2222"
+                    // }]) 
+                }
+            ]
+        });
+    }
 
   return (
       <div className='stock-graph'>
           <h1>Stock prices</h1>
-          <ReactECharts option={chartOptions} />
+          {chartData && chartOptions && !loading && 
+          <ReactECharts option={chartOptionsTest}/>
+            }
           <div className='info-div'>
           <StockInfo info={props.companyInfo}/>
           <ExtraInfo info={props.companyInfo}/>

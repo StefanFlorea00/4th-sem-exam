@@ -30,8 +30,10 @@ function Investment() {
     setFetching(true);
     const response = await fetch(API_Call);
     const json = await response.json();
+    if(json){
     addCompanies(json);
     setFetching(false);
+    }
     // fetch(API_Call)
     // .then(
     //     function(response){
