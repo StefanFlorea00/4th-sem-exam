@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './PostGrid.scss';
 import Post from './Post';
+import { Comments } from '../Home/Home';
 
 function PostGrid(props: any) {
   return (
     <div className='post-grid'>
       {props.posts ? (
         props.posts.map((post: any) => {
-
-
+          const comments: Comments[] | [] = post.data().comments;
           return (
             <Post
               key={Math.random() + 'post'}
@@ -16,6 +16,7 @@ function PostGrid(props: any) {
               content={post.data().content}
               postImage={post.data().media}
               postId={post.id}
+              comments={comments}
             />
           );
         })
