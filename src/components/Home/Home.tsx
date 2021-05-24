@@ -4,11 +4,31 @@ import './Home.scss';
 import ShareBar from '../Home/ShareBar/ShareBar';
 import PostGrid from '../Posts/PostGrid';
 
+export type Posts = {
+  comments: Comments;
+  content: string;
+  createdAt: createdAt;
+  media: string;
+  uid?: string;
+};
+export type createdAt = { seconds: number; nanoseconds: number };
+
+export type Comments = {
+  commentorUid: string;
+  createdAt: createdAt;
+  description: string;
+  email: string;
+  fullname: string;
+  investExp: string;
+  profileImg: string;
+  text: string;
+};
 function Home() {
-  const [posts, setPosts] = useState<any>();
+  const [posts, setPosts] = useState<null | Posts[]>(null);
 
   useEffect(() => {
     getCollection('posts').then(data => {
+      //@ts-ignore
       data && setPosts(data.docs);
     });
   }, []);

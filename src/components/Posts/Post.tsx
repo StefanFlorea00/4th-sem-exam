@@ -5,10 +5,10 @@ import './Post.scss';
 import PostWhoSaw from './PostWhoSaw';
 import { firestore } from '../FirebaseApp';
 import { getDoc } from '../FirebaseApp';
-import { getCollection } from '../FirebaseApp';
 import * as firebase from 'firebase/app';
 import app from '../FirebaseApp';
 import ChatRoomCard from '../ChatRoom/ChatRoomCard';
+import { Comments, createdAt } from '../Home/Home';
 
 export type Props = {
   uid: string;
@@ -18,12 +18,21 @@ export type Props = {
   comments?: any;
 };
 
+type User = {
+  createdAt: createdAt;
+  description: string;
+  email: string;
+  fullname: string;
+  investExp: string;
+  profileImg: string;
+};
 function Post(props: Props) {
-  const [postUser, setPostUser] = useState<any>();
-  const [postComments, setPostComments] = useState<any>(
+  const [postUser, setPostUser] = useState<User | any>();
+
+  const [postComments, setPostComments] = useState<Comments[]>(
     props.comments.slice(0, 3)
   );
-  const [userInfo, setUserInfo] = useState<any>();
+  const [userInfo, setUserInfo] = useState<User | any>();
   const currentUser = app.auth().currentUser;
   const [showLoad, setShowLoad] = useState(false);
 
@@ -107,10 +116,12 @@ function Post(props: Props) {
           <span className='bottom-div_comments_wrapper_title'>
             All comments
           </span>
-          <span> {/* <PostWhoSaw comments={props.comments} /> */}</span>
+          <span>
+            <PostWhoSaw comments={props.comments} />
+          </span>
         </div>
         {props.comments &&
-          postComments.map(el => {
+          postComments.map((el: Comments) => {
             const Timestamp = firebase.default.firestore.Timestamp;
             const getDate = new Timestamp(
               el.createdAt?.seconds,
@@ -121,6 +132,7 @@ function Post(props: Props) {
 
             return (
               <ChatRoomCard
+                key={time + Math.random()}
                 fullname={el.fullname}
                 profileImg={el.profileImg}
                 text={el.text}

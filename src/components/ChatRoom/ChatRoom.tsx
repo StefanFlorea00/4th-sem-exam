@@ -54,6 +54,7 @@ function Messages() {
                 time={time}
                 uid={user.uid}
                 id={user.id}
+                deletable
               />
             );
           })}
