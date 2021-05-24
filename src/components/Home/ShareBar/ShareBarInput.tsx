@@ -43,7 +43,7 @@ function ShareBarInput(props: any) {
         media: url,
         content: content.value,
       }).then(() => {
-        getCollection('posts').then((data) => {
+        getCollection('posts', true).then((data) => {
           data && props.setPosts(data.docs)
         });
         content.value = ''

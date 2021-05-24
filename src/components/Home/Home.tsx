@@ -8,7 +8,7 @@ function Home() {
   const [posts, setPosts] = useState<any>()
 
   useEffect(() => {
-    getCollection('posts').then((data) => {
+    getCollection('posts', true).then((data) => {
       data && setPosts(data.docs)
     })
   }, [])

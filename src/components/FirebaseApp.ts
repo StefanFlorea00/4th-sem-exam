@@ -19,11 +19,16 @@ export const firestore = firebase.default.firestore();
 
 
 
-export async function getCollection(name: string) {
+export async function getCollection(name: string, order?: boolean) {
   const collection = firestore.collection(name);
-  const snapshot = await collection.get();
 
-  if (snapshot) return snapshot;
+  if(order) {
+    const snapshot = await collection.orderBy('createdAt', 'desc').get();
+    if (snapshot) return snapshot;
+  } else {
+    const snapshot = await collection.get();
+    if (snapshot) return snapshot;
+  }
 }
 
 export async function createUserDocument(user: any, additionalData: any) {
