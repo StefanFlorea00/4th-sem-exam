@@ -37,7 +37,7 @@ function SignUp(props: Props) {
         });
         history.push('/');
       } else {
-        setFormeElementErr('Passwords do not Match');
+        setFormeElementErr('Passwords do not match');
       }
     } catch (err) {
       setFormeElementErr(FormErrorMessages[err.code] || err.message);
@@ -49,9 +49,8 @@ function SignUp(props: Props) {
     <div className='login_wrapper'>
       <div className='signup'>
         <h1 className='signup_header'>Sign Up</h1>
-        {formElementErr && (
-          <div className='signup_error'> {formElementErr}</div>
-        )}
+        {formElementErr ? <div className='signup_error'> {formElementErr}</div> :
+        <div className='signup_msg'>Let's get to know you!</div>}
         <form className='signup_form' onSubmit={handleSignup}>
           <div className='signup_form_email_div'>
             <label htmlFor='fullname' className='signup_form_email_div_label'>

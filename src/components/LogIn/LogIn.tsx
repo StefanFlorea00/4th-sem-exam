@@ -49,8 +49,8 @@ function LogIn(props: Props) {
     <div className='login_wrapper'>
       <div className='login'>
         <h1 className='login_header'>Log In</h1>
-        {formElementErr && <div className='login_error'>{formElementErr}</div>}
-
+        {formElementErr ? <div className='login_error'> {formElementErr}</div> :
+        <div className='login_msg'>Welcome back</div>}
         <form className='login_form' onSubmit={handleSignup}>
           <div className='login_form_email_div'>
             <label className='login_form_email_div_label'> Email</label>
