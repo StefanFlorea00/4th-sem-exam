@@ -18,7 +18,7 @@
 }
 .chat_card {
   list-style: none;
-  margin: 3em 0;
+  margin: 2em 0;
 
   &:last-child {
     margin-bottom: 5em;
@@ -42,6 +42,11 @@
       flex-direction: row-reverse;
       justify-content: flex-end;
       width: 100%;
+      font-size: 0.85em;
+
+      @include mediaQuery(tablet) {
+        font-size: 1em;
+      }
 
       &_text {
         border-radius: $border-radius-m;

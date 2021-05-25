@@ -17,6 +17,12 @@
 
   .post-content {
     margin: 10px 0;
+    font-size: 0.85em;
+
+    @include mediaQuery(tablet) {
+      width: 60%;
+      font-size: 1em;
+    }
   }
 
   .post-img {
