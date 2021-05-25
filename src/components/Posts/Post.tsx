@@ -5,12 +5,12 @@ import './Post.scss';
 import PostWhoSaw from './PostWhoSaw';
 import { firestore } from '../FirebaseApp';
 import { getDoc } from '../FirebaseApp';
-import { getCollection } from '../FirebaseApp';
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import app from '../FirebaseApp';
 import ChatRoomCard from '../ChatRoom/ChatRoomCard';
 import { Comments, createdAt } from '../Home/Home';
+import Messages from '../Assets/Messages';
 
 export type Props = {
   uid: string;
@@ -65,7 +65,12 @@ function Post(props: Props) {
     const docId = e.target.closest('.post')?.dataset.id;
     const { text } = e.target.elements;
 
-    if (currentUser && userInfo) {
+    if (
+      currentUser &&
+      userInfo &&
+      text.value.length > 0 &&
+      text.value !== ' '
+    ) {
       try {
         await firestore
           .collection('posts')
@@ -101,7 +106,10 @@ function Post(props: Props) {
       className={props.postImage ? 'post with-img' : 'post'}
       data-id={props.postId}
     >
-      <Link to={{pathname: "/profile/" + props.uid, state: {uid: props.uid}}} style={{textDecoration:'none'}}>
+      <Link
+        to={{ pathname: '/profile/' + props.uid, state: { uid: props.uid } }}
+        style={{ textDecoration: 'none' }}
+      >
         <UserButton
           hasInfo
           userInfo={{ name: postUser?.fullname, exp: postUser?.investExp }}
@@ -117,13 +125,19 @@ function Post(props: Props) {
       <hr />
       <div className='bottom-div'>
         <div className='bottom-div_comments_wrapper'>
-          <span className='bottom-div_comments_wrapper_title'>
-            All comments
-          </span>
+          {postComments.length > 0 && (
+            <span className='bottom-div_comments_wrapper_title'>
+              All comments
+              <Messages />
+            </span>
+          )}
           <span>
             <PostWhoSaw comments={props.comments} />
           </span>
         </div>
+        {!postComments.length && (
+          <small className='no_comments'> No comments </small>
+        )}
         {props.comments &&
           postComments.map((el: Comments) => {
             const Timestamp = firebase.default.firestore.Timestamp;
@@ -154,7 +168,6 @@ function Post(props: Props) {
         <form onSubmit={handleSubmit}>
           <div className='input-wrapper'>
             <input type='text' name='text' placeholder='Write a comment' />
-            {/* <PostWhoSaw/> */}
             <Button type='primary' text='Comment' />
           </div>
         </form>

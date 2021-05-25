@@ -41,14 +41,24 @@
   .bottom-div {
     padding-top: 1em;
     margin-top: auto;
-
+    .no_comments {
+      display: block;
+      color: gray;
+      text-align: center;
+    }
     &_comments_wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       &_title {
+        display: flex;
         font-weight: 900;
+        align-items: flex-start;
+
+        svg {
+          margin-left: 3px;
+        }
       }
     }
 
@@ -62,7 +72,7 @@
       display: flex;
       flex-direction: column;
       input {
-        width: 68%;
+        width: calc(100% - 100px);
         margin-top: 1em;
         padding: 0.7em;
         border-radius: $border-radius-m;

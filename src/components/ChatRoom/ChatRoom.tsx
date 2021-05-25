@@ -55,6 +55,7 @@ function Messages() {
                 uid={user.uid}
                 id={user.id}
                 deletable
+                direction='right'
               />
             );
           })}
