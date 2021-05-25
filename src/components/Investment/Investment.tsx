@@ -18,8 +18,6 @@ function Investment() {
   }
 
   useEffect(() => {
-    setCountry("United States");
-    setCompanyFetchNr(500);
     fetchCompanies();
   }, [])
 
@@ -27,28 +25,22 @@ function Investment() {
     const API_KEY = '44e4c120e4ab42239b2c7b36c9a4207f';
     let  API_Call = `https://api.twelvedata.com/stocks`;
 
+    setCountry("United States");
+    setCompanyFetchNr(500);
+
     setFetching(true);
-    const response = await fetch(API_Call);
-    const json = await response.json();
-    if(json){
-    setFetching(false);
-    addCompanies(json);
+    try {
+      const response = await fetch(API_Call);
+      const json = await response.json();
+      setCompanyList(generateCompanyObjects(json));
+    } catch (e){
+      console.log(e)
+    } finally {
+      setFetching(false);
     }
-    // fetch(API_Call)
-    // .then(
-    //     function(response){
-    //         console.log(response);
-    //         return response.json();
-    //     })
-    // .then(
-    //     function(data) {
-    //       addCompanies(data);
-    //       setFetching(false);
-    //     }
-    // )
 }
 
-  function addCompanies(companyData){
+  function generateCompanyObjects(companyData){
     let companies = [];
     let fetchedCompaniesNr = 0;
     console.log(companyData);
@@ -65,22 +57,8 @@ function Investment() {
         fetchedCompaniesNr++;
       }
     }
-    setCompanyList(companies);
+    return companies;
   }
-
-  //to get from db later
-  // const Companies=[
-  //   {id:"0", name: "Green", field:"Technology", img:{testimg}},
-  //   {id:"1", name: "Blue", field:"Technology", img:{testimg}},
-  //   {id:"2", name: "Pink", field:"Cleaning", img:{testimg}},
-  //   {id:"3", name: "Red", field:"Food", img:{testimg}},
-  //   {id:"4", name: "I", field:"Ran", img:{testimg}},
-  //   {id:"5", name: "Out", field:"Of", img:{testimg}},
-  //   {id:"6", name: "Names", field:"", img:{testimg}},
-  //   {id:"7", name: "Names", field:"", img:{testimg}},
-  //   {id:"8", name: "Names", field:"", img:{testimg}},
-  //   {id:"9", name: "Names", field:"", img:{testimg}},
-  // ]
 
   return (
     <>
@@ -94,10 +72,10 @@ function Investment() {
         :
         <>
         {companyList.length == 0 ? 
-        <div className="error-div">
-          <p className="error-text">Uh oh, looks like there's been a problem</p>
-          <Button onClick={() => fetchCompanies()} type="secondary" text="Retry"/>
-        </div>
+          <div className="error-div">
+            <p className="error-text">Uh oh, looks like there's been a problem</p>
+            <Button onClick={() => fetchCompanies()} type="secondary" text="Retry"/>
+          </div>
         : <CompaniesGrid companies={companyList}/>}
         </>
       }
