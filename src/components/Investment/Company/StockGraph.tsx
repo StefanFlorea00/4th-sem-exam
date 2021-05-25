@@ -149,8 +149,8 @@ function StockGraph(props: any) {
           <ReactECharts option={chartOptionsTest}/>
             }
           <div className='info-div'>
-          <StockInfo info={props.companyInfo}/>
-          <ExtraInfo info={props.companyInfo}/>
+          <StockInfo companyInfo={props.companyInfo}/>
+          <ExtraInfo companyInfo={props.companyInfo}/>
           </div>
       </div>
   );
