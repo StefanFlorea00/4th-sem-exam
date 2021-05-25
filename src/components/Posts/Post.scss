@@ -35,7 +35,11 @@
   .bottom-div {
     padding-top: 1em;
     margin-top: auto;
-
+    .no_comments {
+      display: block;
+      color: gray;
+      text-align: center;
+    }
     &_comments_wrapper {
       display: flex;
       justify-content: space-between;

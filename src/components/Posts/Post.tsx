@@ -125,14 +125,19 @@ function Post(props: Props) {
       <hr />
       <div className='bottom-div'>
         <div className='bottom-div_comments_wrapper'>
-          <span className='bottom-div_comments_wrapper_title'>
-            All comments
-            <Messages />
-          </span>
+          {postComments.length > 0 && (
+            <span className='bottom-div_comments_wrapper_title'>
+              All comments
+              <Messages />
+            </span>
+          )}
           <span>
             <PostWhoSaw comments={props.comments} />
           </span>
         </div>
+        {!postComments.length && (
+          <small className='no_comments'> No comments </small>
+        )}
         {props.comments &&
           postComments.map((el: Comments) => {
             const Timestamp = firebase.default.firestore.Timestamp;
