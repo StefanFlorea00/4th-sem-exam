@@ -65,7 +65,12 @@ function Post(props: Props) {
     const docId = e.target.closest('.post')?.dataset.id;
     const { text } = e.target.elements;
 
-    if (currentUser && userInfo) {
+    if (
+      currentUser &&
+      userInfo &&
+      text.value.length > 0 &&
+      text.value !== ' '
+    ) {
       try {
         await firestore
           .collection('posts')
@@ -101,7 +106,10 @@ function Post(props: Props) {
       className={props.postImage ? 'post with-img' : 'post'}
       data-id={props.postId}
     >
-      <Link to={{pathname: "/profile/" + props.uid, state: {uid: props.uid}}} style={{textDecoration:'none'}}>
+      <Link
+        to={{ pathname: '/profile/' + props.uid, state: { uid: props.uid } }}
+        style={{ textDecoration: 'none' }}
+      >
         <UserButton
           hasInfo
           userInfo={{ name: postUser?.fullname, exp: postUser?.investExp }}
@@ -154,7 +162,6 @@ function Post(props: Props) {
         <form onSubmit={handleSubmit}>
           <div className='input-wrapper'>
             <input type='text' name='text' placeholder='Write a comment' />
-            {/* <PostWhoSaw/> */}
             <Button type='primary' text='Comment' />
           </div>
         </form>
