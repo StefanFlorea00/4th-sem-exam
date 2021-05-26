@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ChatRoomForm from './ChatRoomForm';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import app from '../FirebaseApp';
+import app, { firestore } from '../FirebaseApp';
 import firebase from 'firebase/app';
 import ChatRoomCard from './ChatRoomCard';
 import Rooms from './Rooms';
@@ -10,9 +10,9 @@ function Messages() {
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
   const div = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    setTimeout(scrollIntoView, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(scrollIntoView, 1000);
+  // }, []);
 
   const dbQuery = messageCollection
     .where('chatroom', '==', selectedRoom)
@@ -21,10 +21,19 @@ function Messages() {
   const [messages, loading, error] = useCollectionData(dbQuery, {
     idField: 'id',
   });
+
+  useEffect(() => {
+    firestore
+      .collection('messages')
+      .where('chatroom', '==', selectedRoom)
+      .onSnapshot(snapshot => scrollIntoView());
+  }, [messages]);
+
   function scrollIntoView() {
     // window.scrollTo(0, document.body.scrollHeight);
     div?.current?.scrollIntoView({ behavior: 'smooth' });
   }
+
   return (
     <div className='messages'>
       {/* chatRoom cards */}

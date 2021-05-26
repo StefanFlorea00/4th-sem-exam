@@ -19,7 +19,25 @@
 .chat_card {
   list-style: none;
   margin: 2em 0;
+  position: relative;
 
+  .dots {
+    transform: rotate(90deg);
+    font-weight: 900;
+    margin-left: 0.3em;
+    cursor: pointer;
+  }
+
+  .delete_box {
+    animation: slide 0.3s ease-in;
+    button {
+      margin-bottom: 0;
+      color: red;
+      border: 1px solid red;
+      padding: 5px 10px;
+      font-size: 0.8em;
+    }
+  }
   &:last-child {
     margin-bottom: 5em;
   }
@@ -51,7 +69,6 @@
       &_text {
         border-radius: $border-radius-m;
         background: #f2f2f2f8;
-        cursor: pointer;
         padding: 7px 30px;
       }
 
@@ -62,7 +79,7 @@
         margin-right: 10px;
       }
     }
-    a{
+    a {
       margin: 0;
       padding: 0;
       text-decoration: none;
@@ -80,14 +97,18 @@
       &_text {
         background: $accent-color;
       }
-      &_img {
-        margin-left: 10px;
-      }
     }
 
     .name {
       text-align: end;
       margin-right: 80px;
     }
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(30%);
+    opacity: 0;
   }
 }
