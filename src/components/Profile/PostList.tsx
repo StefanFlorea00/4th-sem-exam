@@ -5,8 +5,11 @@ import app from '../FirebaseApp';
 import Post from '../Posts/Post';
 import { Comments } from '../Home/Home';
 
+export type Props = {
+  userId: number
+};
 
-function PostList(props: any) {
+function PostList(props: Props) {
   const postCollection = app.firestore().collection('posts');
 
   const dbQuery = postCollection

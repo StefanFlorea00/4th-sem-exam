@@ -5,7 +5,7 @@ import { uploadUserImage, updateUser } from '../FirebaseApp';
 import { AuthContext } from '../../Auth';
 
 export type Props = {
-  profileInfo: any;
+  profileInfo: {fullname: string, email: string, description: string, investExp: string, profileImg: string, createdAt: {seconds: number, nanoseconds: number}};
   setEditMode: ((arg0: boolean) => void);
 };
 

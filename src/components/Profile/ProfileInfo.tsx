@@ -5,13 +5,13 @@ import { getDoc } from '../FirebaseApp';
 import app from '../FirebaseApp';
 
 export type Props = {
-  profileInfo: any;
+  profileInfo: {fullname: string, email: string, description: string, investExp: string, profileImg: string, createdAt: {seconds: number, nanoseconds: number}};
   setProfileInformation: ((arg0: any) => void)
 };
 
 function ProfileInfo(props: Props) {
   const { currentUser } = useContext(AuthContext);
-
+  console.log(props.profileInfo)
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
       props.setProfileInformation(data);
