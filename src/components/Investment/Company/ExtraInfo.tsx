@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './ExtraInfo.scss';
 
 function ExtraInfo(props: any) {
 
+  const [companyInfoAV, setCompanyInfoAV] = useState<CompanyInfoAV>();
+
+  useEffect(() => {
+    setCompanyInfoAV(props.companyInfoAV);
+  }, [])
+
+  type CompanyInfoAV = {
+    FullTimeEmployees: ""
+  }
+
   return (
     <div className='extra-info'>
         <div className='info-line'>
-        <p>Website:</p>
-        <p>www.ecoCompany.com</p>
+          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
         </div>
+        {/* <div className='info-line'>
+          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
+        </div>
+        <div className='info-line'>
+          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
+        </div>
+        <div className='info-line'>
+          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
+        </div> */}
     </div>
   );
 }

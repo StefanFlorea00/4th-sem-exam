@@ -17,7 +17,7 @@ function StockGraph(props: any) {
 
     useEffect(() => {
         setLoading(true);
-        translateChartData(props.companyInfo);
+        translateChartData(props.companyInfoTD);
     }, [])
 
     function translateChartData(data: any){
@@ -71,7 +71,7 @@ function StockGraph(props: any) {
         }],
         series: [
             {
-                name: props.companyInfo,
+                name: props.companyInfoTD,
                 type: 'line',
                 smooth: false,
                 symbol: 'none',
@@ -122,7 +122,7 @@ function StockGraph(props: any) {
             }],
             series: [
                 {
-                    name: props.companyInfo,
+                    name: props.companyInfoTD,
                     type: 'line',
                     smooth: false,
                     symbol: 'none',
@@ -146,11 +146,11 @@ function StockGraph(props: any) {
       <div className='stock-graph'>
           <h1>Stock prices</h1>
           {chartData && chartOptions && !loading && 
-          <ReactECharts option={chartOptionsTest}/>
-            }
+            <ReactECharts option={chartOptionsTest}/>
+          }
           <div className='info-div'>
-          <StockInfo companyInfo={props.companyInfo}/>
-          <ExtraInfo companyInfo={props.companyInfo}/>
+          <StockInfo companyInfoAV={props.companyInfoAV} companyInfoTD={props.companyInfoTD}/>
+          <ExtraInfo companyInfoAV={props.companyInfoAV}/>
           </div>
       </div>
   );

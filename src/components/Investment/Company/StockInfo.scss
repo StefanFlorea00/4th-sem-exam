@@ -25,11 +25,11 @@
     .percentage {
       font-size: 12px;
 
-      .negative {
+      &.negative {
         color: red;
       }
 
-      .positive {
+      &.positive {
         color: green;
       }
     }

@@ -3,27 +3,28 @@ import './CompanyHeadline.scss';
 
 function CompanyHeadline(props: any) {
 
-  const [companyInfo, setCompanyInfo] = useState({data: [{}]});
-  const [loading, setLoading] = useState(false);
+  const [companyInfo, setCompanyInfo] = useState<CompanyAV>();
+
+  type CompanyAV  = {
+    Name: "",
+    Sector: "",
+    Description: ""
+  };
 
   useEffect(() => {
-    setLoading(true);
+    console.log(props.companyInfo);
     setCompanyInfo(props.companyInfo);
   }, [])
-
-  useEffect(() => {
-    setLoading(false);
-  }, [companyInfo])
 
   return (
     //! to fix
       <div className='company-headline'>
-          <img src={loading ? "..." : companyInfo.data[0].img} alt=''/>
+          <img src={companyInfo ? "" : "..."} alt=''/>
           <div className='desc'>
-          <p className='name'>{loading ? "..." : companyInfo.data[0].name}</p>
-          <p className='field'>{loading ? "..." : companyInfo.data[0].country}</p>
+          <p className='name'>{companyInfo ? companyInfo.Name : "..."}</p>
+          <p className='field'>{companyInfo ? companyInfo.Sector : "..."}</p>
           </div>
-          <p className='company-desc'>{loading ? "..." : companyInfo.data[0].companyDesc}</p>
+          <p className='company-desc'>{companyInfo ? companyInfo.Description.split(".")[0] : "..."}</p>
       </div>
   );
 }
