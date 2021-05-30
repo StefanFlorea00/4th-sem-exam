@@ -6,9 +6,9 @@ function CompanyHeadline(props: any) {
   const [companyInfo, setCompanyInfo] = useState<CompanyAV>();
 
   type CompanyAV  = {
-    Name: "",
-    Sector: "",
-    Description: ""
+    Name: string,
+    Sector: string,
+    Description: string
   };
 
   useEffect(() => {

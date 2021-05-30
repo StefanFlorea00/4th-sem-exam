@@ -4,9 +4,32 @@
 .investment {
   // margin-left: $sidebar-width-vw;
   padding: 20px;
-  height: 100vh; /* Temporary */
   background-color: white;
   border-radius: $border-radius-m;
+
+  .country-select-wrapper {
+    margin: 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+      margin-right: 10px;
+    }
+
+    .country-select {
+      background-color: $accent-color;
+      border: 0;
+      border-radius: $border-radius-m;
+      padding: 5px 10px;
+      width: 150px;
+
+      &:focus {
+        outline: none;
+        filter: brightness(1.1);
+      }
+    }
+  }
 
   .description {
     h1 {
