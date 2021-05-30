@@ -17,6 +17,7 @@ function ShareStock(props: any) {
   const [userInfo, setUserInfo] = useState<any>()
   const [chartImg, setChartImg] = useState<Blob | null | undefined>();
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
@@ -35,11 +36,12 @@ function ShareStock(props: any) {
   }
 
   useEffect(() => {
-    uploadChartImg();
+    !uploading && uploadChartImg();
   }, [chartImg])
 
   async function uploadChartImg(){
     if(chartImg !== undefined) {
+      setUploading(true);
       const uploadTask = app.storage().ref(`/images/${chartImg.name}`).put(chartImg);
       await uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
@@ -65,10 +67,12 @@ function ShareStock(props: any) {
       }).then(() => {
         setPostContent('');
         setLoading(false);
+        setUploading(false);
       });
     } catch (err) {
       console.log(err);
       setLoading(false);
+      setUploading(false);
     }
   }
 
