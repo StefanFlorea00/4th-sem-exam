@@ -24,7 +24,7 @@ function CompanyHeadline(props: any) {
             <p className='name'>{companyInfo && companyInfo.Name ? companyInfo.Name : "..."}</p>
             <p className='field'>{companyInfo && companyInfo.Sector ? companyInfo.Sector : "..."}</p>
           </div>
-            <p className='company-desc'>{companyInfo && companyInfo.Description ? companyInfo.Description.split(".")[0] : "..."}</p>
+            <p className='company-desc'>{companyInfo && companyInfo.Description ? companyInfo.Description.split(". ")[0] : "..."}</p>
       </div>
   );
 }

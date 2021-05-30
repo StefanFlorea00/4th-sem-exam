@@ -21,8 +21,8 @@ function CompanyProfile(props: any) {
 
     useEffect(() => {
       setDataInterval("1month");
-      setFetching(true); 
       fetchFullCompanyData();
+      setFetching(true); 
       // fetchCompanyStock();       
       console.log(companyTD);
     }, [])
@@ -37,7 +37,7 @@ function CompanyProfile(props: any) {
       const API_KEY_TWELVEDATA = '44e4c120e4ab42239b2c7b36c9a4207f'; //https://api.twelvedata.com/stocks?symbol=${props.match.params.id} 
       const API_KEY_ALPHAVANTAGE = '7KXQKJF29JM9VRZS';
       let API_Call = `https://api.twelvedata.com/time_series?symbol=${props.match.params.id}&interval=${dataInterval}&apikey=${API_KEY_TWELVEDATA}`;
-      let API_Call2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=${API_KEY_ALPHAVANTAGE}`;
+      let API_Call2 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.match.params.id}&apikey=${API_KEY_ALPHAVANTAGE}`;
 
       console.log("Fetching...")
       const response = await fetch(API_Call);
