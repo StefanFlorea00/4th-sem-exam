@@ -21,8 +21,8 @@ function CompanyProfile(props: any) {
 
     useEffect(() => {
       setDataInterval("1month");
+      setFetching(true); 
       fetchFullCompanyData();
-      // setFetching(true);
       // fetchCompanyStock();       
       console.log(companyTD);
     }, [])
