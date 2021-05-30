@@ -1,6 +1,7 @@
-@use '../../sass/variables.scss' as *;
+@use '../../../sass/variables.scss' as *;
 
 .share-stock {
+  position: relative;
   margin-top: 50px;
   width: 80%;
   margin-left: auto;
@@ -18,5 +19,19 @@
       outline: none;
       border: 2px solid $accent-color-lighter;
     }
+  }
+}
+
+.sharing-loading {
+  position: absolute;
+  z-index: 99999;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  margin: auto;
+  width: 150px;
+
+  #circle {
+    fill: $accent-color;
   }
 }

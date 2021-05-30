@@ -1,4 +1,5 @@
-@use '../../sass/variables.scss' as *;
+@use '../../../sass/variables.scss' as *;
+@use '../../../sass/mediaQueriesMixin.scss' as *;
 
 .company-headline {
   display: flex;
@@ -32,9 +33,25 @@
       color: #707070;
     }
   }
-}
 
-.company-desc {
-  margin-left: auto;
-  margin-right: 15%;
+  .company-desc {
+    margin-left: auto;
+    max-width: 35%;
+  }
+
+  @media only screen and (max-width: 450px) {
+    height: auto;
+    flex-flow: column;
+
+    .desc {
+      margin-top: 10px;
+    }
+
+    .company-desc {
+      margin-left: 0;
+      max-width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
 }
