@@ -37,7 +37,7 @@ function Investment() {
       const response = await fetch(API_Call);
       const json = await response.json();
       const companyObjects = await generateCompanyObjects(json);
-      // setCompanyList(companyObjects);
+      setCompanyList(companyObjects);
     } catch (e){
       console.log(e);
       setFetchError(e);
