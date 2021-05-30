@@ -30,7 +30,7 @@ function ShareStock(props: any) {
     e.preventDefault();
     setLoading(true);
 
-    getChartImage('.echarts-for-react');
+    const getChart = await getChartImage('.echarts-for-react');
     console.log(chartImg);
 
     if(chartImg !== undefined) {

@@ -6,9 +6,9 @@ function CompanyHeadline(props: any) {
   const [companyInfo, setCompanyInfo] = useState<CompanyAV>();
 
   type CompanyAV  = {
-    Name: "",
-    Sector: "",
-    Description: ""
+    Name: string,
+    Sector: string,
+    Description: string
   };
 
   useEffect(() => {
@@ -21,10 +21,10 @@ function CompanyHeadline(props: any) {
       <div className='company-headline'>
           <img src={companyInfo ? "" : "..."} alt=''/>
           <div className='desc'>
-          <p className='name'>{companyInfo ? companyInfo.Name : "..."}</p>
-          <p className='field'>{companyInfo ? companyInfo.Sector : "..."}</p>
+            <p className='name'>{companyInfo && companyInfo.Name ? companyInfo.Name : "..."}</p>
+            <p className='field'>{companyInfo && companyInfo.Sector ? companyInfo.Sector : "..."}</p>
           </div>
-          <p className='company-desc'>{companyInfo ? companyInfo.Description.split(".")[0] : "..."}</p>
+            <p className='company-desc'>{companyInfo && companyInfo.Description ? companyInfo.Description.split(". ")[0] : "..."}</p>
       </div>
   );
 }

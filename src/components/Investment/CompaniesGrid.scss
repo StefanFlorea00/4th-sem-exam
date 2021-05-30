@@ -27,6 +27,7 @@
     height: 500px;
     gap: 20px;
     place-content: center;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }

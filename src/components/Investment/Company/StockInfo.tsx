@@ -5,13 +5,31 @@ import './StockInfo.scss';
 function StockInfo(props: any) {
 
     console.log("CCCCCCCC", props.companyInfoAV);
-    const [companyInfoTD, setCompanyInfoTD] = useState({values: [{close: 1, high: 1, low: 1},{close: 1, high: 1, low: 1}], meta: {currency: 0}});
+    const [companyInfoTD, setCompanyInfoTD] = useState<CompanyInfoTD>({values: [{close: 1, high: 1, low: 1},{close: 1, high: 1, low: 1}], meta: {currency: 0}});
     const [companyInfoAV, setCompanyInfoAV] = useState<CompanyInfoAV>();
     const [recentPercentage, setRecentPercentage] = useState<number>(0);
 
     type CompanyInfoAV = {
-        "52WeekHigh": "",
-        "52WeekLow": ""
+        "52WeekHigh": string,
+        "52WeekLow": string
+    }
+
+    type CompanyInfoTD = {
+        values: [
+            {
+                close: number,
+                high: number,
+                low: number
+            }
+            ,{
+                close: number, 
+                high: number, 
+                low: number
+            }
+        ], 
+        meta: {
+            currency: number
+        }
     }
 
     useEffect(() => {
@@ -22,7 +40,7 @@ function StockInfo(props: any) {
 
     function calculatePercentage(value1: number, value2: number){
         let percentage = (value1 - value2) / value2 * 100;
-        setRecentPercentage(parseFloat(percentage.toFixed(2)));
+        setRecentPercentage(parseFloat(percentage.toFixed(4)));
     }
 
   return (
@@ -30,20 +48,20 @@ function StockInfo(props: any) {
         <div className='stock-info'>
               <div className="current-stock">
               <StockArrow className={ recentPercentage >= 0 ? "stock-arrow positive" : "stock-arrow negative" }/>
-              <p className="current-stock-text">{companyInfoTD ? Number(companyInfoTD.values[0].close).toFixed(2) : "..."} {companyInfoTD.meta.currency}</p>
+              <p className="current-stock-text">{companyInfoTD.values  ? Number(companyInfoTD.values[0].close).toFixed(2) : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               <p className={ recentPercentage >= 0 ? "percentage positive" : "percentage negative" } >{recentPercentage}%</p>
               </div>
               <div className='info-line'>
-                  <p>Today's high: </p> <p>{companyInfoTD ? Number(companyInfoTD.values[0].high).toFixed(2) : "..."} {companyInfoTD.meta.currency}</p>
+                  <p>Today's high: </p> <p>{companyInfoTD.values  ? Number(companyInfoTD.values[0].high).toFixed(2) : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
               <div className='info-line'>
-                  <p>Today's low:</p> <p>{companyInfoTD ? Number(companyInfoTD.values[0].low).toFixed(2)  : "..."} {companyInfoTD.meta.currency}</p>
+                  <p>Today's low:</p> <p>{companyInfoTD.values ? Number(companyInfoTD.values[0].low).toFixed(2)  : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
               <div className='info-line'>
-                  <p>52wk high: </p> <p>{companyInfoAV ? companyInfoAV["52WeekHigh"] : "..."} {companyInfoTD.meta.currency}</p>
+                  <p>52wk high: </p> <p>{companyInfoAV ? companyInfoAV["52WeekHigh"] : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
               <div className='info-line'>
-                  <p>52wk low: </p> <p>{companyInfoAV ? companyInfoAV["52WeekLow"] : "..."} {companyInfoTD.meta.currency}</p>
+                  <p>52wk low: </p> <p>{companyInfoAV ? companyInfoAV["52WeekLow"] : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
         </div>
   );
