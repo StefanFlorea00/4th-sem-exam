@@ -1,7 +1,15 @@
 import React from 'react';
 import './Button.scss';
 
-function Button(props: any) {
+type Props = {
+  id?: string;
+  onClick?: (e: any) => void;
+  type: 'primary' | 'secondary';
+  img?: React.ReactNode | JSX.Element;
+  imgPos?: 'left' | 'right';
+  text: string;
+};
+function Button(props: Props) {
   return (
     <button
       data-id={props.id}
