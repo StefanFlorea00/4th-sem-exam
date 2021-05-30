@@ -40,7 +40,7 @@ function StockInfo(props: any) {
 
     function calculatePercentage(value1: number, value2: number){
         let percentage = (value1 - value2) / value2 * 100;
-        setRecentPercentage(parseFloat(percentage.toFixed(2)));
+        setRecentPercentage(parseFloat(percentage.toFixed(4)));
     }
 
   return (
