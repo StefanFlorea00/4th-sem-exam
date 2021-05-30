@@ -120,10 +120,11 @@ function StockGraph(props: any) {
             dataZoom: [{
                 type: 'inside',
                 start: 0,
-                end: 100
-            }, {
-                start: 0,
-                end: 500
+                end: 100,
+                handleStyle: {
+                borderColor: '#F4D4D9',
+                }
+
             }],
             series: [
                 {

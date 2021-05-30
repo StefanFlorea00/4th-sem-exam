@@ -15,7 +15,7 @@ function ShareStock(props: any) {
   const [postContent, setPostContent] = useState("");
   const {currentUser} = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<any>()
-  const [chartImg, setChartImg] = useState<File>();
+  const [chartImg, setChartImg] = useState<Blob | null | undefined>();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -30,9 +30,15 @@ function ShareStock(props: any) {
     e.preventDefault();
     setLoading(true);
 
-    const getChart = await getChartImage('.echarts-for-react');
-    console.log(chartImg);
+    const getChart: Blob | any = await getChartImage('.echarts-for-react');
+    setChartImg(getChart);
+  }
 
+  useEffect(() => {
+    uploadChartImg();
+  }, [chartImg])
+
+  async function uploadChartImg(){
     if(chartImg !== undefined) {
       const uploadTask = app.storage().ref(`/images/${chartImg.name}`).put(chartImg);
       await uploadTask.on("state_changed", console.log, console.error, () => {
@@ -41,17 +47,16 @@ function ShareStock(props: any) {
         .child(chartImg.name)
         .getDownloadURL()
         .then((url) => {
-          setChartImg(undefined);
-          handlePostUpload(e, url)
+          handlePostUpload(url)
           console.log("upload", url);
         })
       });
     } else {
-      handlePostUpload(e, '')
+      handlePostUpload('')
     }
   }
 
-  async function handlePostUpload(e:any, url: string) {
+  async function handlePostUpload(url: string) {
     try {
       await createPost(app.auth().currentUser, {
         comments: [],
@@ -62,17 +67,16 @@ function ShareStock(props: any) {
         setLoading(false);
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      setLoading(false);
     }
   }
 
   async function getChartImage(element: string){
-    htmlToImage.toBlob(document.querySelector(element), { quality: 0.95, backgroundColor: "#FFFFFF" })
-      .then(function (blob) {
-          const timestamp = new Date().getTime();
-          blob.name = `chartimg${currentUser.uid}-${timestamp}.jpg`;
-          setChartImg(blob);
-      });
+    const chartImg = await htmlToImage.toBlob(document.querySelector(element), { quality: 0.7, backgroundColor: "#FFFFFF" });
+    const timestamp = new Date().getTime();
+    chartImg.name = `chartimg-${currentUser.uid}-${timestamp}.jpg`;
+    return chartImg;
   }
 
   return (
