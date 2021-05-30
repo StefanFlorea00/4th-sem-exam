@@ -5,10 +5,11 @@ import './StockGraph.scss';
 import StockInfo from './StockInfo';
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts';
+import Button from '../../Buttons/Button';
 
 function StockGraph(props: any) {
 
-    type Interval  = "1day" | "1week" | "1month" ;
+    type Interval  = "1h" | "1day" | "1week" | "1month" ;
 
     const [dataInterval, setDataInterval] = useState<Interval>("1day");
     const [chartData,setChartData] = useState([[]]);
@@ -18,7 +19,11 @@ function StockGraph(props: any) {
     useEffect(() => {
         setLoading(true);
         translateChartData(props.companyInfoTD);
-    }, [])
+    }, [dataInterval])
+
+    useEffect(() => {
+        setDataInterval(props.dataInterval);
+    })
 
     function translateChartData(data: any){
         console.log(data);
@@ -145,12 +150,14 @@ function StockGraph(props: any) {
   return (
       <div className='stock-graph'>
           <h1>Stock prices</h1>
-          {chartData && chartOptions && !loading && 
+          {chartData && chartOptions && !loading ?
             <ReactECharts option={chartOptionsTest}/>
+            :
+            <h1 className="stock-error">Sorry, could not load company stock prices</h1>
           }
           <div className='info-div'>
-          <StockInfo companyInfoAV={props.companyInfoAV} companyInfoTD={props.companyInfoTD}/>
-          <ExtraInfo companyInfoAV={props.companyInfoAV}/>
+            <StockInfo companyInfoAV={props.companyInfoAV} companyInfoTD={props.companyInfoTD}/>
+            <ExtraInfo companyInfoAV={props.companyInfoAV}/>
           </div>
       </div>
   );

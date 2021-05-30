@@ -4,12 +4,13 @@
 .company-profile {
   // margin-left: $sidebar-width-vw;
   padding: 20px;
-  height: 100vh; /* Temporary */
   background-color: white;
   border-radius: $border-radius-m;
 
-  .btn-div {
+  .top-btn-wrapper {
     margin-top: 25px;
+    display: flex;
+    align-items: center;
   }
 
   .description {
@@ -51,6 +52,18 @@
     text-align: center;
     margin-top: 150px;
     font-size: larger;
+  }
+
+  .timeline-btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    max-width: 50%;
+    justify-content: flex-end;
+
+    button {
+      margin: 0 5px;
+    }
   }
 }
 

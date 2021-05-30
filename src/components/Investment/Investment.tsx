@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import app from '../FirebaseApp';
+import app, { uploadUserImage } from '../FirebaseApp';
 import CompaniesGrid from './CompaniesGrid';
 import './Investment.scss';
 import testimg from '../Assets/testimg.jpg';
@@ -12,35 +12,41 @@ function Investment() {
   const [country, setCountry] = useState("");
   const [companyFetchNr, setCompanyFetchNr] = useState();
   const [fetching, setFetching] = useState(false);
+  const [fetchError, setFetchError] = useState();
+
   function handleSignOut() {
     //sign out from the app
     app.auth().signOut();
   }
 
   useEffect(() => {
-    fetchCompanies();
-  }, [])
+    setCountry("Denmark");
+    setCompanyFetchNr(500);
+  }, []);
+
+  useEffect(() => {
+    !fetching && fetchCompanies();
+  }, [country])
 
   async function fetchCompanies(){
     const API_KEY = '44e4c120e4ab42239b2c7b36c9a4207f';
     let  API_Call = `https://api.twelvedata.com/stocks`;
 
-    setCountry("United States");
-    setCompanyFetchNr(500);
-
     setFetching(true);
     try {
       const response = await fetch(API_Call);
       const json = await response.json();
-      setCompanyList(generateCompanyObjects(json));
+      const companyObjects = await generateCompanyObjects(json);
+      setCompanyList(companyObjects);
     } catch (e){
-      console.log(e)
+      console.log(e);
+      setFetchError(e);
     } finally {
       setFetching(false);
     }
 }
 
-  function generateCompanyObjects(companyData){
+ async function generateCompanyObjects(companyData: any){
     let companies = [];
     let fetchedCompaniesNr = 0;
     console.log(companyData);
@@ -60,6 +66,10 @@ function Investment() {
     return companies;
   }
 
+  function changeCountry(value: string){
+    setCountry(value);    
+  }
+
   return (
     <>
     <div className='investment'>
@@ -67,13 +77,23 @@ function Investment() {
         <h1>Currently available Companies</h1>
         <p>Here you can see a list of companies that are currently available to invest into. Please select a company to proceed.</p>
       </div>
+      <div className='options'>
+        <label htmlFor="countries">Country:</label>
+        <select name="countries" onChange={e=> changeCountry(e.target.value)} value={country} id="countries">
+          <option value="Denmark">Denmark</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Germany">Germany</option>
+          <option value="United States">United States</option>
+        </select>
+      </div>
       {fetching ?
         <LoadingSVG className="company-loading"/>
         :
         <>
-        {companyList.length == 0 ? 
+        {companyList.length == 0 || fetchError ? 
           <div className="error-div">
             <p className="error-text">Uh oh, looks like there's been a problem</p>
+            {fetchError && <p>Response: {fetchError}</p>}
             <Button onClick={() => fetchCompanies()} type="secondary" text="Retry"/>
           </div>
         : <CompaniesGrid companies={companyList}/>}
