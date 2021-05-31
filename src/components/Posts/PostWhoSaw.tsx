@@ -6,8 +6,6 @@ type Props = {
   comments: Comments[];
 };
 function PostWhoSaw(props: Props) {
-  console.log(props);
-
   const { comments } = props;
   const [uniqArr, setUniqArr] = useState<Comments[] | []>([]);
   useEffect(() => {
@@ -23,7 +21,7 @@ function PostWhoSaw(props: Props) {
       );
     setUniqArr(getUniqueArr);
   }, [comments]);
-  
+
   return (
     <div className='who-saw-div'>
       <div className='user-img-div'>

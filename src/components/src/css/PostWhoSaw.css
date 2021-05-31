@@ -1,0 +1,25 @@
+.who-saw-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.who-saw-div .user-img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: -10px;
+}
+
+.who-saw-div .user-img:last-child {
+  margin-right: 0;
+}
+
+.who-saw-div p {
+  margin-left: 10px;
+  font-size: 11px;
+}
+/*# sourceMappingURL=PostWhoSaw.css.map */

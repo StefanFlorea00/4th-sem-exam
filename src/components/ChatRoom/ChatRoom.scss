@@ -10,6 +10,8 @@
     gap: 0 1em;
     height: 100vh;
     overflow: hidden;
+    animation: fadeIn 1s ease;
+    animation-iteration-count: 1;
   }
   img {
     max-width: 50%;
@@ -17,5 +19,11 @@
 
   @include mediaQuery(tablet) {
     margin-left: 310px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 }
