@@ -1,0 +1,12 @@
+/*  
+use it like this: 
+first import it as *  @use {path} as *; 
+then use it directly inside the element: 
+body{
+	background:blue; 
+	  @include mediaQuery(tablet) {
+    background: red;
+  }
+}
+*/
+/*# sourceMappingURL=mediaQueriesMixin.css.map */

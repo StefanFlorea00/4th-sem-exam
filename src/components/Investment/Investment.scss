@@ -6,6 +6,7 @@
   padding: 20px;
   background-color: white;
   border-radius: $border-radius-m;
+  animation: fadeIn 0.8s ease-in;
 
   .country-select-wrapper {
     margin: 15px auto;
@@ -86,5 +87,11 @@
     text-align: center;
     margin-top: 150px;
     font-size: larger;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 }

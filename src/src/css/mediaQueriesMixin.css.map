@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;;;;;;;;;EAUE",
+    "sources": [
+        "../../sass/mediaQueriesMixin.scss"
+    ],
+    "names": [],
+    "file": "mediaQueriesMixin.css"
+}
