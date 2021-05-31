@@ -10,7 +10,7 @@ import * as firebase from 'firebase/app';
 import app from '../FirebaseApp';
 import ChatRoomCard from '../ChatRoom/ChatRoomCard';
 import { Comments, createdAt } from '../Home/Home';
-import Messages from '../Assets/Messages';
+import Comment from '../Assets/Comment';
 
 export type Props = {
   uid: string;
@@ -98,7 +98,7 @@ function Post(props: Props) {
   }
 
   function handleClick() {
-    setPostComments(props.comments.slice(0, postComments.length + 5));
+    setPostComments(props.comments.slice(0, postComments.length + 5))
   }
 
   return (
@@ -128,7 +128,7 @@ function Post(props: Props) {
           {postComments.length > 0 && (
             <span className='bottom-div_comments_wrapper_title'>
               All comments
-              <Messages />
+              <Comment />
             </span>
           )}
           <span>
@@ -159,9 +159,9 @@ function Post(props: Props) {
               />
             );
           })}
-        {showLoad && (
+        {showLoad && props.comments.length !== postComments.length && (
           <div className='load-more' onClick={handleClick}>
-            Load more
+            Load more ▼
           </div>
         )}
 
