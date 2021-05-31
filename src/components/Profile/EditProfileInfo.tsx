@@ -23,7 +23,11 @@ function ProfileInfo(props: Props) {
     e.preventDefault();
     
     if(file === undefined) {
-      uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
+      if(props.profileInfo.profileImg) {
+        uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
+      }
+      console.log(props.profileInfo.profileImg)
+        console.log(file)
     } else {
       const uploadTask = app.storage().ref(`/avatars/${file.name}`).put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {

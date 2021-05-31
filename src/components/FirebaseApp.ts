@@ -101,7 +101,16 @@ export async function updateUser(user: any, additionalData: any) {
 
       getDoc(user).then(info => {
         try {
-          userRef.set({
+          if(info.profileImg === undefined){
+            userRef.set({
+              fullname,
+              email,
+              createdAt: info?.createdAt,
+              investExp,
+              description,
+            });
+          } else {
+            userRef.set({
             fullname,
             email,
             createdAt: info?.createdAt,
@@ -109,6 +118,8 @@ export async function updateUser(user: any, additionalData: any) {
             description,
             profileImg: info?.profileImg,
           });
+          }
+          
         } catch (error) {
           console.log(error.message);
         }
