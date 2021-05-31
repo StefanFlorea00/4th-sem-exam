@@ -25,9 +25,6 @@ function ShareStock(props: any) {
     console.log(currentUser);
   }, []);
 
-  useEffect(() => {
-  }, [])
-
   async function uploadChartImg(e:any){
     e.preventDefault();
     setLoading(true);
