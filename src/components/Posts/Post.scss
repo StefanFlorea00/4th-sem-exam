@@ -53,18 +53,21 @@
       &_title {
         display: flex;
         font-weight: 900;
-        align-items: flex-start;
+        align-items: center;
 
         svg {
+          height: 15px;
           margin-left: 3px;
         }
       }
     }
 
     .load-more {
+      cursor: pointer;
       text-align: center;
       font-size: 1em;
-      color: gray;
+      font-weight: 600;
+      color: $accent-color;
     }
     form {
       width: 100%;
