@@ -4,7 +4,6 @@ import './StockInfo.scss';
 
 function StockInfo(props: any) {
 
-    console.log("CCCCCCCC", props.companyInfoAV);
     const [companyInfoTD, setCompanyInfoTD] = useState<CompanyInfoTD>({values: [{close: 1, high: 1, low: 1},{close: 1, high: 1, low: 1}], meta: {currency: 0}});
     const [companyInfoAV, setCompanyInfoAV] = useState<CompanyInfoAV>();
     const [recentPercentage, setRecentPercentage] = useState<number>(0);

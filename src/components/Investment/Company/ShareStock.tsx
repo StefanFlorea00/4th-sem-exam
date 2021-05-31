@@ -21,8 +21,6 @@ function ShareStock(props: any) {
     getDoc(app.auth().currentUser).then(data => {
       setUserInfo(data);
     });
-
-    console.log(currentUser);
   }, []);
 
   async function uploadChartImg(e:any){
