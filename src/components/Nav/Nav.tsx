@@ -12,7 +12,7 @@ import { getDoc } from '../FirebaseApp';
 function Nav() {
   const { currentUser } = useContext(AuthContext);
 
-  const [selected, setSelected] = useState<string>('home');
+  const [selected, setSelected] = useState<string | any>('home');
   const [showNavLi, setShowNavLi] = useState(false);
   const [userNameAndExp, setUserNameAndExp] = useState<any>();
 
@@ -39,16 +39,32 @@ function Nav() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!localStorage.getItem('nav')) {
+      localStorage.setItem('nav', selected);
+    }
+    const navSelected = localStorage.getItem('nav');
+    setSelected(navSelected);
+  }, []);
+
   function handleClick(selected: string): void | Error {
     switch (selected) {
       case 'home':
-        return setSelected('home');
+        setSelected('home');
+        localStorage.setItem('nav', 'home');
+        break;
       case 'chatRoom':
-        return setSelected('chatRoom');
+        setSelected('chatRoom');
+        localStorage.setItem('nav', 'chatRoom');
+        break;
       case 'investment':
-        return setSelected('investment');
+        setSelected('investment');
+        localStorage.setItem('nav', 'investment');
+        break;
       case 'profile':
-        return setSelected('profile');
+        setSelected('profile');
+        localStorage.setItem('nav', 'profile');
+        break;
       default:
         return new Error('failed to change selected nav value');
     }
@@ -101,7 +117,11 @@ function Nav() {
               userImg={userNameAndExp?.profileImg}
             />
           ) : (
-            <li className={selected === 'profile' ? 'nav_ul_a_li selected' : 'nav_ul_a_li'}>
+            <li
+              className={
+                selected === 'profile' ? 'nav_ul_a_li selected' : 'nav_ul_a_li'
+              }
+            >
               <img
                 className='user-img'
                 src={
