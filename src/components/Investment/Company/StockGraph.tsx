@@ -82,13 +82,7 @@ function StockGraph(props: any) {
                 symbol: 'none',
                 areaStyle: {},
                 data: chartData,
-                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cad00" : "#ad0000"
-                }, {
-                    offset: 1,
-                    color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cadAA" : "#cf2222"
-                }]) 
+                color: "#F4D4D9"
             }
         ]
     }
@@ -120,10 +114,11 @@ function StockGraph(props: any) {
             dataZoom: [{
                 type: 'inside',
                 start: 0,
-                end: 100
-            }, {
-                start: 0,
-                end: 500
+                end: 100,
+                handleStyle: {
+                borderColor: '#F4D4D9',
+                }
+
             }],
             series: [
                 {
@@ -133,15 +128,7 @@ function StockGraph(props: any) {
                     symbol: 'none',
                     areaStyle: {},
                     data: chartData,
-                    color: chartData[chartData.length -1] > chartData[chartData.length - 2] ? "#0cad00" : "#ad0000"
-                    // color:
-                    // new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    //     offset: 0,
-                    //     color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cad00" : "#ad0000"
-                    // }, {
-                    //     offset: 1,
-                    //     color: chartData[chartData.length -1][1] && chartData[chartData.length -1][1] > chartData[chartData.length - 2][1] ? "#0cadAA" : "#cf2222"
-                    // }]) 
+                    color: "#F4D4D9"
                 }
             ]
         });
