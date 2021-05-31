@@ -12,6 +12,7 @@ export type formErrorTypes = {
 function SignUp(props: Props) {
   const { history } = props;
   const [formElementErr, setFormeElementErr] = useState<null | string>(null);
+  const [buttontext, setbuttonText] = useState('Sign up');
   const FormErrorMessages: formErrorTypes = {
     ['auth/invalid-email']: 'Email is invalid',
     ['auth/weak-password']: 'Password must be at least 6 characters long',
@@ -31,6 +32,7 @@ function SignUp(props: Props) {
         const { user } = await app
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
+        setbuttonText('✓');
         await createUserDocument(user, {
           fullname: fullname.value,
           investExp: `${checkedRadioValue} Investor`,
@@ -174,7 +176,7 @@ function SignUp(props: Props) {
           <div className='signup_form_account_message'>
             Already have an account? <Link to='/login'>Log in</Link>
           </div>
-          <button className='signup_form_button'>Sign up</button>
+          <button className='signup_form_button'>{buttontext}</button>
         </form>
       </div>
     </div>

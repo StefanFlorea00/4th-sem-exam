@@ -21,6 +21,8 @@ function LogIn(props: Props) {
 
   const { history } = props;
   const [formElementErr, setFormeElementErr] = useState<null | string>(null);
+  const [buttontext, setbuttonText] = useState('Login');
+
   const handleSignup = useCallback(
     async e => {
       e.preventDefault();
@@ -30,8 +32,10 @@ function LogIn(props: Props) {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-
-        history.push('/');
+        setbuttonText('✓');
+        setTimeout(() => {
+          history.push('/');
+        }, 400);
       } catch (err) {
         setFormeElementErr(FormErrorMessages[err.code] || err.message);
         throw new Error(err.message);
@@ -49,8 +53,11 @@ function LogIn(props: Props) {
     <div className='login_wrapper'>
       <div className='login'>
         <h1 className='login_header'>Log In</h1>
-        {formElementErr ? <div className='login_error'> {formElementErr}</div> :
-        <div className='login_msg'>Welcome back</div>}
+        {formElementErr ? (
+          <div className='login_error'> {formElementErr}</div>
+        ) : (
+          <div className='login_msg'>Welcome back</div>
+        )}
         <form className='login_form' onSubmit={handleSignup}>
           <div className='login_form_email_div'>
             <label className='login_form_email_div_label'> Email</label>
@@ -80,7 +87,7 @@ function LogIn(props: Props) {
           <div className='login_form_account_message'>
             Don't have an account? <Link to='/signup'>Sign up</Link>
           </div>
-          <button className='login_form_button'>Login</button>
+          <button className='login_form_button'>{buttontext}</button>
         </form>
       </div>
     </div>
