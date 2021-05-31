@@ -41,7 +41,7 @@ function Home() {
     <>
       <div className='home'>
         <ShareBar setPosts={setPosts} />
-        <PostGrid posts={posts} />
+        <PostGrid posts={posts} loading={loading} error={error} />
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './PostGrid.scss';
 import Post from './Post';
 import { Comments } from '../Home/Home';
+import LoadingSVG from '../Assets/Loading';
 
 function PostGrid(props: any) {
   return (
@@ -21,8 +22,9 @@ function PostGrid(props: any) {
           );
         })
       ) : (
-        <h3>No content found</h3>
+        <LoadingSVG className='posts-loading' />
       )}
+      {props.error && <h3>Error, no content found</h3>}
     </div>
   );
 }
