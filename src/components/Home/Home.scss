@@ -1,8 +1,15 @@
 @use '../../sass/mediaQueriesMixin.scss' as *;
 .home {
   min-height: 100vh;
+  animation: fadeIn 0.8s ease-in;
 
   @include mediaQuery(tablet) {
     margin-left: 310px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 }

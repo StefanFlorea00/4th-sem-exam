@@ -1,0 +1,37 @@
+@use '../../../sass/variables.scss' as *;
+.stock-graph {
+  margin: 50px auto;
+}
+
+.stock-graph h1 {
+  text-align: center;
+  font-weight: 500;
+}
+
+.stock-graph .info-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.stock-graph .info-div .stock-info {
+  margin: 0 10px;
+}
+
+.stock-graph .info-div .extra-info {
+  margin: 0 10px;
+}
+
+.stock-graph .stock-error {
+  margin: 50px 0;
+}
+/*# sourceMappingURL=StockGraph.css.map */

@@ -54,11 +54,9 @@ function Investment() {
       const companyObjects: CompanyList[] | any = await generateCompanyObjects(
         data
       );
-      console.log(data);
 
       setCompanyList(companyObjects);
     } catch (e) {
-      console.log(e);
       setFetchError(e);
     } finally {
       setFetching(false);

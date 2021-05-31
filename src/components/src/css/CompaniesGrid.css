@@ -1,0 +1,52 @@
+.companies-grid .search-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 50px 0;
+}
+
+.companies-grid .search-bar input[type="text"] {
+  border: 0;
+  border-bottom: 1.5px solid #dbdbdb;
+  padding: 5px;
+  margin-right: 20px;
+  outline: none;
+  background-color: transparent;
+  width: 35%;
+  min-width: 200px;
+}
+
+.companies-grid .search-bar input[type="text"]::-webkit-input-placeholder {
+  color: #dbdbdb;
+}
+
+.companies-grid .search-bar input[type="text"]:-ms-input-placeholder {
+  color: #dbdbdb;
+}
+
+.companies-grid .search-bar input[type="text"]::-ms-input-placeholder {
+  color: #dbdbdb;
+}
+
+.companies-grid .search-bar input[type="text"]::placeholder {
+  color: #dbdbdb;
+}
+
+.companies-grid .company-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(100px, 250px))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+  height: 500px;
+  gap: 20px;
+  place-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/*# sourceMappingURL=CompaniesGrid.css.map */
