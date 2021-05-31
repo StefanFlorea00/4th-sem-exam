@@ -33,7 +33,7 @@ function SignUp(props: Props) {
           .createUserWithEmailAndPassword(email.value, password.value);
         await createUserDocument(user, {
           fullname: fullname.value,
-          investExp: checkedRadioValue,
+          investExp: `${checkedRadioValue} Investor`,
         });
         history.push('/');
       } else {
@@ -49,8 +49,11 @@ function SignUp(props: Props) {
     <div className='login_wrapper'>
       <div className='signup'>
         <h1 className='signup_header'>Sign Up</h1>
-        {formElementErr ? <div className='signup_error'> {formElementErr}</div> :
-        <div className='signup_msg'>Let's get to know you!</div>}
+        {formElementErr ? (
+          <div className='signup_error'> {formElementErr}</div>
+        ) : (
+          <div className='signup_msg'>Let's get to know you!</div>
+        )}
         <form className='signup_form' onSubmit={handleSignup}>
           <div className='signup_form_email_div'>
             <label htmlFor='fullname' className='signup_form_email_div_label'>
@@ -98,22 +101,22 @@ function SignUp(props: Props) {
             <div>
               <input
                 required
-                value='Totally new'
+                value='Beginner'
                 type='radio'
                 id='radio1'
                 name='investmentExperience'
               />
-              <label htmlFor='radio1'>Totally new</label>
+              <label htmlFor='radio1'>Beginner</label>
             </div>
             <div>
               <input
                 required
-                value='I have invested before'
+                value='intermediate'
                 type='radio'
                 id='radio2'
                 name='investmentExperience'
               />
-              <label htmlFor='radio2'>I have invested before</label>
+              <label htmlFor='radio2'>intermediate</label>
             </div>
             <div>
               <input
