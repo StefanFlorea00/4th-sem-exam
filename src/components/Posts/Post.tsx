@@ -97,8 +97,10 @@ function Post(props: Props) {
     }
   }
 
-  function handleClick() {
-    setPostComments(props.comments.slice(0, postComments.length + 5))
+  function handleClick(lessOrMore: 'more' | 'less') {
+    lessOrMore === 'more'
+      ? setPostComments(props.comments.slice(0, postComments.length + 5))
+      : setPostComments(props.comments.slice(0, 3));
   }
 
   return (
@@ -159,9 +161,13 @@ function Post(props: Props) {
               />
             );
           })}
-        {showLoad && props.comments.length !== postComments.length && (
-          <div className='load-more' onClick={handleClick}>
+        {showLoad && props.comments.length !== postComments.length ? (
+          <div className='load-more' onClick={() => handleClick('more')}>
             Load more ▼
+          </div>
+        ) : (
+          <div className='load-more' onClick={() => handleClick('less')}>
+            Load less ▲
           </div>
         )}
 
