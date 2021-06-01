@@ -11,6 +11,7 @@ export type Posts = {
   content: string;
   createdAt: createdAt;
   media: string;
+  companyDesc: string;
   uid?: string;
 };
 export type createdAt = { seconds: number; nanoseconds: number };

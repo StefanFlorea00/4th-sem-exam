@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '../../Buttons/Button';
 import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
@@ -9,45 +9,46 @@ import app from '../../FirebaseApp';
 import { createPost } from '../../FirebaseApp';
 import LoadingSVG from '../../Assets/Loading';
 
-
 function ShareStock(props: any) {
-
-  const [postContent, setPostContent] = useState("");
-  const {currentUser} = useContext(AuthContext);
+  const [postContent, setPostContent] = useState('');
+  const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<any>();
   const [loading, setLoading] = useState(false);
 
-  const postStockInfoText = `Company: ${props.companyInfoAV.Name} \nTime Interval: ${props.companyInfoTD.meta.interval}\n `;
+  const postStockInfoText = `${props.companyInfoAV.Name} /*/ ${props.companyInfoTD.meta.interval} /*/ `;
 
   type ChartImg = {
-    name: string
-  }
-
+    name: string;
+  };
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
       setUserInfo(data);
     });
   }, []);
 
-  async function uploadChartImg(e:any){
+  async function uploadChartImg(e: any) {
     e.preventDefault();
     setLoading(true);
 
-    await getChartImage('.echarts-for-react').then((img: ChartImg | null)=>{
+    await getChartImage('.echarts-for-react').then((img: ChartImg | null) => {
       if (img) {
-        const uploadTask = app.storage().ref(`/images/${img.name}`).put(img as any);
-        uploadTask.on("state_changed", console.log, console.error, () => {
-        app.storage()
-          .ref("images")
-          .child(img.name)
-          .getDownloadURL()
-          .then((url) => {
-            handlePostUpload(url)
-            console.log("upload", url);
-          })
+        const uploadTask = app
+          .storage()
+          .ref(`/images/${img.name}`)
+          .put(img as any);
+        uploadTask.on('state_changed', console.log, console.error, () => {
+          app
+            .storage()
+            .ref('images')
+            .child(img.name)
+            .getDownloadURL()
+            .then(url => {
+              handlePostUpload(url);
+              console.log('upload', url);
+            });
         });
       }
-    })
+    });
   }
 
   async function handlePostUpload(url: string) {
@@ -55,7 +56,8 @@ function ShareStock(props: any) {
       await createPost(app.auth().currentUser, {
         comments: [],
         media: url,
-        content:  postStockInfoText + postContent,
+        content: postContent,
+        companyDesc: postStockInfoText || 'Graph not found',
       }).then(() => {
         setPostContent('');
         setLoading(false);
@@ -66,13 +68,16 @@ function ShareStock(props: any) {
     }
   }
 
-  async function getChartImage(element: string){
-    const chartImg:any= await htmlToImage.toBlob(document.querySelector(element) as any, { quality: 0.7, backgroundColor: "#FFFFFF" });
-    
-    if(chartImg){
+  async function getChartImage(element: string) {
+    const chartImg: any = await htmlToImage.toBlob(
+      document.querySelector(element) as any,
+      { quality: 0.7, backgroundColor: '#FFFFFF' }
+    );
+
+    if (chartImg) {
       const timestamp = new Date().getTime();
       chartImg.name = `chartimg-${currentUser.uid}-${timestamp}.jpg`;
-    return chartImg;
+      return chartImg;
     } else {
       return null;
     }
@@ -80,19 +85,20 @@ function ShareStock(props: any) {
 
   return (
     <div className='share-stock'>
-          <form onSubmit={uploadChartImg}>
-            {loading && <LoadingSVG className="sharing-loading" />}
+      <form onSubmit={uploadChartImg}>
+        {loading && <LoadingSVG className='sharing-loading' />}
 
-            <textarea className={`share-stock-text ${loading && "text-loading"}`}
-              placeholder="Write text here..."
-              value={postContent}
-              onChange={(event) => setPostContent(event.target.value)}
-              disabled={loading && true}/>
-            <Button type='secondary' text="Share"/>
-          </form>
+        <textarea
+          className={`share-stock-text ${loading && 'text-loading'}`}
+          placeholder='Write text here...'
+          value={postContent}
+          onChange={event => setPostContent(event.target.value)}
+          disabled={loading && true}
+        />
+        <Button type='secondary' text='Share' />
+      </form>
     </div>
   );
 }
 
 export default ShareStock;
-
