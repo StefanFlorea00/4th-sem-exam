@@ -1,3 +1,4 @@
+import { format } from 'echarts';
 import React, {useEffect, useState} from 'react';
 import './CompanyHeadline.scss';
 
@@ -12,8 +13,8 @@ function CompanyHeadline(props: any) {
   };
 
   useEffect(() => {
-    console.log(props.companyInfo);
-    setCompanyInfo(props.companyInfo);
+    console.log(props.companyInfoAV);
+    setCompanyInfo(props.companyInfoAV);
   }, [])
 
   return (

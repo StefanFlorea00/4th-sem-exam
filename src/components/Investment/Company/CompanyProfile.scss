@@ -48,21 +48,46 @@
     }
   }
 
-  .error-text {
+  .error-wrapper {
+    margin-top: 30vh;
     text-align: center;
-    margin-top: 150px;
-    font-size: larger;
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .error-text {
+      text-align: center;
+      font-size: larger;
+    }
+
+    button {
+      margin: auto;
+      margin-top: 50px;
+    }
   }
 
   .timeline-btn-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-left: auto;
-    max-width: 50%;
+    align-items: center;
     justify-content: flex-end;
+
+    p {
+      margin-right: 15px;
+    }
 
     button {
       margin: 0 5px;
+
+      @media only screen and (max-width: 450px) {
+        margin: 10px 5px;
+      }
+    }
+
+    @media only screen and (max-width: 450px) {
+      flex-flow: column;
     }
   }
 }

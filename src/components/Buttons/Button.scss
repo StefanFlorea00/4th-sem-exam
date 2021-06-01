@@ -11,9 +11,9 @@
   border: 1px solid transparent;
   transition: all 0.3s ease;
 
-  &:first-child {
-    margin-top: 0;
-  }
+  // &:first-child {
+  //   margin-top: 0;
+  // }
 
   &:active {
     background-color: $accent-color;

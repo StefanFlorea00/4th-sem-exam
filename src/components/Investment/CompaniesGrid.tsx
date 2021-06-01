@@ -40,8 +40,9 @@ function CompaniesGrid(props: any) {
           type='text'
           value={searchTerm}
           onChange={event => searchCompany(event.target.value)}
+          placeholder="Search for a company..."
         />
-        <Button type='secondary' text='Search' />
+        {/* <Button type='secondary' text='Search' /> */}
       </div>
 
       <div className='company-list'>
