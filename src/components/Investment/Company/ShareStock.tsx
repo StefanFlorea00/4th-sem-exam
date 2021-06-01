@@ -15,43 +15,34 @@ function ShareStock(props: any) {
   const [postContent, setPostContent] = useState("");
   const {currentUser} = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState<any>()
-  const [chartImg, setChartImg] = useState<File>();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
       setUserInfo(data);
     });
-
-    console.log(currentUser);
   }, []);
 
-  async function handleUpload(e: any) {  
+  async function uploadChartImg(e:any){
     e.preventDefault();
     setLoading(true);
 
-    const getChart = await getChartImage('.echarts-for-react');
-    console.log(chartImg);
-
-    if(chartImg !== undefined) {
-      const uploadTask = app.storage().ref(`/images/${chartImg.name}`).put(chartImg);
-      await uploadTask.on("state_changed", console.log, console.error, () => {
+    await getChartImage('.echarts-for-react').then((img)=>{
+      const uploadTask = app.storage().ref(`/images/${img.name}`).put(img);
+      uploadTask.on("state_changed", console.log, console.error, () => {
       app.storage()
         .ref("images")
-        .child(chartImg.name)
+        .child(img.name)
         .getDownloadURL()
         .then((url) => {
-          setChartImg(undefined);
-          handlePostUpload(e, url)
+          handlePostUpload(url)
           console.log("upload", url);
         })
       });
-    } else {
-      handlePostUpload(e, '')
-    }
+    })
   }
 
-  async function handlePostUpload(e:any, url: string) {
+  async function handlePostUpload(url: string) {
     try {
       await createPost(app.auth().currentUser, {
         comments: [],
@@ -62,22 +53,21 @@ function ShareStock(props: any) {
         setLoading(false);
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      setLoading(false);
     }
   }
 
   async function getChartImage(element: string){
-    htmlToImage.toBlob(document.querySelector(element), { quality: 0.95, backgroundColor: "#FFFFFF" })
-      .then(function (blob) {
-          const timestamp = new Date().getTime();
-          blob.name = `chartimg${currentUser.uid}-${timestamp}.jpg`;
-          setChartImg(blob);
-      });
+    const chartImg = await htmlToImage.toBlob(document.querySelector(element), { quality: 0.7, backgroundColor: "#FFFFFF" });
+    const timestamp = new Date().getTime();
+    chartImg.name = `chartimg-${currentUser.uid}-${timestamp}.jpg`;
+    return chartImg;
   }
 
   return (
     <div className='share-stock'>
-          <form onSubmit={handleUpload}>
+          <form onSubmit={uploadChartImg}>
             {loading && <LoadingSVG className="sharing-loading" />}
             <textarea className='share-stock-text' placeholder="Write text here..." value={postContent} onChange={(event) => setPostContent(event.target.value)}/>
             <Button type='secondary' text="Share"/>

@@ -3,6 +3,8 @@ import { firestore, getCollection } from '../FirebaseApp';
 import './Home.scss';
 import ShareBar from '../Home/ShareBar/ShareBar';
 import PostGrid from '../Posts/PostGrid';
+import firebase from 'firebase';
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 export type Posts = {
   comments: Comments;
@@ -25,19 +27,21 @@ export type Comments = {
 };
 function Home() {
   const [posts, setPosts] = useState<null | Posts[]>(null);
+  const [snapshots, loading, error] = useCollection(
+    firebase.firestore().collection('posts').orderBy('createdAt', 'desc'),
+    { snapshotListenOptions: { includeMetadataChanges: true } }
+  );
 
   useEffect(() => {
-    getCollection('posts', true).then(data => {
-      //@ts-ignore
-      data && setPosts(data.docs);
-    });
-  }, []);
+    // @ts-ignore
+    snapshots && setPosts(snapshots.docs);
+  }, [snapshots]);
 
   return (
     <>
       <div className='home'>
         <ShareBar setPosts={setPosts} />
-        <PostGrid posts={posts} />
+        <PostGrid posts={posts} loading={loading} error={error} />
       </div>
     </>
   );
