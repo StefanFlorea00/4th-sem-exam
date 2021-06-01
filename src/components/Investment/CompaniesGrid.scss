@@ -1,4 +1,6 @@
 .companies-grid {
+  height: 100%;
+
   .search-bar {
     display: flex;
     align-items: center;
@@ -23,10 +25,10 @@
 
   .company-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
-    height: 500px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+    height: 100%;
     gap: 20px;
-    place-content: center;
+    justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
   }
