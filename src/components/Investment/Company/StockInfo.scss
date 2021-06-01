@@ -14,12 +14,13 @@
       margin-left: 10px;
 
       &.negative #arrow {
-        filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(325deg) brightness(119%) contrast(119%);
+        fill: #BF4C5E;
+        
       }
 
       &.positive #arrow {
-        filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(100deg) brightness(119%) contrast(119%);
         transform: rotate(180deg);
+        fill: rgb(170, 245, 176);
         transform-origin: center;
       }
     }
@@ -32,11 +33,11 @@
       font-size: 12px;
 
       &.negative {
-        color: red;
+        color: #BF4C5E;
       }
 
       &.positive {
-        color: green;
+        color: rgb(170, 245, 176);
       }
     }
   }

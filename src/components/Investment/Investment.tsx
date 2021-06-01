@@ -83,7 +83,7 @@ function Investment() {
   }
 
   function changeCountry(value: string) {
-    setCountry(value);
+    !fetching && setCountry(value);
   }
 
   return (

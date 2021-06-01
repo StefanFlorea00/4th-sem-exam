@@ -91,10 +91,7 @@ function StockGraph(props: any) {
         symbol: 'none',
         areaStyle: {},
         data: chartData,
-        color:
-          chartData[chartData.length - 1] > chartData[chartData.length - 2]
-            ? '#0cad00'
-            : '#ad0000',
+        color: "#F4D4D9"
       },
     ],
   };

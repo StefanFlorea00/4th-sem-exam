@@ -19,7 +19,6 @@ function CompanyHeadline(props: any) {
   return (
     //! to fix
       <div className='company-headline'>
-          <img src={companyInfo ? "" : "..."} alt=''/>
           <div className='desc'>
             <p className='name'>{companyInfo && companyInfo.Name ? companyInfo.Name : "..."}</p>
             <p className='field'>{companyInfo && companyInfo.Sector ? companyInfo.Sector : "..."}</p>
