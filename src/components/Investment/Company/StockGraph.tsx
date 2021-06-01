@@ -12,9 +12,15 @@ function StockGraph(props: any) {
     type Interval  = "1h" | "1day" | "1week" | "1month" ;
 
     const [dataInterval, setDataInterval] = useState<Interval>("1day");
-    const [chartData,setChartData] = useState([[]]);
+    const [chartData,setChartData] = useState<ChartData>();
     const [chartOptions, setChartOptions] = useState({});
     const [loading, setLoading] = useState(false);
+
+    type ChartData = {
+        meta: {},
+        values: [{}],
+        status: {}
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -25,16 +31,15 @@ function StockGraph(props: any) {
         setDataInterval(props.dataInterval);
     })
 
-    function translateChartData(data: any){
+    function translateChartData(data: ChartData){
         console.log(data);
         if(data && data.values){
-            let translatedData = [[]];
-            data.values.forEach(dataLine => {
+            let translatedData: any = [[]] ;
+            data.values.forEach((dataLine: any) => {
                     //change date from dd-mm-yyyy to dd/mm/yyyy
                     translatedData.push([
                     [dataLine.datetime.split("-")[0], dataLine.datetime.split("-")[1], dataLine.datetime.split("-")[2] ].join('/'),
-                    dataLine.close
-                    ]);
+                    dataLine.close]);
             });
             setChartData(translatedData);
             setLoading(false);
@@ -46,7 +51,7 @@ function StockGraph(props: any) {
     const chartOptionsTest = {
         tooltip: {
             trigger: 'axis',
-            position: function (pt) {
+            position: function (pt: any) {
                 return [pt[0], '10%'];
             }
         },
@@ -91,7 +96,7 @@ function StockGraph(props: any) {
         !loading && setChartOptions({
             tooltip: {
                 trigger: 'axis',
-                position: function (pt) {
+                position: function (pt: any) {
                     return [pt[0], '10%'];
                 }
             },

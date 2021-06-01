@@ -57,10 +57,10 @@ function StockInfo(props: any) {
                   <p>Today's low:</p> <p>{companyInfoTD.values ? Number(companyInfoTD.values[0].low).toFixed(2)  : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
               <div className='info-line'>
-                  <p>52wk high: </p> <p>{companyInfoAV ? companyInfoAV["52WeekHigh"] : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
+                  <p>52wk high: </p> <p>{companyInfoAV ? Number(companyInfoAV["52WeekHigh"]).toFixed(2) : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
               <div className='info-line'>
-                  <p>52wk low: </p> <p>{companyInfoAV ? companyInfoAV["52WeekLow"] : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
+                  <p>52wk low: </p> <p>{companyInfoAV ? Number(companyInfoAV["52WeekLow"]).toFixed(2) : "No Data"} {companyInfoTD.meta && companyInfoTD.meta.currency}</p>
               </div>
         </div>
   );

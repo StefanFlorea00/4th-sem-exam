@@ -29,7 +29,7 @@ function Investment() {
   const [companyList, setCompanyList] = useState<
     [] | CompanyList[] | undefined
   >([]);
-  const [country, setCountry] = useState('Denmark');
+  const [country, setCountry] = useState('United States');
   const [companyFetchNr, setCompanyFetchNr] = useState(500);
   const [fetching, setFetching] = useState(false);
   const [fetchError, setFetchError] = useState<string | unknown>();
@@ -51,9 +51,7 @@ function Investment() {
     try {
       const response = await fetch(API_Call);
       const data = await response.json();
-      const companyObjects: CompanyList[] | any = await generateCompanyObjects(
-        data
-      );
+      const companyObjects: CompanyList[] | any = await generateCompanyObjects(data);
       console.log(data);
 
       setCompanyList(companyObjects);
@@ -106,9 +104,9 @@ function Investment() {
             className='country-select'
           >
             <option value='Denmark'>Denmark</option>
-            <option value='Sweden'>Sweden</option>
-            <option value='Germany'>Germany</option>
             <option value='United States'>United States</option>
+            <option disabled value='Sweden'>Sweden</option>
+            <option disabled value='Germany'>Germany</option>
           </select>
         </div>
         {fetching ? (
