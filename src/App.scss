@@ -40,6 +40,18 @@
     border-radius: 50%;
   }
 }
+.main_loading_svg {
+  width: 50%;
+  height: 50%;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+
+  #circle {
+    fill: $accent-color;
+  }
+}
 
 button {
   cursor: pointer;

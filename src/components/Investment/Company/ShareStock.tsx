@@ -57,7 +57,7 @@ function ShareStock(props: any) {
         comments: [],
         media: url,
         content: postContent,
-        companyDesc: postStockInfoText || 'Graph not found',
+        companyDesc: postStockInfoText ?? 'Graph not found',
       }).then(() => {
         setPostContent('');
         setLoading(false);

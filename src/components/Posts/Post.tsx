@@ -31,13 +31,10 @@ type User = {
 };
 function Post(props: Props) {
   const [postUser, setPostUser] = useState<User | any>();
-  // const [companyFirstPart, companySecondPart, postText] =
-  //   props.content.split("/*/");
   const [companyFirstPart, companySecondPart] = props.companyDesc.split('/*/');
   console.log(companySecondPart);
 
   const postText = props.content;
-  // console.log(companyFirstPart);
 
   const [postComments, setPostComments] = useState<Comments[]>(
     props.comments.slice(0, 3)
@@ -130,15 +127,21 @@ function Post(props: Props) {
         <img className='post-img' src={props.postImage} alt='Post image' />
       )}
       <div className='post-content'>
-        <div className='companyInfoWrapper'>
-          Company: <span className='companyInfo'>{companyFirstPart}</span>{' '}
-        </div>
-        <div className='companyInfoWrapper'>
-          Data from:{' '}
-          <span className='companyInfo'>{companySecondPart} ago</span>{' '}
-        </div>
+        {companyFirstPart !== 'graph not found' && (
+          <>
+            {' '}
+            <div className='companyInfoWrapper'>
+              Company: <span className='companyInfo'>{companyFirstPart}</span>{' '}
+            </div>
+            <div className='companyInfoWrapper'>
+              Data from:{' '}
+              <span className='companyInfo'>{companySecondPart} ago</span>{' '}
+            </div>
+          </>
+        )}
+
         <br />
-        {postText != '' && <p>{postText}</p>}
+        <p>{postText}</p>
       </div>
 
       <br />

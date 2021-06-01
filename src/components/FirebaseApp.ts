@@ -137,7 +137,7 @@ export async function createPost(user: any, additionalData: any) {
       media,
       content,
       createdAt: new Date(),
-      companyDesc,
+      companyDesc: companyDesc || 'graph not found',
     });
   } catch (error) {
     console.log(error.message);
