@@ -28,8 +28,7 @@ export type Comments = {
 function Home() {
   const [posts, setPosts] = useState<null | Posts[]>(null);
   const [snapshots, loading, error] = useCollection(
-    firebase.firestore().collection('posts').orderBy('createdAt', 'desc'),
-    { snapshotListenOptions: { includeMetadataChanges: true } }
+    firebase.firestore().collection('posts').orderBy('createdAt', 'desc')
   );
 
   useEffect(() => {
