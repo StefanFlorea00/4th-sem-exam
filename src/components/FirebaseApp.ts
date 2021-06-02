@@ -99,7 +99,7 @@ export async function updateUser(user: any, additionalData: any) {
 
       getDoc(user).then(info => {
         try {
-          if (info.profileImg === undefined) {
+          if (info?.profileImg === undefined) {
             userRef.set({
               fullname,
               email,

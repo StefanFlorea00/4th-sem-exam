@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import StockArrow from '../Assets/StockArrow';
-import ExtraInfo from './ExtraInfo';
+import ExtraInfo from '../Investment/Company/ExtraInfo';
 import './StockGraph.scss';
-import StockInfo from './StockInfo';
+import StockInfo from '../Investment/Company/StockInfo';
 import ReactECharts from 'echarts-for-react';
 
 function StockGraph(props: any) {
@@ -91,7 +91,7 @@ function StockGraph(props: any) {
         symbol: 'none',
         areaStyle: {},
         data: chartData,
-        color: "#F4D4D9"
+        color: '#F4D4D9',
       },
     ],
   };
