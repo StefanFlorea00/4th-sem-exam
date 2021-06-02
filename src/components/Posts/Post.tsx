@@ -134,7 +134,7 @@ function Post(props: Props) {
               Company: <span className='companyInfo'>{companyFirstPart}</span>{' '}
             </div>
             <div className='companyInfoWrapper'>
-              Data from:{' '}
+              Time interval:
               <span className='companyInfo'>{companySecondPart} ago</span>{' '}
             </div>
           </>

@@ -30,7 +30,6 @@ function StockGraph(props: any) {
   }
 
   function translateChartData(data: any) {
-    console.log(data);
     if (data) {
       let translatedData = [[]];
       data.values.forEach((dataLine: any) => {
@@ -46,7 +45,6 @@ function StockGraph(props: any) {
         ]);
       });
       setChartData(translatedData);
-      console.log(translatedData);
     }
   }
 
