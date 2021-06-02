@@ -43,6 +43,15 @@
     margin-bottom: 5em;
   }
   &_item {
+    &:last-child {
+      margin-bottom: 4em;
+    }
+
+    @include mediaQuery(tablet) {
+      &:last-child {
+        margin-bottom: 2em;
+      }
+    }
     .name {
       margin: 0.2em 0;
       margin-left: 67px;
@@ -99,7 +108,6 @@
       &_text {
         background: $accent-color;
       }
-
     }
 
     .name {

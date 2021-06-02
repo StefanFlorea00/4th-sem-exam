@@ -17,6 +17,12 @@ body{
     }
   }
 
+  @if $size == phone_large {
+    @media only screen and (min-width: 500px) {
+      @content;
+    }
+  }
+
   @if $size == tablet {
     @media only screen and (min-width: 768px) {
       @content;
