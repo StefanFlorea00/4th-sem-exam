@@ -3,23 +3,18 @@
 
 .chat_room_form_wrapper {
   width: 100%;
-  margin-bottom: -2em;
-  padding: 1.5em 0;
+  padding: 0.6em 0;
   display: flex;
   position: fixed;
-  bottom: 11.5%;
-  right: 50%;
-  transform: translate(50%, 0%);
-  background: $body-bg-color;
-  @include mediaQuery(phone_medium) {
-    bottom: 9.5%;
-    padding: 1.7em 0;
-  }
+  right: 0%;
+  bottom: calc(0% + 50px);
+  background: #fff;
+
   @include mediaQuery(tablet) {
     all: revert;
+    background: #fff;
     position: sticky;
     bottom: 10px;
-    background: #fff;
     margin-top: 1em;
     border-radius: $border-radius-s;
     padding: 1em;
@@ -73,7 +68,7 @@
       &:focus {
         outline: none;
       }
-    
+
       &:hover {
         background-color: white;
         border: 1px solid $accent-color;

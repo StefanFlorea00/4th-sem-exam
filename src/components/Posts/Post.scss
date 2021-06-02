@@ -18,6 +18,11 @@
   .post-content {
     margin: 10px 0;
     font-size: 0.85em;
+    line-height: 150%;
+
+    .companyInfo {
+      font-weight: 600;
+    }
 
     @include mediaQuery(tablet) {
       font-size: 1em;

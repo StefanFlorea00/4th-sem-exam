@@ -18,6 +18,7 @@ function PostGrid(props: any) {
               postImage={post.data().media}
               postId={post.id}
               comments={comments}
+              companyDesc={post.data().companyDesc}
             />
           );
         })

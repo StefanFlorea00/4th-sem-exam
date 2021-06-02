@@ -11,7 +11,6 @@ type ProtectedRouteProps = {
 function PrivateRoute(props: ProtectedRouteProps) {
   const { component: RouteComponent, ...rest } = props;
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <Route
       {...rest}

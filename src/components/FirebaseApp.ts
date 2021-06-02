@@ -17,12 +17,10 @@ const app = firebase.default.initializeApp({
 export const auth = firebase.default.auth();
 export const firestore = firebase.default.firestore();
 
-
-
 export async function getCollection(name: string, order?: boolean) {
   const collection = firestore.collection(name);
 
-  if(order) {
+  if (order) {
     const snapshot = await collection.orderBy('createdAt', 'desc').get();
     if (snapshot) return snapshot;
   } else {
@@ -101,7 +99,7 @@ export async function updateUser(user: any, additionalData: any) {
 
       getDoc(user).then(info => {
         try {
-          if(info.profileImg === undefined){
+          if (info.profileImg === undefined) {
             userRef.set({
               fullname,
               email,
@@ -111,15 +109,14 @@ export async function updateUser(user: any, additionalData: any) {
             });
           } else {
             userRef.set({
-            fullname,
-            email,
-            createdAt: info?.createdAt,
-            investExp,
-            description,
-            profileImg: info?.profileImg,
-          });
+              fullname,
+              email,
+              createdAt: info?.createdAt,
+              investExp,
+              description,
+              profileImg: info?.profileImg,
+            });
           }
-          
         } catch (error) {
           console.log(error.message);
         }
@@ -131,19 +128,20 @@ export async function updateUser(user: any, additionalData: any) {
 export async function createPost(user: any, additionalData: any) {
   const postRef = firestore.collection('posts');
 
-    try {
-    const { comments, media, content } = additionalData;
+  try {
+    const { comments, media, content, companyDesc } = additionalData;
 
-      postRef.add({
-        uid: user.uid,
-        comments, 
-        media, 
-        content,
-        createdAt: new Date()
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
+    postRef.add({
+      uid: user.uid,
+      comments,
+      media,
+      content,
+      createdAt: new Date(),
+      companyDesc: companyDesc || 'graph not found',
+    });
+  } catch (error) {
+    console.log(error.message);
   }
+}
 
 export default app;
