@@ -85,7 +85,7 @@ function CompanyProfile(props: any) {
   return (
     <div className='company-profile'>
       {fetching ?
-        <LoadingSVG className="company-loading"/>
+        <LoadingSVG hasErrorText className="company-loading"/>
         :
         companyTD?.meta != null && companyAV?.Name != null ?
           <div>

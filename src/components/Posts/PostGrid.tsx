@@ -23,7 +23,7 @@ function PostGrid(props: any) {
           );
         })
       ) : (
-        <LoadingSVG className='posts-loading' />
+        <LoadingSVG hasErrorText className='posts-loading' />
       )}
       {props.error && <h3>Error, no content found</h3>}
     </div>
