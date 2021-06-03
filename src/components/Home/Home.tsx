@@ -27,6 +27,9 @@ export type Comments = {
   text: string;
 };
 function Home() {
+
+  document.title = "Community - Home";
+
   const [posts, setPosts] = useState<null | Posts[]>(null);
   const [snapshots, loading, error] = useCollection(
     firebase.firestore().collection('posts').orderBy('createdAt', 'desc')

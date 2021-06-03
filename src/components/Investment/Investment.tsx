@@ -34,6 +34,8 @@ function Investment() {
   const [fetching, setFetching] = useState(false);
   const [fetchError, setFetchError] = useState<string | unknown>();
 
+  document.title = "Community - Investment";
+
   function handleSignOut() {
     //sign out from the app
     app.auth().signOut();
@@ -93,6 +95,7 @@ function Investment() {
             Here you can see a list of companies that are currently available to
             invest into. Please select a company to proceed.
           </p>
+          <p className="note">Note: we don't currently have a data for all the companies</p>
         </div>
         <div className='country-select-wrapper'>
           <label htmlFor='countries'>Country:</label>

@@ -11,6 +11,8 @@ import StockGraph from './StockGraph';
 
 function CompanyProfile(props: any) {
 
+    document.title = `Community - ${props.match.params.id}`;
+
     const [companyTD, setCompanyTD] = useState<CompanyTD | null>();
     const [companyAV, setCompanyAV] = useState<CompanyAV | null>();
     const [fetching, setFetching] = useState(false);

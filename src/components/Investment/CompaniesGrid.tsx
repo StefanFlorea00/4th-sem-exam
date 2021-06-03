@@ -53,9 +53,6 @@ function CompaniesGrid(props: any) {
               id={company.id}
               name={company.name}
               field={company.field}
-              img={
-                company.img != null ? company.img.testimg : company.img
-              } /* temporary, just for test */
             />
           );
         })}

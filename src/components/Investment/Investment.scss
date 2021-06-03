@@ -8,6 +8,11 @@
   border-radius: $border-radius-m;
   animation: fadeIn 0.8s ease-in;
 
+  .note {
+    color: #bbb;
+    font-weight: 300;
+  }
+
   .country-select-wrapper {
     margin: 15px auto;
     display: flex;
@@ -43,6 +48,10 @@
       text-align: center;
       width: 60%;
       margin: 30px auto;
+    }
+
+    .note {
+      margin-bottom: 0;
     }
 
     @media (max-width: 768px) {

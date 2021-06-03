@@ -6,7 +6,8 @@ import { useHistory } from "react-router-dom";
 function NotFound() {
 
     const history = useHistory();
-    
+    document.title = `Community - 404`;
+
   function sendHome() {
     let path = "/";
     history.push(path);

@@ -14,6 +14,9 @@ import NotFound from './components/NotFound';
 
 
 function App() {
+
+  document.title = "Community";
+
   return (
     <Router>
       <div className='App'>
