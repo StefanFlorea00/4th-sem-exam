@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import './EditProfileInfo.scss';
 import app from '../FirebaseApp';
 import { uploadUserImage, updateUser } from '../FirebaseApp';
 import { AuthContext } from '../../Auth';
@@ -33,8 +32,6 @@ function ProfileInfo(props: Props) {
       if (props.profileInfo.profileImg) {
         uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg);
       }
-      console.log(props.profileInfo.profileImg);
-      console.log(file);
     } else {
       const uploadTask = app.storage().ref(`/avatars/${file.name}`).put(file);
       uploadTask.on('state_changed', console.log, console.error, () => {
@@ -47,9 +44,6 @@ function ProfileInfo(props: Props) {
             setFile(null);
             setURL(url);
             uploadUserImage(app.auth().currentUser, url);
-          })
-          .then(() => {
-            console.log('image done');
           });
       });
     }
@@ -57,7 +51,6 @@ function ProfileInfo(props: Props) {
 
   async function handleUserUpload(e: any) {
     const { fullname, investExp, description } = e.target.elements;
-    console.log(description.value);
     try {
       await updateUser(app.auth().currentUser, {
         fullname: fullname.value ? fullname.value : props.profileInfo.fullname,
@@ -67,8 +60,6 @@ function ProfileInfo(props: Props) {
         description: description.value
           ? description.value
           : props.profileInfo.description,
-      }).then(() => {
-        console.log('user done');
       });
     } catch (err) {
       console.log(err);

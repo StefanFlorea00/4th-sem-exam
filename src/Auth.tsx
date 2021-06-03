@@ -2,7 +2,6 @@ import React, { useEffect, useState, createContext } from 'react';
 import app from './components/FirebaseApp';
 import firebase from 'firebase/app';
 import LoadingSvg from './components/Assets/Loading';
-
 export const AuthContext = createContext<firebase.User | any>(null);
 
 export function AuthProvider({

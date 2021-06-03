@@ -26,8 +26,6 @@ function ChatRoomForm(props: Props) {
     e.preventDefault();
 
     if (currentUser && userInfo && inputValue) {
-      console.log(userInfo);
-
       try {
         await messageCollection.add({
           uid: currentUser.uid,

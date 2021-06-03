@@ -20,6 +20,7 @@ function LoadingSVG(props: Props) {
   }, []);
 
   return (
+
     <div className="loading-svg">
       <svg
         className={props.className}
@@ -31,8 +32,8 @@ function LoadingSVG(props: Props) {
         y='0px'
         viewBox='0 0 100 100'
         enableBackground='new 0 0 0 0'
-        xmlSpace='preserve'
-      >
+        xmlSpace='preserve'>
+        
         <path
           id='circle'
           fill='#fff'
