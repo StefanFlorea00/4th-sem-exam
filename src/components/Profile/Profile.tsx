@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import './Profile.scss';
 import Signout from './../Assets/Signout';
 import Edit from './../Assets/Edit';
 import View from './../Assets/View';

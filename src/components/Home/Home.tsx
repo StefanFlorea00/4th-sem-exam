@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { firestore, getCollection } from '../FirebaseApp';
-import './Home.scss';
 import ShareBar from '../Home/ShareBar/ShareBar';
 import PostGrid from '../Posts/PostGrid';
 import firebase from 'firebase';

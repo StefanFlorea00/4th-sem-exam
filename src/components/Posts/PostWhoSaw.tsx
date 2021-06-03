@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Comments } from '../Home/Home';
-import './PostWhoSaw.scss';
 
 type Props = {
   comments: Comments[];
@@ -8,6 +7,11 @@ type Props = {
 function PostWhoSaw(props: Props) {
   const { comments } = props;
   const [uniqArr, setUniqArr] = useState<Comments[] | []>([]);
+  const [commentArr, setCommentArr] = useState<Comments[] | []>(
+    uniqArr.slice(0, 3)
+  );
+  console.log();
+
   useEffect(() => {
     const getUniqueArr: Comments[] =
       comments &&
@@ -20,21 +24,31 @@ function PostWhoSaw(props: Props) {
           .values()
       );
     setUniqArr(getUniqueArr);
+    if (getUniqueArr.length > 3) {
+      setCommentArr(getUniqueArr.slice(0, 3));
+    }
   }, [comments]);
 
   return (
     <div className='who-saw-div'>
       <div className='user-img-div'>
-        {uniqArr &&
-          uniqArr.map((comment: Comments) => (
-            <img
-              key={comment.fullname + Math.random()}
-              className='user-img'
-              src={comment.profileImg}
-            />
-          ))}
+        {uniqArr && uniqArr.length <= 3
+          ? uniqArr.map((comment: Comments) => (
+              <img
+                key={comment.fullname + Math.random()}
+                className='user-img'
+                src={comment.profileImg}
+              />
+            ))
+          : commentArr.map((comment: Comments) => (
+              <img
+                key={comment.fullname + Math.random()}
+                className='user-img'
+                src={comment.profileImg}
+              />
+            ))}
       </div>
-      {uniqArr.length > 0 && <p>+ {uniqArr.length}</p>}
+      {uniqArr.length > 3 && <p>+ {uniqArr.length - commentArr.length}</p>}
     </div>
   );
 }

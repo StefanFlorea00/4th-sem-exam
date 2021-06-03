@@ -4,7 +4,6 @@ import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 import { AuthContext } from '../../../Auth';
 import { getDoc } from '../../FirebaseApp';
-import './ShareStock.scss';
 import app from '../../FirebaseApp';
 import { createPost } from '../../FirebaseApp';
 import LoadingSVG from '../../Assets/Loading';
@@ -44,7 +43,6 @@ function ShareStock(props: any) {
             .getDownloadURL()
             .then(url => {
               handlePostUpload(url);
-              console.log('upload', url);
             });
         });
       }

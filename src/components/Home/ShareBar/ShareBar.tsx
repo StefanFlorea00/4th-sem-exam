@@ -1,5 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
-import './ShareBar.scss';
+import React, { useEffect, useState, useContext } from 'react';
 import UserButton from '../../Buttons/UserButton';
 import ShareBarInput from './ShareBarInput';
 import { AuthContext } from '../../../Auth';
@@ -8,7 +7,7 @@ import app from '../../FirebaseApp';
 
 function ShareBar(props: any) {
   const { currentUser } = useContext(AuthContext);
-  const [userInfo, setUserInfo] = useState<any>()
+  const [userInfo, setUserInfo] = useState<any>();
 
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
@@ -17,9 +16,9 @@ function ShareBar(props: any) {
   }, []);
 
   return (
-  <div className="sharebar">
-      <UserButton userImg={userInfo?.profileImg}/>
-      <ShareBarInput setPosts={props.setPosts}/>
+    <div className='sharebar'>
+      <UserButton userImg={userInfo?.profileImg} />
+      <ShareBarInput setPosts={props.setPosts} />
     </div>
   );
 }

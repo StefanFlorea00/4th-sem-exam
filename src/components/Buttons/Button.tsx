@@ -1,10 +1,9 @@
 import React from 'react';
-import './Button.scss';
 
 type Props = {
   id?: string;
   onClick?: (e: any) => void;
-  type: 'primary' | 'secondary' ;
+  type: 'primary' | 'secondary';
   img?: React.ReactNode | JSX.Element;
   imgPos?: 'left' | 'right';
   text: string;

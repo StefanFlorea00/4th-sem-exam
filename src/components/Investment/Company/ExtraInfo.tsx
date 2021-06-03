@@ -1,13 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import './ExtraInfo.scss';
+import React, { useState, useEffect } from 'react';
 
 function ExtraInfo(props: any) {
-
   const [companyInfoAV, setCompanyInfoAV] = useState<CompanyInfoAV>();
 
   useEffect(() => {
     setCompanyInfoAV(props.companyInfoAV);
-  }, [])
+  }, []);
 
   type CompanyInfoAV = {
     FullTimeEmployees: string,
@@ -39,4 +37,3 @@ function ExtraInfo(props: any) {
 }
 
 export default ExtraInfo;
-

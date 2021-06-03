@@ -1,5 +1,4 @@
 import React, {useEffect, useContext} from 'react';
-import './ProfileInfo.scss';
 import { AuthContext } from '../../Auth';
 import { getDoc } from '../FirebaseApp';
 import app from '../FirebaseApp';
