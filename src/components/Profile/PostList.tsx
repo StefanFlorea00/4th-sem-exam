@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './PostList.scss';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import app from '../FirebaseApp';
 import Post from '../Posts/Post';

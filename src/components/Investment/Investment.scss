@@ -34,6 +34,12 @@
   }
 
   .description {
+    &_small {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-variant: smallcaps;
+    }
     h1 {
       text-align: center;
       margin-top: 10vh;
