@@ -112,7 +112,7 @@ function Investment() {
           </select>
         </div>
         {fetching ? (
-          <LoadingSVG className='company-loading' />
+          <LoadingSVG hasErrorText className='company-loading' />
         ) : (
           <>
             {companyList?.length == 0 || fetchError ? (

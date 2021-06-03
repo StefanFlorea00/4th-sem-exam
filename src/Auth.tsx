@@ -19,7 +19,7 @@ export function AuthProvider({
     });
   }, []);
   if (requestPending) {
-    return <LoadingSvg  className='main_loading_svg'/>;
+    return <LoadingSvg hasErrorText className='main_loading_svg'/>;
   }
   return (
     <AuthContext.Provider value={{ currentUser }}>

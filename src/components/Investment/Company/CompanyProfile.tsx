@@ -82,14 +82,17 @@ function CompanyProfile(props: any) {
 
   return (
     <div className='company-profile'>
-      {fetching ? (
-        <LoadingSVG className='company-loading' />
-      ) : companyTD?.meta != null && companyAV?.Name != null ? (
-        <div>
-          <CompanyHeadline companyInfoAV={companyAV} />
-          <div className='top-btn-wrapper'>
-            <div className='back-btn-wrapper'>
-              <Button type='primary' text='Back' onClick={() => sendBack()} />
+
+      {fetching ?
+        <LoadingSVG hasErrorText className="company-loading"/>
+        :
+        companyTD?.meta != null && companyAV?.Name != null ?
+          <div>
+          <CompanyHeadline companyInfoAV={companyAV}/>
+          <div className="top-btn-wrapper">
+            <div className="back-btn-wrapper">
+              <Button type="primary" text="Back" onClick={() => sendBack()}/>
+
             </div>
             <div className='timeline-btn-wrapper'>
               <p>Stock timeline interval:</p>

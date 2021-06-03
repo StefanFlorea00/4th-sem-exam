@@ -84,7 +84,7 @@ function ShareStock(props: any) {
   return (
     <div className='share-stock'>
       <form onSubmit={uploadChartImg}>
-        {loading && <LoadingSVG className='sharing-loading' />}
+        {loading && <LoadingSVG hasErrorText className='sharing-loading' />}
 
         <textarea
           className={`share-stock-text ${loading && 'text-loading'}`}
