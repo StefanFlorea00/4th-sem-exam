@@ -13,6 +13,8 @@ function CompanyProfile(props: any) {
   const [companyAV, setCompanyAV] = useState<CompanyAV | null>();
   const [fetching, setFetching] = useState(false);
   const history = useHistory();
+  
+  document.title = `Community - ${props.match.params.id}`;
 
   type CompanyAV = {
     Name: string;
@@ -86,8 +88,8 @@ function CompanyProfile(props: any) {
       {fetching ?
         <LoadingSVG hasErrorText className="company-loading"/>
         :
-        companyTD?.meta != null && companyAV?.Name != null ?
-          <div>
+        (companyTD?.meta != null && companyAV?.Name != null ?
+          (<div>
           <CompanyHeadline companyInfoAV={companyAV}/>
           <div className="top-btn-wrapper">
             <div className="back-btn-wrapper">
@@ -137,7 +139,7 @@ function CompanyProfile(props: any) {
           </p>
           <Button type='secondary' text='Go Back' onClick={() => sendBack()} />
         </div>
-      )}
+      ))}
     </div>
   );
 }

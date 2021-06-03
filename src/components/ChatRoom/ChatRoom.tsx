@@ -7,6 +7,9 @@ import ChatRoomCard from './ChatRoomCard';
 import Rooms from './Rooms';
 
 function Messages() {
+
+  document.title = "Community - Chatroom";
+  
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
   const div = useRef<HTMLDivElement>(null);

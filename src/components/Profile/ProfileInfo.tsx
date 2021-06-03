@@ -10,6 +10,9 @@ export type Props = {
 
 function ProfileInfo(props: Props) {
   const { currentUser } = useContext(AuthContext);
+  document.title = `Community - ${props.profileInfo?.fullname}`;
+
+  console.log(props.profileInfo)
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
       props.setProfileInformation(data);

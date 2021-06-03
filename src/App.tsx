@@ -10,9 +10,13 @@ import Investment from './components/Investment/Investment';
 import ChatRoom from './components/ChatRoom/ChatRoom';
 import CompanyProfile from './components/Investment/Company/CompanyProfile';
 import UserProfile from './components/Profile/UsersProfiles/UserProfile'
+import NotFound from './components/NotFound';
 
 
 function App() {
+
+  document.title = "Community";
+
   return (
     <Router>
       <div className='App'>
@@ -24,6 +28,7 @@ function App() {
           <PrivateRoute exact path='/company/:id' component={CompanyProfile} />
           <PrivateRoute exact path='/profile/:id' component={UserProfile} />
           <Route path='/login' component={LogIn} />
+          <Route path='*' component={NotFound}/>
           <Route path='/signup' component={SignUp} />
         </Switch>
       </div>
