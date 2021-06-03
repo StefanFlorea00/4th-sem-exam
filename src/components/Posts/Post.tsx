@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserButton from '../Buttons/UserButton';
 import Button from '../Buttons/Button';
-import './Post.scss';
 import PostWhoSaw from './PostWhoSaw';
 import { firestore } from '../FirebaseApp';
 import { getDoc } from '../FirebaseApp';
@@ -52,10 +51,10 @@ function Post(props: Props) {
       });
     getDoc(currentUser).then(data => setUserInfo(data));
 
-    if (props.comments.length > 3) {
+    if (props.comments.length >= 3) {
       setShowLoad(true);
     }
-    if (props.comments.length < 5) {
+    if (props.comments.length < 4) {
       setShowLoad(false);
     }
     if (props.comments.length === postComments.length) {

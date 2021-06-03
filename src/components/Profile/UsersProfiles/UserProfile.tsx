@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import './UserProfile.scss';
 import {getDoc} from '../../FirebaseApp';
 import { useHistory } from "react-router-dom";
 import PostList from '../PostList'

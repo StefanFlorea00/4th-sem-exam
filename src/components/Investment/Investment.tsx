@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import app, { uploadUserImage } from '../FirebaseApp';
 import CompaniesGrid from './CompaniesGrid';
-import './Investment.scss';
 import testimg from '../Assets/testimg.jpg';
 import LoadingSVG from '../Assets/Loading';
 import Button from '../Buttons/Button';
@@ -93,6 +92,9 @@ function Investment() {
             Here you can see a list of companies that are currently available to
             invest into. Please select a company to proceed.
           </p>
+          <small className='description_small'>
+            Currently only USA has available stocks
+          </small>
         </div>
         <div className='country-select-wrapper'>
           <label htmlFor='countries'>Country:</label>
@@ -105,8 +107,8 @@ function Investment() {
           >
             <option value='Denmark'>Denmark</option>
             <option value='United States'>United States</option>
-            <option disabled value='Sweden'>Sweden</option>
-            <option disabled value='Germany'>Germany</option>
+            <option value='Sweden'>Sweden</option>
+            <option value='Germany'>Germany</option>
           </select>
         </div>
         {fetching ? (

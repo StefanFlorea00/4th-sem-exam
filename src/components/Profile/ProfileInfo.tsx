@@ -1,5 +1,4 @@
 import React, {useEffect, useContext} from 'react';
-import './ProfileInfo.scss';
 import { AuthContext } from '../../Auth';
 import { getDoc } from '../FirebaseApp';
 import app from '../FirebaseApp';
@@ -11,7 +10,6 @@ export type Props = {
 
 function ProfileInfo(props: Props) {
   const { currentUser } = useContext(AuthContext);
-  console.log(props.profileInfo)
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {
       props.setProfileInformation(data);

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './PostGrid.scss';
 import Post from './Post';
 import { Comments } from '../Home/Home';
 import LoadingSVG from '../Assets/Loading';

@@ -8,7 +8,8 @@
   padding: 15px;
   background-color: #f3f4f6;
   border-radius: $border-radius-m;
-  height: 100px;
+  min-height: 100px;
+  height: auto;
 
   img {
     width: 50px;
