@@ -13,6 +13,8 @@ function Profile() {
   const { currentUser } = useContext(AuthContext);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [profileInformation, setProfileInformation] = useState<any>();
+  document.title = `Community - ${profileInformation?.fullName}`;
+
 
   useEffect(() => {
     getDoc(app.auth().currentUser).then(data => {

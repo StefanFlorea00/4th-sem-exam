@@ -13,6 +13,8 @@ function CompanyProfile(props: any) {
   const [companyAV, setCompanyAV] = useState<CompanyAV | null>();
   const [fetching, setFetching] = useState(false);
   const history = useHistory();
+  
+  document.title = `Community - ${props.match.params.id}`;
 
   type CompanyAV = {
     Name: string;

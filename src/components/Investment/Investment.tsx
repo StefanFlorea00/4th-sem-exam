@@ -33,6 +33,8 @@ function Investment() {
   const [fetching, setFetching] = useState(false);
   const [fetchError, setFetchError] = useState<string | unknown>();
 
+  document.title = "Community - Investment";
+
   function handleSignOut() {
     //sign out from the app
     app.auth().signOut();

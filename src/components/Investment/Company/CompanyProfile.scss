@@ -11,6 +11,10 @@
     margin-top: 25px;
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: 450px) {
+      flex-flow: column;
+    }
   }
 
   .description {
@@ -87,7 +91,13 @@
     }
 
     @media only screen and (max-width: 450px) {
-      flex-flow: column;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      p {
+        width: 100%;
+        text-align: center;
+      }
     }
   }
 }
