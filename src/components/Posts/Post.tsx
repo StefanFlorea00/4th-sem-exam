@@ -32,7 +32,6 @@ type User = {
 function Post(props: Props) {
   const [postUser, setPostUser] = useState<User | any>();
   const [companyFirstPart, companySecondPart] = props.companyDesc.split('/*/');
-  console.log(companySecondPart);
 
   const postText = props.content;
 
