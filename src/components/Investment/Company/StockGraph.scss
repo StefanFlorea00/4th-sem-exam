@@ -18,6 +18,10 @@
 
     .stock-info {
       margin: 0 10px;
+
+      @media (max-width: 450px) {
+        margin-bottom: 20px;
+      }
     }
 
     .extra-info {

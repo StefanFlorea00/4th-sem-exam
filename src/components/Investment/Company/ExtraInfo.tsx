@@ -10,23 +10,30 @@ function ExtraInfo(props: any) {
   }, [])
 
   type CompanyInfoAV = {
-    FullTimeEmployees: ""
+    FullTimeEmployees: string,
+    FiscalYearEnd: string,
+    ProfitMargin: string,
+    Symbol: string,
+    AssetType: string
   }
 
   return (
     <div className='extra-info'>
         <div className='info-line'>
-          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
-        </div>
-        {/* <div className='info-line'>
-          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
+          <p>Employees: {companyInfoAV ? companyInfoAV.FullTimeEmployees : ""} </p>
         </div>
         <div className='info-line'>
-          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
+          <p>Fiscal year end: {companyInfoAV ? companyInfoAV.FiscalYearEnd : ""}</p>
         </div>
         <div className='info-line'>
-          <p>{companyInfoAV ? companyInfoAV.FullTimeEmployees : "..."} Employees</p>
-        </div> */}
+          <p>Profit margin: {companyInfoAV ? companyInfoAV.ProfitMargin : ""}</p>
+        </div>
+        <div className='info-line'>
+          <p>Symbol: {companyInfoAV ? companyInfoAV.Symbol : ""}</p>
+        </div>
+        <div className='info-line'>
+          <p>Asset type: {companyInfoAV ? companyInfoAV.AssetType : ""}</p>
+        </div>
     </div>
   );
 }

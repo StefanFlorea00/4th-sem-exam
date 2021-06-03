@@ -34,11 +34,16 @@ function StockInfo(props: any) {
     useEffect(() => {
         setCompanyInfoTD(props.companyInfoTD);
         setCompanyInfoAV(props.companyInfoAV);
-        companyInfoTD && calculatePercentage(companyInfoTD.values[0].close, companyInfoTD.values[1].close);
+        if (companyInfoTD) {
+            let percent = 0;
+            async () => {percent = await calculatePercentage(companyInfoTD.values[0].close, companyInfoTD.values[1].close)};
+            setRecentPercentage(parseFloat(percent.toFixed(4)));
+        }
     }, [])
 
-    function calculatePercentage(value1: number, value2: number){
+    async function calculatePercentage(value1: number, value2: number){
         let percentage = (value1 - value2) / value2 * 100;
+        return percentage;
         setRecentPercentage(parseFloat(percentage.toFixed(4)));
     }
 
