@@ -58,7 +58,7 @@ function Messages() {
             const time = `${date} ${month} ${year} ${hour}`;
 
             return (
-              <ul>
+              <section>
                 <ChatRoomCard
                   key={user.fullname + Math.random()}
                   fullname={user.fullname}
@@ -70,7 +70,7 @@ function Messages() {
                   deletable
                   direction='right'
                 />
-              </ul>
+              </section>
             );
           })}
         <div ref={div}></div>

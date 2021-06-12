@@ -35,11 +35,11 @@ function ChatRoomCard(props: Props) {
 
   return (
     <div className='chat_card'>
-      <li
-        className={
-          currentUser?.uid === uid && direction === 'right'
-            ? 'chat_card_item currentUser'
-            : 'chat_card_item'
+      <article
+        className={`${currentUser?.uid === uid && direction === 'right'
+          ? 'chat_card_item currentUser'
+          : 'chat_card_item'}`
+
         }
       >
         <Link to={{ pathname: '/profile/' + uid, state: { uid: uid } }}>
@@ -72,7 +72,7 @@ function ChatRoomCard(props: Props) {
           />
         </div>
         <div className='time'> {time}</div>
-      </li>
+      </article>
     </div>
   );
 }

@@ -73,14 +73,14 @@ function Nav() {
   return (
     <nav className='nav'>
       {showNavLi && <Logo className='logo' />}
-      <ul className='nav_ul'>
+      <section className='nav_ul'>
         <Link
           to='/'
           className={selected === 'home' ? 'nav_ul_a selected' : 'nav_ul_a'}
           onClick={() => handleClick('home')}
         >
           <Home className={selected === 'home' ? 'selected' : ''} />
-          {showNavLi && <li className='nav_ul_a_li'>Home</li>}
+          {showNavLi && <article className='nav_ul_a_li'>Home</article>}
         </Link>
         <Link
           to='/investment'
@@ -90,7 +90,7 @@ function Nav() {
           onClick={() => handleClick('investment')}
         >
           <Investment className={selected === 'investment' ? 'selected' : ''} />
-          {showNavLi && <li className='nav_ul_a_li'>Investment</li>}
+          {showNavLi && <article className='nav_ul_a_li'>Investment</article>}
         </Link>
         <Link
           to='/chatRoom'
@@ -98,7 +98,7 @@ function Nav() {
           onClick={() => handleClick('chatRoom')}
         >
           <Messages className={selected === 'chatRoom' ? 'selected' : ''} />
-          {showNavLi && <li className='nav_ul_a_li'>Chatroom</li>}
+          {showNavLi && <article className='nav_ul_a_li'>Chatroom</article>}
         </Link>
 
         <Link
@@ -117,7 +117,7 @@ function Nav() {
               userImg={userNameAndExp?.profileImg}
             />
           ) : (
-            <li
+            <article
               className={
                 selected === 'profile' ? 'nav_ul_a_li selected' : 'nav_ul_a_li'
               }
@@ -130,10 +130,10 @@ function Nav() {
                     : 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
                 }
               />
-            </li>
+            </article>
           )}
         </Link>
-      </ul>
+      </section>
     </nav>
   );
 }
