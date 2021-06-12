@@ -1,3 +1,4 @@
+@use  '../../sass/variables.scss' as *;
 .user-btn {
   display: flex;
   align-items: center;
@@ -11,7 +12,7 @@
   }
 
   p {
-    color: #7e7e7e;
+    color: $faded-color;
     font-weight: 300;
     font-size: 13px;
   }

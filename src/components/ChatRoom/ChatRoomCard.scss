@@ -57,7 +57,7 @@
       margin-left: 67px;
     }
     .time {
-      color: rgba(128, 128, 128, 0.567);
+      color: $faded-color;
       font-size: 0.7em;
       margin-left: 67px;
       @include mediaQuery(tablet) {

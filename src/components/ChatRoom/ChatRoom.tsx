@@ -9,7 +9,7 @@ import Rooms from './Rooms';
 function Messages() {
 
   document.title = "Community - Chatroom";
-  
+
   const [selectedRoom, setSelectedRoom] = useState('general');
   const messageCollection = app.firestore().collection('messages');
   const div = useRef<HTMLDivElement>(null);
@@ -58,17 +58,19 @@ function Messages() {
             const time = `${date} ${month} ${year} ${hour}`;
 
             return (
-              <ChatRoomCard
-                key={user.fullname + Math.random()}
-                fullname={user.fullname}
-                text={user.text}
-                profileImg={user.profileImg}
-                time={time}
-                uid={user.uid}
-                id={user.id}
-                deletable
-                direction='right'
-              />
+              <ul>
+                <ChatRoomCard
+                  key={user.fullname + Math.random()}
+                  fullname={user.fullname}
+                  text={user.text}
+                  profileImg={user.profileImg}
+                  time={time}
+                  uid={user.uid}
+                  id={user.id}
+                  deletable
+                  direction='right'
+                />
+              </ul>
             );
           })}
         <div ref={div}></div>
