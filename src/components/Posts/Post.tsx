@@ -122,7 +122,7 @@ function Post(props: Props) {
         />
       </Link>
       {props.postImage && (
-        <img className='post-img' src={props.postImage} alt='Post image' />
+        <img className='post-img' src={props.postImage} alt='Post image' loading="lazy"/>
       )}
       <div className='post-content'>
         {companyFirstPart !== 'graph not found' && (
